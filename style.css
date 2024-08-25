@@ -1,7 +1,7 @@
 *{
     color: rgb(255, 255, 255);
     text-align: center;
-    
+
     /*QUITA LA OPCION DE PODER COPIAR EL TEXTO DE LA PAGINA*/
     user-select: none;  /* Deshabilita la selección de texto */
     -webkit-user-select: none;  /* Chrome, Safari, Opera */
@@ -32,7 +32,7 @@ main{
     justify-content: center;
 }
 .escoger_seccion{
-    width: 400px;
+    width: 100%;
     height: 40px;
     display: flex;
     justify-content: center;
