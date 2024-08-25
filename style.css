@@ -1,0 +1,123 @@
+*{
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+body{
+    background-color: rgb(17, 17, 17);
+}
+.container{
+    max-width: 414px; /* Ancho máximo de 414px */
+    width: 100%;  /* El contenedor ocupa el 100% del ancho hasta 414px */
+    margin: auto;
+}
+#logo_app{
+    width: 180px;
+    padding: 15px;
+}
+h1{
+    font-size: 20px;
+}
+main{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.escoger_seccion{
+    width: 400px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: aqua;*/
+}
+.seccion_logo_size{
+    width: 40px;
+    border-radius: 10px;
+}
+#seccion_hamburguesa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#seccion_perros{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#seccion_picadas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#seccion_bebidas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    font-size: 10px;
+    background-color: rgb(255, 255, 255);
+}
+.menu{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /*background-color: aquamarine;*/
+}
+.articulo{
+    flex: 0 0 35%;
+    color: rgb(255, 255, 255);
+    width: 140px;
+    height: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgba(61, 61, 61, 0.233);
+}
+.articulo:last-child{
+    /*margin-right: 0;*/
+}
+
+
+
+#comida_logo_size{
+    width: 120px;
+    border-radius: 10px;
+    margin-top: 11px;
+}
+#perro_hp_add{
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 0);
+}
+#perro_hp_add:hover {
+    background-color: rgb(255, 174, 0);
+}
+
+
+footer{
+    padding: 20px;
+}

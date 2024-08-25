@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Interactivo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <img id="logo_app" src="img/MrGeorge-Logo.png" alt="Logo Mr George">
+        </div>
+        <main>
+            <section class="escoger_seccion">
+                <div id="seccion_hamburguesa">
+                    <a href="#">
+                        <img class="seccion_logo_size" src="img/burger.jpg" alt="logo hamburguesa">
+                        Hamburguesas
+                    </a>
+                </div>
+                <div id="seccion_perros">
+                    <a href="#">
+                        <img class="seccion_logo_size" src="img/perro.jpg" alt="logo perro caliente"> <br>
+                        Perros
+                    </a>
+                </div>
+                <div id="seccion_picadas">
+                    <a href="#">
+                        <img class="seccion_logo_size" src="img/perro.jpg" alt="logo perro caliente"> <br>
+                        Picadas
+                    </a>
+                </div>
+                <div id="seccion_bebidas">
+                    <a href="#">
+                        <img class="seccion_logo_size" src="img/burger.jpg" alt="logo perro caliente"> <br>
+                        Bebidas
+                    </a>
+                </div>
+            </section>
+        </main>
+        <h2>Selecciona tu pedido:</h2>
+        <div>
+            <section class="menu">
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/burgerFoto.png" alt="">
+                    perro cv
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/burgerFoto.png" alt="">
+                    perro hp <br> <br>
+                    <a id="perro_hp_add" href="#">Add</a>
+                </div>
+
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro cv
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro hp <br> <br>
+                    <a id="perro_hp_add" href="#">Add</a>
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro cv
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro hp <br> <br>
+                    <a id="perro_hp_add" href="#">Add</a>
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro cv
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro hp <br> <br>
+                    <a id="perro_hp_add" href="#">Add</a>
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro cv
+                </div>
+                <div class="articulo">
+                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
+                    perro hp <br> <br>
+                    <a id="perro_hp_add" href="#">Add</a>
+                </div>
+            </section>
+        </div>
+
+        <div>
+            <h2>Selecciona tu pedido:</h2>
+            <label for="plato">Plato principal:</label>
+            <select id="plato">
+                <option value="Pizza">Pizza</option>
+                <option value="Hamburguesa">Hamburguesa</option>
+                <option value="Ensalada">Ensalada</option>
+            </select>
+
+            <label for="bebida">Bebida:</label>
+            <select id="bebida">
+                <option value="Coca Cola">Coca Cola</option>
+                <option value="Agua">Agua</option>
+                <option value="Jugo">Jugo</option>
+            </select>
+
+            <button onclick="enviarPedido()">Enviar Pedido</button>
+        </div>
+        <footer>
+            Since 2022<br>
+            Hensua Desing Web
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
