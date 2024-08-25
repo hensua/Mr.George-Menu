@@ -1,6 +1,12 @@
 *{
     color: rgb(255, 255, 255);
     text-align: center;
+    
+    /*QUITA LA OPCION DE PODER COPIAR EL TEXTO DE LA PAGINA*/
+    user-select: none;  /* Deshabilita la selección de texto */
+    -webkit-user-select: none;  /* Chrome, Safari, Opera */
+    -moz-user-select: none;  /* Firefox */
+    -ms-user-select: none;  /* Internet Explorer/Edge */
 }
 a{
     text-decoration: none;
