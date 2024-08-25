@@ -66,8 +66,9 @@ main{
     border-radius: 10px;
     background-color: rgba(61, 61, 61, 0.233);
 }
-.articulo:last-child{
-    /*margin-right: 0;*/
+.articulo_ajuste{
+    margin-right: 0px;
+    /*background-color: aqua;*/
 }
 
 
