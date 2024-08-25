@@ -24,62 +24,24 @@ h1{
 main{
     display: flex;
     justify-content: center;
-    margin-top: 15px;
 }
 .escoger_seccion{
     width: 400px;
-    height: 60px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     /*background-color: aqua;*/
 }
-.seccion_logo_size{
-    width: 40px;
-    border-radius: 10px;
+.escoger_seccion_a{
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin-right: 5px;
+    background-color: white;
 }
-#seccion_hamburguesa{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    background-color: rgb(255, 255, 255);
-}
-#seccion_perros{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    background-color: rgb(255, 255, 255);
-}
-#seccion_picadas{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    background-color: rgb(255, 255, 255);
-}
-#seccion_bebidas{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    font-size: 10px;
-    background-color: rgb(255, 255, 255);
+.escoger_seccion_a:last-child{
+    margin-right: 0px;
 }
 .menu{
     display: flex;
