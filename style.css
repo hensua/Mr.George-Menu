@@ -38,7 +38,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 .escoger_seccion_a{
     font-size: 0.9rem;
