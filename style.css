@@ -1,6 +1,8 @@
 *{
     color: rgb(255, 255, 255);
     text-align: center;
+    margin: 0;
+    padding: 0;
 
     /*QUITA LA OPCION DE PODER COPIAR EL TEXTO DE LA PAGINA*/
     user-select: none;  /* Deshabilita la selección de texto */
@@ -50,6 +52,9 @@ main{
 .escoger_seccion_a:last-child{
     margin-right: 0rem;
 }
+#tutulo_principal{
+    padding: 0.5rem;
+}
 .menu{
     display: flex;
     justify-content: center;
@@ -70,14 +75,41 @@ main{
     margin-right: 0px;
     /*background-color: aqua;*/
 }
-
-
-
+.texto_y_add{
+    display: flex;
+    /*height: 57px;*/
+    /*background-color: rgb(0, 60, 255);*/
+}
+.menu_articulo_textos{
+    display: flex;
+    width: 95%;
+    margin-bottom: 0.2rem;
+    margin-left: 0.5rem;
+    /*background-color: rgb(255, 151, 24);*/
+}
+.menu_articulo_textos:last-child{
+    margin-bottom: 0rem;
+}
 #comida_logo_size{
     width: 120px;
     border-radius: 10px;
     margin-top: 11px;
 }
+.contenedor_boton_add{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.boton_add{
+    font-size: 16px;
+    padding: 2.5px 7px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: rgb(255, 255, 0);
+}
+
+
+
 #perro_hp_add{
     padding: 10px 20px;
     border-radius: 15px;
