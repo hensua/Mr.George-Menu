@@ -157,7 +157,7 @@ footer{
     align-items: center;
     width: 100%;
     height: 50px;
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 .carrito_compras_logo{
     width: 1rem;
