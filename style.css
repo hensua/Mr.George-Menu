@@ -22,6 +22,15 @@ body{
     width: 100%;  /* El contenedor ocupa el 100% del ancho hasta 414px */
     margin: auto;
 }
+#carrito_compras{
+    background-color: white;
+    position: absolute;
+    top: 20px;
+    left: 50px;
+}
+#carrito_compras_logo{
+    width: 2rem;
+}
 #logo_app{
     width: 180px;
     padding: 15px;
@@ -129,4 +138,74 @@ main{
 
 footer{
     padding: 20px;
+}
+.redes_sociales{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.Logo_redes_sociales{
+    width: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+
+
+/*CARRITO DE COMPRAS*/
+.contenedor_header_compras{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: aqua;
+}
+.carrito_compras_logo{
+    width: 1rem;
+}
+#atras{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+#atras_logo{
+   width: 2rem; 
+   border-radius: 15px;
+   background-color: rgb(255, 255, 255);
+}
+.contenedor_main_compras{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 12px;
+    /*background-color: bisque;*/
+}
+#boton_hacer_pedido{
+    margin-top: 10px;
+    color: black;
+    width: 110px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: rgb(255, 251, 0);
+}
+
+.producto_carrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.producto_carrito button {
+    font-size: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 255, 0);
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+.producto_carrito button:hover {
+    background-color: rgb(255, 174, 0);
 }

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a id="carrito_compras" href="compras.html">
+        <img id="carrito_compras_logo" src="img/shopping.png" alt="Logo Carrito">
+    </a>
     <div class="container">
         <div>
             <img id="logo_app" src="img/MrGeorge-Logo.png" alt="Logo Mr George">
@@ -22,7 +25,7 @@
         <h2 id="tutulo_principal">Selecciona tu pedido:</h2>
         <div>
             <section class="menu">
-                <div class="articulo">
+                <div class="articulo" data-id="1" data-nombre="Big Mac" data-precio="15000">
                     <img id="comida_logo_size" src="img/Hamburguesa.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Big Mac</h4>
@@ -30,10 +33,10 @@
                     </div>
                     <div class="contenedor_precio_boton_add">
                         <h5 class="menu_articulo_precio">$15.000</h5>
-                        <a class="boton_add" href="#">+</a>
+                        <a class="boton_add" href="#" onclick="agregarAlCarrito(event)">+</a>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste">
+                <div class="articulo articulo_ajuste" data-id="2" data-nombre="Big Burger" data-precio="20000">
                     <img id="comida_logo_size" src="img/Hamburguesa.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Big Burger</h4>
@@ -41,11 +44,11 @@
                     </div>
                     <div class="contenedor_precio_boton_add">
                         <h5 class="menu_articulo_precio">$20.000</h5>
-                        <a class="boton_add" href="#">+</a>
+                        <a class="boton_add" href="#" onclick="agregarAlCarrito(event)">+</a>
                     </div>
                 </div>
                 <div class="articulo">
-                    <img id="comida_logo_size" src="img/Perro.png" alt="">
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Perro Ranchero</h4>
                         <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
@@ -56,36 +59,81 @@
                     </div>
                 </div>
                 <div class="articulo articulo_ajuste">
-                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
-                    perro hp <br> <br>
-                    <a id="perro_hp_add" href="#">Add</a>
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
+                    <div class="articulo_info">
+                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
+                    </div>
+                    <div class="contenedor_precio_boton_add">
+                        <h5 class="menu_articulo_precio">$11.000</h5>
+                        <a class="boton_add" href="#">+</a>
+                    </div>
                 </div>
                 <div class="articulo">
-                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
-                    perro cv
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
+                    <div class="articulo_info">
+                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
+                    </div>
+                    <div class="contenedor_precio_boton_add">
+                        <h5 class="menu_articulo_precio">$11.000</h5>
+                        <a class="boton_add" href="#">+</a>
+                    </div>
                 </div>
                 <div class="articulo articulo_ajuste">
-                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
-                    perro hp <br> <br>
-                    <a id="perro_hp_add" href="#">Add</a>
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
+                    <div class="articulo_info">
+                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
+                    </div>
+                    <div class="contenedor_precio_boton_add">
+                        <h5 class="menu_articulo_precio">$11.000</h5>
+                        <a class="boton_add" href="#">+</a>
+                    </div>
                 </div>
                 <div class="articulo">
-                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
-                    perro cv
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
+                    <div class="articulo_info">
+                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
+                    </div>
+                    <div class="contenedor_precio_boton_add">
+                        <h5 class="menu_articulo_precio">$11.000</h5>
+                        <a class="boton_add" href="#">+</a>
+                    </div>
                 </div>
                 <div class="articulo articulo_ajuste">
-                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
-                    perro hp <br> <br>
-                    <a id="perro_hp_add" href="#">Add</a>
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
+                    <div class="articulo_info">
+                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
+                    </div>
+                    <div class="contenedor_precio_boton_add">
+                        <h5 class="menu_articulo_precio">$11.000</h5>
+                        <a class="boton_add" href="#">+</a>
+                    </div>
                 </div>
                 <div class="articulo">
-                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
-                    perro cv
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
+                    <div class="articulo_info">
+                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
+                    </div>
+                    <div class="contenedor_precio_boton_add">
+                        <h5 class="menu_articulo_precio">$11.000</h5>
+                        <a class="boton_add" href="#">+</a>
+                    </div>
                 </div>
                 <div class="articulo articulo_ajuste">
-                    <img id="comida_logo_size" src="img/comida.jpeg" alt="">
-                    perro hp <br> <br>
-                    <a id="perro_hp_add" href="#">Add</a>
+                    <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
+                    <div class="articulo_info">
+                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
+                    </div>
+                    <div class="contenedor_precio_boton_add">
+                        <h5 class="menu_articulo_precio">$11.000</h5>
+                        <a class="boton_add" href="#">+</a>
+                    </div>
                 </div>
             </section>
         </div>
@@ -108,9 +156,18 @@
 
             <button onclick="enviarPedido()">Enviar Pedido</button>
         </div>
+
         <footer>
+            <div class="redes_sociales">
+                <a href="#">
+                    <img class="Logo_redes_sociales" src="img/whatsapp.png" alt="Logo Whatsapp">
+                </a>
+                <a href="https://www.instagram.com/mr_ge0rge?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+                    <img class="Logo_redes_sociales" src="img/instagram.png" alt="Logo Instagram">
+                </a>
+            </div>
             Since 2022<br>
-            Hensua Desing Web
+            Henry Desing Web
         </footer>
     </div>
     <script src="script.js"></script>
