@@ -75,11 +75,6 @@ main{
     margin-right: 0px;
     /*background-color: aqua;*/
 }
-.texto_y_add{
-    display: flex;
-    /*height: 57px;*/
-    /*background-color: rgb(0, 60, 255);*/
-}
 .menu_articulo_textos{
     display: flex;
     width: 95%;
@@ -89,22 +84,33 @@ main{
 }
 .menu_articulo_textos:last-child{
     margin-bottom: 0rem;
+    color: rgb(160, 160, 160);
 }
 #comida_logo_size{
-    width: 120px;
-    border-radius: 10px;
-    margin-top: 11px;
+    width: 7.5rem;
+    margin-top: 0.7rem;
+    /*background-color: beige;*/
 }
-.contenedor_boton_add{
+.articulo_info{
+    margin-bottom: 0.3rem;
+    /*background-color: rgb(255, 38, 0);*/
+}
+.contenedor_precio_boton_add{
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
+    /*background-color: blue;*/
+}
+.menu_articulo_precio{
+    display: flex;
+    width: 95%;
+    margin-left: 0.5rem;
 }
 .boton_add{
-    font-size: 16px;
-    padding: 2.5px 7px;
-    border-radius: 20px;
-    margin-left: 10px;
+    font-size: 0.9rem;
+    padding: 0.095rem 0.4rem;
+    border-radius: 0.3rem;
+    margin-left: 0.4rem;
+    margin-right: 0.5rem;
     background-color: rgb(255, 255, 0);
 }
 
