@@ -9,6 +9,7 @@
 <body>
     <a id="carrito_compras" href="compras.html">
         <img id="carrito_compras_logo" src="img/shopping.png" alt="Logo Carrito">
+        <span id="contador_carrito">0</span>
     </a>
     <div class="container">
         <div>
@@ -58,15 +59,15 @@
                         <a class="boton_add" href="#" onclick="agregarAlCarrito(event)">+</a>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste">
+                <div class="articulo articulo_ajuste" data-id="4" data-nombre="Perro Suizo" data-precio="13000">
                     <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
                     <div class="articulo_info">
-                        <h4 class="menu_articulo_textos">Perro Ranchero</h4>
+                        <h4 class="menu_articulo_textos">Perro Suizo</h4>
                         <h6 class="menu_articulo_textos">El mejor y rico sabor</h6>
                     </div>
                     <div class="contenedor_precio_boton_add">
-                        <h5 class="menu_articulo_precio">$11.000</h5>
-                        <a class="boton_add" href="#">+</a>
+                        <h5 class="menu_articulo_precio">$13.000</h5>
+                        <a class="boton_add" href="#" onclick="agregarAlCarrito(event)">+</a>
                     </div>
                 </div>
                 <div class="articulo">
@@ -139,11 +140,11 @@
         </div>
         <footer>
             <div class="redes_sociales">
-                <a href="#">
-                    <img class="Logo_redes_sociales" src="img/whatsapp.png" alt="Logo Whatsapp">
+                <a class="redes_sociales_logo_link" href="#">
+                    <img class="redes_sociales_logo" src="img/whatsapp.png" alt="Logo Whatsapp">
                 </a>
-                <a href="https://www.instagram.com/mr_ge0rge?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
-                    <img class="Logo_redes_sociales" src="img/instagram.png" alt="Logo Instagram">
+                <a class="redes_sociales_logo_link_" href="https://www.instagram.com/mr_ge0rge?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+                    <img class="redes_sociales_logo" src="img/instagram.png" alt="Logo Instagram">
                 </a>
             </div>
             Since 2022<br>

@@ -23,17 +23,31 @@ body{
     margin: auto;
 }
 #carrito_compras{
-    background-color: white;
     position: absolute;
-    top: 20px;
-    left: 50px;
+    top: 30px;
+    left: 40px;
 }
 #carrito_compras_logo{
     width: 2rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: white;
+}
+#contador_carrito {
+    display: none;  /* Ocultamos el contador inicialmente */
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: rgb(255, 255, 0);
+    color: black;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 0.8rem;
 }
 #logo_app{
     width: 180px;
     padding: 15px;
+    margin-top: 0;
 }
 h1{
     font-size: 20px;
@@ -144,12 +158,14 @@ footer{
     justify-content: center;
     margin-bottom: 1rem;
 }
-.Logo_redes_sociales{
-    width: 1.2rem;
+.redes_sociales_logo_link{
     margin-right: 0.5rem;
 }
-.Logo_redes_sociales:last-child{
+.redes_sociales_logo_link_{
     margin-right: 0rem;
+}
+.redes_sociales_logo{
+    width: 1.2rem;
 }
 
 
@@ -169,7 +185,7 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 0.5rem;
+    margin-left: 0.8rem;
 }
 #atras_logo{
     width: 2rem; 
@@ -198,16 +214,6 @@ footer{
     align-items: center;
     margin-bottom: 20px;
 }
-
-/*.producto_carrito button {
-    font-size: 1.2rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.3rem;
-    background-color: rgb(255, 255, 0);
-    border: none;
-    color: black;
-    cursor: pointer;
-}*/
 
 .producto_carrito_boton_quitar{
     font-size: 1.2rem;

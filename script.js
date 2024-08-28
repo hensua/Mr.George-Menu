@@ -1,3 +1,16 @@
+// Función para actualizar el contador del carrito en el icono
+function actualizarContadorCarrito() {
+    const carrito = obtenerCarrito();
+    const contadorCarrito = document.getElementById('contador_carrito');
+
+    if (carrito.length > 0) {
+        contadorCarrito.textContent = carrito.length;  // Mostrar el número de productos
+        contadorCarrito.style.display = 'inline';      // Asegurarse de que el contador esté visible
+    } else {
+        contadorCarrito.style.display = 'none';        // Ocultar el contador si no hay productos
+    }
+}
+
 // Función para agregar un producto al carrito
 function agregarAlCarrito(event) {
     event.preventDefault();
@@ -17,7 +30,8 @@ function agregarAlCarrito(event) {
     }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    alert(`${nombre} ha sido añadido al carrito.`);
+    actualizarContadorCarrito();  // Actualiza el contador del carrito
+    /*alert(`${nombre} ha sido añadido al carrito.`);*/
 }
 
 // Función para obtener el contenido del carrito
@@ -94,7 +108,9 @@ function enviarPedido() {
     window.open(url, '_blank');
 }
 
-// Llama a mostrarCarrito cuando se cargue compras.html
+// Llama a mostrarCarrito cuando se cargue compras.html y actualiza el contador
 if (window.location.pathname.includes('compras.html')) {
     mostrarCarrito();
+} else {
+    actualizarContadorCarrito();  // Actualiza el contador cuando esté en otras páginas
 }
