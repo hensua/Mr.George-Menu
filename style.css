@@ -148,6 +148,9 @@ footer{
     width: 1.2rem;
     margin-right: 0.5rem;
 }
+.Logo_redes_sociales:last-child{
+    margin-right: 0rem;
+}
 
 
 
@@ -169,9 +172,9 @@ footer{
     margin-left: 0.5rem;
 }
 #atras_logo{
-   width: 2rem; 
-   border-radius: 15px;
-   background-color: rgb(255, 255, 255);
+    width: 2rem; 
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
 }
 .contenedor_main_compras{
     display: flex;
@@ -196,7 +199,17 @@ footer{
     margin-bottom: 20px;
 }
 
-.producto_carrito button {
+/*.producto_carrito button {
+    font-size: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 255, 0);
+    border: none;
+    color: black;
+    cursor: pointer;
+}*/
+
+.producto_carrito_boton_quitar{
     font-size: 1.2rem;
     padding: 0.2rem 0.5rem;
     border-radius: 0.3rem;
@@ -206,6 +219,22 @@ footer{
     cursor: pointer;
 }
 
-.producto_carrito button:hover {
-    background-color: rgb(255, 174, 0);
+.producto_carrito_boton_quitar:hover {
+    color: white;
+    background-color: rgb(255, 0, 0);
+}
+
+.producto_carrito_boton_agregar{
+    font-size: 1.2rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 255, 0);
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+.producto_carrito_boton_agregar:hover {
+    color: white;
+    background-color: rgb(55, 173, 0);
 }

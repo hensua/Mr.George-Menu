@@ -37,9 +37,9 @@ function mostrarCarrito() {
                 <h4>${item.nombre}</h4>
                 <p>Precio: $${item.precio}</p>
                 <p>Cantidad: 
-                    <button onclick="actualizarCantidad('${item.id}', -1)">-</button> 
+                    <button class="producto_carrito_boton_quitar" onclick="actualizarCantidad('${item.id}', -1)">-</button> 
                     ${item.cantidad} 
-                    <button onclick="actualizarCantidad('${item.id}', 1)">+</button>
+                    <button class="producto_carrito_boton_agregar" onclick="actualizarCantidad('${item.id}', 1)">+</button>
                 </p>
             </div>
         `;
@@ -47,7 +47,7 @@ function mostrarCarrito() {
     });
 
     if (carrito.length === 0) {
-        contenedor.innerHTML = '<p>Tu carrito está vacío.</p>';
+        contenedor.innerHTML = '<p>Tu carrito está vacío</p>';
     }
 }
 
@@ -78,7 +78,7 @@ function actualizarCantidad(id, incremento) {
 function enviarPedido() {
     const carrito = obtenerCarrito();
     if (carrito.length === 0) {
-        alert('Tu carrito está vacío.');
+        alert('Tu carrito está vacío');
         return;
     }
 
