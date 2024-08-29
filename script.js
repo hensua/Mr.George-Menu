@@ -1,13 +1,14 @@
 // Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();
-    const contadorCarrito = document.getElementById('contador_carrito');
+    const contadorElemento = document.getElementById('contador_carrito');
+    const totalCantidad = carrito.reduce((total, item) => total + item.cantidad, 0);  // Suma la cantidad de todos los productos
 
-    if (carrito.length > 0) {
-        contadorCarrito.textContent = carrito.length;  // Mostrar el número de productos
-        contadorCarrito.style.display = 'inline';      // Asegurarse de que el contador esté visible
+    if (totalCantidad > 0) {
+        contadorElemento.textContent = totalCantidad;
+        contadorElemento.style.display = 'inline';  // Muestra el contador
     } else {
-        contadorCarrito.style.display = 'none';        // Ocultar el contador si no hay productos
+        contadorElemento.style.display = 'none';  // Oculta el contador si el carrito está vacío
     }
 }
 
@@ -66,25 +67,20 @@ function mostrarCarrito() {
 }
 
 // Función para actualizar la cantidad de un producto en el carrito
-function actualizarCantidad(id, incremento) {
+function actualizarCantidad(id, cambio) {
     let carrito = obtenerCarrito();
     const producto = carrito.find(item => item.id === id);
 
     if (producto) {
-        producto.cantidad += incremento;
-
-        // Eliminar el producto si la cantidad es menor a 1
+        producto.cantidad += cambio;
         if (producto.cantidad < 1) {
-            carrito = carrito.filter(item => item.id !== id);
+            carrito = carrito.filter(item => item.id !== id);  // Elimina el producto si la cantidad es inferior a 1
+        } else if (producto.cantidad > 99) {
+            producto.cantidad = 99;  // Limita la cantidad máxima a 99
         }
-
-        // Limitar la cantidad máxima a 99
-        if (producto.cantidad > 99) {
-            producto.cantidad = 99;
-        }
-
         localStorage.setItem('carrito', JSON.stringify(carrito));
-        mostrarCarrito();
+        mostrarCarrito();  // Actualiza la visualización del carrito
+        actualizarContadorCarrito();  // Actualiza el contador del carrito
     }
 }
 
