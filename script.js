@@ -5,13 +5,17 @@ let interactuando = false;  // Variable para controlar la interacción con los b
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();
     const contadorElemento = document.getElementById('contador_carrito');
-    const totalCantidad = carrito.reduce((total, item) => total + item.cantidad, 0);  // Suma la cantidad de todos los productos
 
-    if (totalCantidad > 0) {
-        contadorElemento.textContent = totalCantidad;
-        contadorElemento.style.display = 'inline';  // Muestra el contador
-    } else {
-        contadorElemento.style.display = 'none';  // Oculta el contador si el carrito está vacío
+    // Verificar si el elemento existe antes de intentar actualizarlo
+    if (contadorElemento) {
+        const totalCantidad = carrito.reduce((total, item) => total + item.cantidad, 0);  // Suma la cantidad de todos los productos
+
+        if (totalCantidad > 0) {
+            contadorElemento.textContent = totalCantidad;
+            contadorElemento.style.display = 'inline';  // Muestra el contador
+        } else {
+            contadorElemento.style.display = 'none';  // Oculta el contador si el carrito está vacío
+        }
     }
 }
 
@@ -121,10 +125,11 @@ function actualizarBotonCantidad(articulo, cantidad) {
         if (cantidad > 0) {
             botonAdd.innerHTML = `
                 <button class="boton_menos" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', -1)">-</button>
-                <span onclick="mostrarBotones('${articulo.getAttribute('data-id')}')">${cantidad}</span>
+                <span onclick="mostrarBotones('${articulo.getAttribute('data-id')}')" style="cursor: pointer;">${cantidad}</span>
                 <button class="boton_mas" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', 1)">+</button>
             `;
             botonAdd.style.backgroundColor = 'rgba(255, 255, 0, 0.8)';  // Cambia el color del botón
+            botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos desde el botón inicial
             mostrarBotones(articulo.getAttribute('data-id'));  // Muestra los botones si hay cantidad
         } else {
             botonAdd.innerHTML = '+';
@@ -152,8 +157,17 @@ function cambiarCantidadArticulo(id, cambio) {
             actualizarBotonCantidad(articulo, producto.cantidad);  // Actualiza el botón
         }
         actualizarContadorCarrito();  // Actualiza el contador del carrito
+
+        // Ocultar los botones de todos los demás artículos de inmediato
+        document.querySelectorAll('.articulo').forEach(otroArticulo => {
+            if (otroArticulo.getAttribute('data-id') !== id) {
+                ocultarBotones(otroArticulo, true);  // Oculta de forma inmediata
+            }
+        });
+
         interactuando = true;  // Marca que se está interactuando
-        // Reinicia el temporizador de ocultación
+
+        // Reinicia el temporizador de ocultación solo para el artículo actual
         if (ocultarTimeout) {
             clearTimeout(ocultarTimeout);
         }
@@ -166,6 +180,11 @@ function cambiarCantidadArticulo(id, cambio) {
 
 // Función para mostrar los botones + y - cuando se hace clic en la cantidad
 function mostrarBotones(id) {
+    // Ocultar todos los botones antes de mostrar los del artículo actual
+    document.querySelectorAll('.articulo').forEach(otroArticulo => {
+        ocultarBotones(otroArticulo, true);  // Oculta de forma inmediata
+    });
+
     const articulo = document.querySelector(`.articulo[data-id="${id}"]`);
     const botonAdd = articulo.querySelector('.boton_add');
     const botonMenos = botonAdd.querySelector('.boton_menos');
@@ -187,22 +206,16 @@ function mostrarBotones(id) {
     }
 }
 
-// Función para ocultar los botones + y -
-function ocultarBotones(articulo) {
-    if (!interactuando) {
-        const botonAdd = articulo.querySelector('.boton_add');
-        if (botonAdd) {
-            const botonMenos = botonAdd.querySelector('.boton_menos');
-            const botonMas = botonAdd.querySelector('.boton_mas');
-            const cantidadElemento = botonAdd.querySelector('span');
+function ocultarBotones(articulo, inmediato = false) {
+    const botonAdd = articulo.querySelector('.boton_add');
+    const botonMenos = botonAdd?.querySelector('.boton_menos');
+    const botonMas = botonAdd?.querySelector('.boton_mas');
+    const cantidad = parseInt(botonAdd?.querySelector('span')?.textContent);
 
-            if (cantidadElemento) {
-                const cantidad = parseInt(cantidadElemento.textContent);
-                if (cantidad > 0) {
-                    botonMenos.style.display = 'none';
-                    botonMas.style.display = 'none';
-                }
-            }
+    if (botonMenos && botonMas) {
+        if ((cantidad > 0 && !interactuando) || inmediato) {
+            botonMenos.style.display = 'none';
+            botonMas.style.display = 'none';
         }
     }
 }
@@ -228,31 +241,34 @@ function enviarPedido() {
 }
 
 function inicializarArticulos() {
-    const carrito = obtenerCarrito();
-    console.log('Carrito al iniciar artículos:', carrito);  // Verifica el contenido del carrito
-
     document.querySelectorAll('.articulo').forEach(articulo => {
         const id = articulo.getAttribute('data-id');
+        const carrito = obtenerCarrito();
         const producto = carrito.find(item => item.id === id);
 
         if (producto) {
-            console.log(`Artículo ${id} encontrado en carrito con cantidad: ${producto.cantidad}`);  // Verifica el estado del producto
+            // Actualiza la vista del artículo si está en el carrito
             actualizarBotonCantidad(articulo, producto.cantidad);
         } else {
-            console.log(`Artículo ${id} no encontrado en carrito, inicializando con cantidad 0`);  // Verifica si el producto no está en el carrito
+            // Inicializa el estado del botón si el producto no está en el carrito
             actualizarBotonCantidad(articulo, 0);
         }
 
+        // Agregar eventos de clic para manejar dinámicamente los botones
         const botonAdd = articulo.querySelector('.boton_add');
-        botonAdd.addEventListener('click', () => {
-            const cantidadElemento = articulo.querySelector('.boton_add span');
-            if (cantidadElemento) {
-                mostrarBotones(id);
-            }
-        });
+        if (botonAdd) {
+            botonAdd.addEventListener('click', () => {
+                const cantidadElemento = articulo.querySelector('.boton_add span');
+                if (cantidadElemento) {
+                    mostrarBotones(id);
+                }
+            });
+        }
+
+        // Ocultar los botones al cargar la página para cada artículo
+        ocultarBotones(articulo);
     });
 }
-
 
 // Inicializa la vista del carrito y el contador al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
