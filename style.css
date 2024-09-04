@@ -244,3 +244,34 @@ footer{
     color: white;
     background-color: rgb(55, 173, 0);
 }
+
+
+
+/* Contenedor para los botones y el número de cantidad */
+.contenedor_cantidad {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: center; /* Opcional: centra los elementos horizontalmente */
+}
+
+.boton_menos {
+    font-size: 1 rem;
+    background: transparent; /* Establece el fondo como transparente */
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+
+.boton_mas {
+    background: transparent; /* Establece el fondo como transparente */
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+/* Estilo para el número de cantidad */
+.numero_cantidad {
+    color: white; /* Color del texto */
+}

@@ -124,11 +124,16 @@ function actualizarBotonCantidad(articulo, cantidad) {
     if (botonAdd) {
         if (cantidad > 0) {
             botonAdd.innerHTML = `
-                <button class="boton_menos" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', -1)">-</button>
-                <span onclick="mostrarBotones('${articulo.getAttribute('data-id')}')" style="cursor: pointer;">${cantidad}</span>
-                <button class="boton_mas" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', 1)">+</button>
+                <div class="contenedor_cantidad">
+                    <button class="boton_menos" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', -1)">-</button>
+                    <span class="numero_cantidad" onclick="mostrarBotones('${articulo.getAttribute('data-id')}')" style="cursor: pointer;">${cantidad}</span>
+                    <button class="boton_mas" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', 1)">+</button>
+                </div>
             `;
-            botonAdd.style.backgroundColor = 'rgba(255, 255, 0, 0.8)';  // Cambia el color del botón
+            botonAdd.style.backgroundColor = 'transparent';  // Quita el fondo del botón
+            botonAdd.style.border = 'none';  // Elimina el borde externo del botón
+            botonAdd.style.boxShadow = 'inset 0 0 0 1px rgb(255, 174, 0)';  // Establece un borde interno
+
             botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos desde el botón inicial
             mostrarBotones(articulo.getAttribute('data-id'));  // Muestra los botones si hay cantidad
         } else {
@@ -279,3 +284,5 @@ document.addEventListener('DOMContentLoaded', () => {
         inicializarArticulos();  // Inicializa la vista de los artículos
     }
 });
+
+contenedor_cantidad
