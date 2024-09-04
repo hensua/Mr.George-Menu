@@ -139,6 +139,7 @@ function actualizarBotonCantidad(articulo, cantidad) {
         } else {
             botonAdd.innerHTML = '+';
             botonAdd.style.backgroundColor = 'rgb(255, 255, 0)';  // Restaura el color original
+            botonAdd.style.boxShadow = 'none'; //Elimina el borde interno
             ocultarBotones(articulo);  // Asegura que los botones estén ocultos si la cantidad es 0
         }
     }
