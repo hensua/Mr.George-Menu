@@ -118,6 +118,7 @@ function actualizarCantidad(id, cambio) {
     }
 }
 
+// CAMBIADO
 // Función para actualizar el botón de agregar al carrito con la cantidad y los botones +/-
 function actualizarBotonCantidad(articulo, cantidad) {
     const botonAdd = articulo.querySelector('.boton_add');
@@ -140,18 +141,21 @@ function actualizarBotonCantidad(articulo, cantidad) {
             botonAdd.innerHTML = '+';
             botonAdd.style.backgroundColor = 'rgb(255, 255, 0)';  // Restaura el color original
             botonAdd.style.boxShadow = 'none'; //Elimina el borde interno
+            botonAdd.onclick = (event) => agregarAlCarrito(event);  // Restaura la funcionalidad inicial del botón
             ocultarBotones(articulo);  // Asegura que los botones estén ocultos si la cantidad es 0
         }
     }
 }
 
-// Nueva función para cambiar la cantidad del artículo directamente desde el botón
+// CAMBIADO
+// Función para cambiar la cantidad del artículo directamente desde el botón
 function cambiarCantidadArticulo(id, cambio) {
     let carrito = obtenerCarrito();
     const producto = carrito.find(item => item.id === id);
 
     if (producto) {
         producto.cantidad += cambio;
+
         if (producto.cantidad < 1) {
             carrito = carrito.filter(item => item.id !== id);  // Elimina el producto si la cantidad es inferior a 1
         } else if (producto.cantidad > 99) {
@@ -164,23 +168,21 @@ function cambiarCantidadArticulo(id, cambio) {
         }
         actualizarContadorCarrito();  // Actualiza el contador del carrito
 
-        // Ocultar los botones de todos los demás artículos de inmediato
-        document.querySelectorAll('.articulo').forEach(otroArticulo => {
-            if (otroArticulo.getAttribute('data-id') !== id) {
-                ocultarBotones(otroArticulo, true);  // Oculta de forma inmediata
-            }
-        });
-
         interactuando = true;  // Marca que se está interactuando
 
-        // Reinicia el temporizador de ocultación solo para el artículo actual
-        if (ocultarTimeout) {
-            clearTimeout(ocultarTimeout);
+        // Si la cantidad llega a 0, reinicia el botón a su estado inicial
+        if (producto.cantidad < 1) {
+            actualizarBotonCantidad(articulo, 0);
+        } else {
+            // Reinicia el temporizador de ocultación solo para el artículo actual
+            if (ocultarTimeout) {
+                clearTimeout(ocultarTimeout);
+            }
+            ocultarTimeout = setTimeout(() => {
+                interactuando = false;  // Marca que se ha dejado de interactuar
+                ocultarBotones(articulo);
+            }, 2000);
         }
-        ocultarTimeout = setTimeout(() => {
-            interactuando = false;  // Marca que se ha dejado de interactuar
-            ocultarBotones(articulo);
-        }, 2000);
     }
 }
 
@@ -285,5 +287,3 @@ document.addEventListener('DOMContentLoaded', () => {
         inicializarArticulos();  // Inicializa la vista de los artículos
     }
 });
-
-contenedor_cantidad
