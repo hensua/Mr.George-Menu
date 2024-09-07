@@ -1,6 +1,11 @@
 let ocultarTimeout;  // Variable para almacenar el temporizador de ocultación
 let interactuando = false;  // Variable para controlar la interacción con los botones
 
+//Evitar Click derecho en toda la pagina
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
 // Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();
