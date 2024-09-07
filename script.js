@@ -6,6 +6,26 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 });
 
+// Detecta iOS y Quita la opcion de hacer zoom
+if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    // Evita el doble tap para hacer zoom
+    document.addEventListener('touchstart', function(event) {
+    if (event.touches.length > 1) {
+        event.preventDefault(); // Prevenir zoom en gestos de pinza
+    }
+    }, { passive: false });
+
+    // Evita zoom en doble toque
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+    var now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault(); // Prevenir zoom en doble toque
+    }
+    lastTouchEnd = now;
+    }, false);
+}
+
 // Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();

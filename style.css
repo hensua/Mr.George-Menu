@@ -95,13 +95,14 @@ main{
     color: rgb(255, 255, 255);
     width: 140px;
     height: 200px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    margin-right: 1.1rem;
+    margin-bottom: 1.1rem;
+    border-radius: 0.6rem;
     background-color: rgba(61, 61, 61, 0.233);
+    /*background-color: rgba(67, 248, 43, 0.692);*/ /*SOLO PARA PRUEBA*/
 }
 .articulo_ajuste{
-    margin-right: 0px;
+    margin-right: 0rem;
     /*background-color: aqua;*/
 }
 .menu_articulo_textos{
@@ -113,12 +114,12 @@ main{
 }
 .menu_articulo_textos:last-child{
     margin-bottom: 0rem;
-    color: rgb(160, 160, 160);
+    /*color: rgb(160, 160, 160);*/
 }
 #comida_logo_size{
     width: 7.5rem;
     margin-top: 0.9rem;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.8rem;
     /*background-color: beige;*/
 }
 .articulo_info{
@@ -145,18 +146,6 @@ main{
     margin-right: 0.5rem;
     background-color: rgb(255, 255, 0);
 }
-
-
-
-#perro_hp_add{
-    padding: 10px 20px;
-    border-radius: 15px;
-    background-color: rgb(255, 255, 0);
-}
-#perro_hp_add:hover {
-    background-color: rgb(255, 174, 0);
-}
-
 
 footer{
     padding: 20px;
