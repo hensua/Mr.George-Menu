@@ -17,17 +17,20 @@
         </div>
         <main>
             <section class="escoger_seccion">
-                    <a class="escoger_seccion_a" href="#">Hamburguesas</a>
-                    <a class="escoger_seccion_a" href="#">Perros</a>
-                    <a class="escoger_seccion_a" href="#">Picadas</a>
-                    <a class="escoger_seccion_a" href="#">Bebidas</a>
+                <button class="escoger_seccion_a" onclick="filtrarArticulosAll()">All</button>
+
+                <button class="escoger_seccion_a" onclick="filtrarArticulos('Hamburguesas')">Hamburguesas</button>
+                <button class="escoger_seccion_a" onclick="filtrarArticulos('Perros')">Perros</button>
+                <button class="escoger_seccion_a" onclick="filtrarArticulos('Picadas')">Picadas</button>
+                <button class="escoger_seccion_a" onclick="filtrarArticulos('Bebidas')">Bebidas</button>
             </section>
+            
         </main>
         <h2 id="tutulo_principal">Selecciona tu pedido:</h2>
         <div>
             <section class="menu">
                 <!--HAMBURGUESAS-->
-                <div class="articulo" data-id="1" data-nombre="Big Mac" data-precio="15000">
+                <div class="articulo" data-id="1" data-nombre="Big Mac" data-precio="15000" data-categoria="Hamburguesas" data-categoria-all="All">
                     <img id="comida_logo_size" src="img/Hamburguesa.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Big Mac</h4>
@@ -38,7 +41,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div> 
-                <div class="articulo articulo_ajuste" data-id="2" data-nombre="Big Burger" data-precio="20000">
+                <div class="articulo articulo_ajuste" data-id="2" data-nombre="Big Burger" data-precio="20000" data-categoria="Hamburguesas">
                     <img id="comida_logo_size" src="img/Hamburguesa.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Big Burger</h4>
@@ -50,7 +53,7 @@
                     </div>
                 </div> 
                 <!--PERROS-->
-                <div class="articulo" data-id="3" data-nombre="Perro Ranchero" data-precio="11000">
+                <div class="articulo" data-id="3" data-nombre="Perro Ranchero" data-precio="11000" data-categoria="Perros" data-categoria-all="All">
                     <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Perro Ranchero</h4>
@@ -61,7 +64,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div> 
-                <div class="articulo articulo_ajuste" data-id="4" data-nombre="Perro Suizo" data-precio="13000">
+                <div class="articulo articulo_ajuste" data-id="4" data-nombre="Perro Suizo" data-precio="13000" data-categoria="Perros">
                     <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Perro Suizo</h4>
@@ -73,7 +76,7 @@
                     </div>
                 </div>
                 <!--PICADAS-->
-                <div class="articulo" data-id="5" data-nombre="Picada" data-precio="18000">
+                <div class="articulo" data-id="5" data-nombre="Picada" data-precio="18000" data-categoria="Picadas" data-categoria-all="All">
                     <img id="comida_logo_size" src="img/Picada_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Picada</h4>
@@ -84,7 +87,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste" data-id="6" data-nombre="Picada Bull" data-precio="22000">
+                <div class="articulo articulo_ajuste" data-id="6" data-nombre="Picada Bull" data-precio="22000" data-categoria="Picadas">
                     <img id="comida_logo_size" src="img/Picada_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Picada Bull</h4>
@@ -96,7 +99,7 @@
                     </div>
                 </div>
                 <!--BEBIDAS-->
-                <div class="articulo" data-id="7" data-nombre="Coca Cola 250 ml" data-precio="3500">
+                <div class="articulo" data-id="7" data-nombre="Coca Cola 250 ml" data-precio="3500" data-categoria="Bebidas" data-categoria-all="All">
                     <img id="comida_logo_size" src="img/CocaCola_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Coca Cola</h4>
@@ -107,7 +110,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste" data-id="8" data-nombre="Manzana 250 ml" data-precio="2500">
+                <div class="articulo articulo_ajuste" data-id="8" data-nombre="Manzana 250 ml" data-precio="2500" data-categoria="Bebidas">
                     <img id="comida_logo_size" src="img/Manzana_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Manzana</h4>
@@ -118,7 +121,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo" data-id="9" data-nombre="Colombiana 250 ml" data-precio="2500">
+                <div class="articulo" data-id="9" data-nombre="Colombiana 250 ml" data-precio="2500" data-categoria="Bebidas">
                     <img id="comida_logo_size" src="img/Colombiana_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Colombiana</h4>
@@ -129,7 +132,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste" data-id="10" data-nombre="Pepsi 250 ml" data-precio="2500">
+                <div class="articulo articulo_ajuste" data-id="10" data-nombre="Pepsi 250 ml" data-precio="2500" data-categoria="Bebidas" data-categoria-all="All">
                     <img id="comida_logo_size" src="img/Pepsi_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Pepsi</h4>
@@ -140,7 +143,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo" data-id="11" data-nombre="Naranja 250 ml" data-precio="2500">
+                <div class="articulo" data-id="11" data-nombre="Naranja 250 ml" data-precio="2500" data-categoria="Bebidas">
                     <img id="comida_logo_size" src="img/Naranja_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Naranja</h4>
@@ -151,7 +154,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div> 
-                <div class="articulo articulo_ajuste" data-id="12" data-nombre="Uva 250 ml" data-precio="2500">
+                <div class="articulo articulo_ajuste" data-id="12" data-nombre="Uva 250 ml" data-precio="2500" data-categoria="Bebidas">
                     <img id="comida_logo_size" src="img/Uva_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Uva</h4>

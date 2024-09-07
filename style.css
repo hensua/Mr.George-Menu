@@ -17,16 +17,28 @@ a{
     text-decoration: none;
     color: black;
 }
-body{
+body, html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;  /* Evita desbordamiento horizontal */
     background-color: rgb(17, 17, 17);
 }
 button{
     cursor: pointer;
 }
 .container{
-    max-width: 414px; /* Ancho máximo de 414px */
-    width: 100%;  /* El contenedor ocupa el 100% del ancho hasta 414px */
-    margin: auto;
+    max-width: 414px;   /* Ancho máximo de 414px */
+    width: 100%;        /* Ocupa el 100% del ancho hasta el límite de 414px */
+    margin: 0 auto;     /* Centrado en la pantalla */
+    box-sizing: border-box;
+}
+/* Asegurarse de que ningún elemento se salga del contenedor */ 
+img, video, iframe, .articulo, .escoger_seccion, main {
+    max-width: 100%;    /* Asegura que los elementos no se salgan del contenedor */
+    width: 100%;        /* Se adapta al ancho del contenedor */
+    height: auto;       /* Mantiene proporción de altura */
+    overflow: hidden;   /* Evita desbordamiento */
 }
 #carrito_compras{
     position: absolute;
@@ -73,13 +85,18 @@ main{
 }
 .escoger_seccion_a{
     font-size: 0.9rem;
-    padding: 0.6rem 1rem;
-    border-radius: 1.9rem;
+    color: black;
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 0.9rem;
     margin-right: 0.3rem;
     background-color: white;
 }
 .escoger_seccion_a:last-child{
     margin-right: 0rem;
+}
+.boton_seleccionado {
+    background-color: rgb(255, 255, 0);  /* Color de fondo para el botón seleccionado */
 }
 #tutulo_principal{
     padding: 0.5rem;
@@ -91,6 +108,7 @@ main{
     /*background-color: aquamarine;*/
 }
 .articulo{
+    display: none;
     flex: 0 0 35%;
     color: rgb(255, 255, 255);
     width: 140px;
@@ -114,7 +132,11 @@ main{
 }
 .menu_articulo_textos:last-child{
     margin-bottom: 0rem;
-    /*color: rgb(160, 160, 160);*/
+    color: rgb(160, 160, 160);
+}
+/*Quitar margen derecho segundo articulo en la fila seccion all*/
+.sin-margen-derecho {
+    margin-right: 0 !important; /* Elimina el margen derecho */
 }
 #comida_logo_size{
     width: 7.5rem;
@@ -148,6 +170,7 @@ main{
 }
 
 footer{
+    display: none;
     padding: 20px;
 }
 .redes_sociales{
@@ -273,3 +296,22 @@ footer{
 .numero_cantidad {
     color: white; /* Color del texto */
 }
+
+
+
+
+/* Asegurarse en pantallas grandes como tabletas y PCs */
+@media (min-width: 768px) {
+    .container {
+        max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
+        width: 414px;      /* Asegura que no se expanda más allá de 414px */
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
+        width: 414px;      /* Asegura que no se expanda más allá de 414px */
+    }
+}
+

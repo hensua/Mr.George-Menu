@@ -313,3 +313,72 @@ document.addEventListener('DOMContentLoaded', () => {
         inicializarArticulos();  // Inicializa la vista de los artículos
     }
 });
+
+// Llama a filtrarArticulosAll al cargar la página
+window.onload = function() {
+    filtrarArticulosAll();
+};
+
+// Función para mostrar el footer
+function mostrarFooter() {
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.style.display = 'block';
+    }
+}
+
+// Función para la selección de productos por categoría All
+function filtrarArticulosAll() {
+    // Obtener todos los botones de categoría
+    const botones = document.querySelectorAll('.escoger_seccion_a');
+
+    // Aplicar la clase de seleccionado solo al botón de la categoría "All"
+    botones.forEach(boton => {
+        if (boton.textContent === 'All') {
+            boton.classList.add('boton_seleccionado');
+        } else {
+            boton.classList.remove('boton_seleccionado');
+        }
+    });
+
+    // Mostrar todos los artículos que tienen el atributo data-categoria-all
+    document.querySelectorAll('.articulo').forEach(articulo => {
+        if (articulo.getAttribute('data-categoria-all') === 'All') {
+            articulo.style.display = 'block';  // Muestra el artículo
+        } else {
+            articulo.style.display = 'none';  // Oculta el artículo
+        }
+    });
+
+    // Mostrar el footer después de filtrar
+    mostrarFooter();
+}
+
+// Función para la selección de productos por categorías Hamburguesa, Perros, Picadas y Bebidas
+function filtrarArticulos(categoria) {
+    // Obtener todos los botones de categoría
+    const botones = document.querySelectorAll('.escoger_seccion_a');
+
+    // Aplicar la clase de seleccionado solo al botón correspondiente
+    botones.forEach(boton => {
+        if (boton.textContent === categoria) {
+            boton.classList.add('boton_seleccionado');
+        } else {
+            boton.classList.remove('boton_seleccionado');
+        }
+    });
+
+    // Mostrar u ocultar los artículos según la categoría
+    document.querySelectorAll('.articulo').forEach(articulo => {
+        if (articulo.getAttribute('data-categoria') === categoria) {
+            articulo.style.display = 'block';  // Muestra el artículo
+        } else {
+            articulo.style.display = 'none';  // Oculta el artículo
+        }
+    });
+
+    // Mostrar el footer después de filtrar
+    mostrarFooter();
+}
+
+
