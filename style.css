@@ -10,6 +10,9 @@
     -moz-user-select: none;  /* Firefox */
     -ms-user-select: none;  /* Internet Explorer/Edge */
 }
+input, textarea, select, button {
+    touch-action: manipulation;
+}
 a{
     text-decoration: none;
     color: black;
@@ -131,6 +134,8 @@ main{
 }
 .boton_add{
     font-size: 0.9rem;
+    color: black;
+    border: none;
     padding: 0.2rem 0.4rem;
     border-radius: 0.3rem;
     margin-left: 0.4rem;

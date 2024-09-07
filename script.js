@@ -138,7 +138,8 @@ function actualizarBotonCantidad(articulo, cantidad) {
             botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos desde el botón inicial
             mostrarBotones(articulo.getAttribute('data-id'));  // Muestra los botones si hay cantidad
         } else {
-            botonAdd.innerHTML = '+';
+            //botonAdd.innerHTML = '+';
+            botonAdd.textContent = '+'; 
             botonAdd.style.backgroundColor = 'rgb(255, 255, 0)';  // Restaura el color original
             botonAdd.style.boxShadow = 'none'; //Elimina el borde interno
             botonAdd.onclick = (event) => agregarAlCarrito(event);  // Restaura la funcionalidad inicial del botón
