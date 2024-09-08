@@ -169,10 +169,8 @@ h1{
     background-color: rgb(255, 255, 0);
     color: black;
     border-radius: 0 0.6rem 0 0.6rem;
-    padding: 5px 5px;
-    font-size: 0.8rem;
-    /*flex-wrap: wrap;
-    width: 24px;*/
+    padding: 4px 4px;
+    font-size: 10px;
 }
 #comida_logo_size{
     width: 7.5rem;
