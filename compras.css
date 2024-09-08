@@ -1,0 +1,105 @@
+*{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    /*QUITA LA OPCION DE PODER COPIAR EL TEXTO DE LA PAGINA*/
+    user-select: none;  /* Deshabilita la selección de texto */
+    -webkit-user-select: none;  /* Chrome, Safari, Opera */
+    -moz-user-select: none;  /* Firefox */
+    -ms-user-select: none;  /* Internet Explorer/Edge */
+}
+input, textarea, select, button {
+    touch-action: manipulation;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+body, html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;  /* Evita desbordamiento horizontal */
+    background-color: rgb(17, 17, 17);
+}
+button{
+    cursor: pointer;
+}
+
+/*CARRITO DE COMPRAS*/
+.contenedor_header_compras{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    /*background-color: aqua;*/
+}
+.carrito_compras_logo{
+    width: 1rem;
+}
+#atras{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.8rem;
+}
+#atras_logo{
+    width: 2rem; 
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+}
+.contenedor_main_compras{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 12px;
+    /*background-color: bisque;*/
+}
+#boton_hacer_pedido{
+    margin-top: 10px;
+    color: black;
+    width: 110px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(255, 251, 0);
+}
+
+.producto_carrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.producto_carrito_boton_quitar{
+    font-size: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 255, 0);
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+.producto_carrito_boton_quitar:hover {
+    color: white;
+    background-color: rgb(255, 0, 0);
+}
+
+.producto_carrito_boton_agregar{
+    font-size: 1.2rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 255, 0);
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+.producto_carrito_boton_agregar:hover {
+    color: white;
+    background-color: rgb(55, 173, 0);
+}

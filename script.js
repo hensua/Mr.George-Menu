@@ -334,7 +334,7 @@ function filtrarArticulosAll() {
 
     // Aplicar la clase de seleccionado solo al botón de la categoría "All"
     botones.forEach(boton => {
-        if (boton.textContent === 'All') {
+        if (boton.textContent === 'Recomendados') {
             boton.classList.add('boton_seleccionado');
         } else {
             boton.classList.remove('boton_seleccionado');

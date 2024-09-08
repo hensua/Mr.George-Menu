@@ -34,16 +34,29 @@ button{
     box-sizing: border-box;
 }
 /* Asegurarse de que ningún elemento se salga del contenedor */ 
-img, video, iframe, .articulo, .escoger_seccion, main {
+/*img, video, iframe, .articulo, .escoger_seccion, main {
     max-width: 100%;    /* Asegura que los elementos no se salgan del contenedor */
-    width: 100%;        /* Se adapta al ancho del contenedor */
-    height: auto;       /* Mantiene proporción de altura */
-    overflow: hidden;   /* Evita desbordamiento */
+    /*width: 100%;        /* Se adapta al ancho del contenedor */
+   /* height: auto;       /* Mantiene proporción de altura */
+   /* overflow: hidden;   /* Evita desbordamiento */
+/*}*/
+header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: rgb(9, 137, 250);*/
+}
+.carrito{
+    position: relative;
+    /*background-color: rgb(255, 153, 0);*/
+    margin-right: 7px;
 }
 #carrito_compras{
-    position: absolute;
+    display: flex;
+    /*position: absolute;
     top: 30px;
-    left: 40px;
+    left: 40px;*/
 }
 #carrito_compras_logo{
     width: 2rem;
@@ -54,46 +67,59 @@ img, video, iframe, .articulo, .escoger_seccion, main {
 #contador_carrito {
     display: none;  /* Ocultamos el contador inicialmente */
     position: absolute;
-    top: -10px;
+    top: -8px;
     right: -10px;
+    z-index: 1; /* Se asegura de que el contador esté por encima del logo */
     background-color: rgb(255, 255, 0);
     color: black;
     border-radius: 50%;
-    padding: 5px 10px;
+    padding: 5px 9px;
     font-size: 0.8rem;
 }
 #logo_app{
     width: 180px;
-    padding: 15px;
+    padding: 12px;
     margin-top: 0;
 }
 h1{
     font-size: 20px;
 }
-main{
+.seccion{
     width: 100%;
     display: flex;
     justify-content: center;
-}
-.escoger_seccion{
-    width: 100%;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     /*background-color: aqua;*/
 }
-.escoger_seccion_a{
-    font-size: 0.9rem;
+.escoger_seccion_contenedor {
+    width: 100%;
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    white-space: nowrap; /* Evita que los elementos se envuelvan en varias líneas */
+}
+.escoger_seccion {
+    gap: 0.3rem; /* Espacio entre los botones */
+    padding: 5px 0; /* Añade un poco de padding arriba y abajo */
+    /*background-color: rgb(255, 153, 19);*/
+}
+.escoger_seccion_a {
+    flex-shrink: 0; /* Evita que los botones se reduzcan */
     color: black;
     padding: 0.5rem 0.8rem;
     border: none;
     border-radius: 0.9rem;
-    margin-right: 0.3rem;
-    background-color: white;
+    background-color: #f0f0f0;
 }
-.escoger_seccion_a:last-child{
-    margin-right: 0rem;
+.escoger_seccion_a:first-child {
+    margin-left: 0.3rem;
+}
+.escoger_seccion_a:last-child {
+    margin-right: 0.3rem;
+}
+.escoger_seccion_contenedor::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento en navegadores webkit */
+}
+.escoger_seccion_contenedor {
+    -ms-overflow-style: none;  /* Oculta la barra de desplazamiento en IE y Edge */
+    scrollbar-width: none;  /* Oculta la barra de desplazamiento en Firefox */
 }
 .boton_seleccionado {
     background-color: rgb(255, 255, 0);  /* Color de fondo para el botón seleccionado */
@@ -105,6 +131,7 @@ main{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 1.1rem;  /* Aplica el espacio entre los elementos flexibles */
     /*background-color: aquamarine;*/
 }
 .articulo{
@@ -113,15 +140,10 @@ main{
     color: rgb(255, 255, 255);
     width: 140px;
     height: 200px;
-    margin-right: 1.1rem;
-    margin-bottom: 1.1rem;
+    gap: 1.1rem;
     border-radius: 0.6rem;
     background-color: rgba(61, 61, 61, 0.233);
     /*background-color: rgba(67, 248, 43, 0.692);*/ /*SOLO PARA PRUEBA*/
-}
-.articulo_ajuste{
-    margin-right: 0rem;
-    /*background-color: aqua;*/
 }
 .menu_articulo_textos{
     display: flex;
@@ -190,84 +212,6 @@ footer{
 
 
 
-/*CARRITO DE COMPRAS*/
-.contenedor_header_compras{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    /*background-color: aqua;*/
-}
-.carrito_compras_logo{
-    width: 1rem;
-}
-#atras{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.8rem;
-}
-#atras_logo{
-    width: 2rem; 
-    border-radius: 15px;
-    background-color: rgb(255, 255, 255);
-}
-.contenedor_main_compras{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 12px;
-    /*background-color: bisque;*/
-}
-#boton_hacer_pedido{
-    margin-top: 10px;
-    color: black;
-    width: 110px;
-    height: 30px;
-    border: none;
-    border-radius: 15px;
-    background-color: rgb(255, 251, 0);
-}
-
-.producto_carrito {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.producto_carrito_boton_quitar{
-    font-size: 1.2rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.3rem;
-    background-color: rgb(255, 255, 0);
-    border: none;
-    color: black;
-    cursor: pointer;
-}
-
-.producto_carrito_boton_quitar:hover {
-    color: white;
-    background-color: rgb(255, 0, 0);
-}
-
-.producto_carrito_boton_agregar{
-    font-size: 1.2rem;
-    padding: 0.2rem 0.3rem;
-    border-radius: 0.3rem;
-    background-color: rgb(255, 255, 0);
-    border: none;
-    color: black;
-    cursor: pointer;
-}
-
-.producto_carrito_boton_agregar:hover {
-    color: white;
-    background-color: rgb(55, 173, 0);
-}
-
-
-
 /* Contenedor para los botones y el número de cantidad */
 .contenedor_cantidad {
     display: flex;
@@ -306,12 +250,30 @@ footer{
         max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
         width: 414px;      /* Asegura que no se expanda más allá de 414px */
     }
+    .escoger_seccion_contenedor {
+        overflow-x: visible; /* Desactiva el desplazamiento horizontal en pantallas grandes */
+        white-space: normal; /* Permite que los botones se envuelvan a múltiples líneas si es necesario */
+    }
+    
+    .escoger_seccion {
+        display: flex;
+        justify-content: center; /* Alinea los botones al centro */
+    }
 }
 
 @media (min-width: 1024px) {
     .container {
         max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
         width: 414px;      /* Asegura que no se expanda más allá de 414px */
+    }
+    .escoger_seccion_contenedor {
+        overflow-x: visible; /* Desactiva el desplazamiento horizontal en pantallas grandes */
+        white-space: normal; /* Permite que los botones se envuelvan a múltiples líneas si es necesario */
+    }
+    
+    .escoger_seccion {
+        display: flex;
+        justify-content: center; /* Alinea los botones al centro */
     }
 }
 

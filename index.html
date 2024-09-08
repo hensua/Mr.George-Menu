@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mr George Menu</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="Website Icon" type="png" href="img/logo-sin fondo.png"> <!--ICONO DE LA PAGINA-->
 </head>
 <body>
-    <a id="carrito_compras" href="compras.html">
-        <img id="carrito_compras_logo" src="img/shopping.png" alt="Logo Carrito">
-        <span id="contador_carrito">0</span>
-    </a>
-    <div class="container">
-        <div>
-            <img id="logo_app" src="img/MrGeorge-Logo.png" alt="Logo Mr George">
+    <header>
+        <div class="carrito">
+            <a id="carrito_compras" href="compras.html">
+                <img id="carrito_compras_logo" src="img/shopping.png" alt="Logo Carrito">
+            </a>
+            <span id="contador_carrito">0</span>
         </div>
-        <main>
-            <section class="escoger_seccion">
-                <button class="escoger_seccion_a" onclick="filtrarArticulosAll()">All</button>
-
-                <button class="escoger_seccion_a" onclick="filtrarArticulos('Hamburguesas')">Hamburguesas</button>
-                <button class="escoger_seccion_a" onclick="filtrarArticulos('Perros')">Perros</button>
-                <button class="escoger_seccion_a" onclick="filtrarArticulos('Picadas')">Picadas</button>
-                <button class="escoger_seccion_a" onclick="filtrarArticulos('Bebidas')">Bebidas</button>
+            <img id="logo_app" src="img/MrGeorge-Logo.png" alt="Logo Mr George">
+    </header>
+    <main class="container">
+        <div class="seccion">
+            <section class="escoger_seccion_contenedor">
+                <div class="escoger_seccion">
+                    <button class="escoger_seccion_a" onclick="filtrarArticulosAll()">Recomendados</button>
+                    <button class="escoger_seccion_a" onclick="filtrarArticulos('Hamburguesas')">Hamburguesas</button>
+                    <button class="escoger_seccion_a" onclick="filtrarArticulos('Perros')">Perros</button>
+                    <button class="escoger_seccion_a" onclick="filtrarArticulos('Picadas')">Picadas</button>
+                    <button class="escoger_seccion_a" onclick="filtrarArticulos('Bebidas')">Bebidas</button>
+                    <!-- Agrega más botones si es necesario -->
+                </div>
             </section>
-            
-        </main>
+        </div>
         <h2 id="tutulo_principal">Selecciona tu pedido:</h2>
         <div>
             <section class="menu">
@@ -41,7 +45,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div> 
-                <div class="articulo articulo_ajuste" data-id="2" data-nombre="Big Burger" data-precio="20000" data-categoria="Hamburguesas">
+                <div class="articulo" data-id="2" data-nombre="Big Burger" data-precio="20000" data-categoria="Hamburguesas">
                     <img id="comida_logo_size" src="img/Hamburguesa.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Big Burger</h4>
@@ -64,7 +68,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div> 
-                <div class="articulo articulo_ajuste" data-id="4" data-nombre="Perro Suizo" data-precio="13000" data-categoria="Perros">
+                <div class="articulo" data-id="4" data-nombre="Perro Suizo" data-precio="13000" data-categoria="Perros">
                     <img id="comida_logo_size" src="img/PerroFoto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Perro Suizo</h4>
@@ -87,7 +91,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste" data-id="6" data-nombre="Picada Bull" data-precio="22000" data-categoria="Picadas">
+                <div class="articulo" data-id="6" data-nombre="Picada Bull" data-precio="22000" data-categoria="Picadas">
                     <img id="comida_logo_size" src="img/Picada_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Picada Bull</h4>
@@ -110,7 +114,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste" data-id="8" data-nombre="Manzana 250 ml" data-precio="2500" data-categoria="Bebidas">
+                <div class="articulo" data-id="8" data-nombre="Manzana 250 ml" data-precio="2500" data-categoria="Bebidas">
                     <img id="comida_logo_size" src="img/Manzana_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Manzana</h4>
@@ -132,7 +136,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div>
-                <div class="articulo articulo_ajuste" data-id="10" data-nombre="Pepsi 250 ml" data-precio="2500" data-categoria="Bebidas" data-categoria-all="All">
+                <div class="articulo" data-id="10" data-nombre="Pepsi 250 ml" data-precio="2500" data-categoria="Bebidas" data-categoria-all="All">
                     <img id="comida_logo_size" src="img/Pepsi_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Pepsi</h4>
@@ -154,7 +158,7 @@
                         <button class="boton_add" onclick="agregarAlCarrito(event)">+</button>
                     </div>
                 </div> 
-                <div class="articulo articulo_ajuste" data-id="12" data-nombre="Uva 250 ml" data-precio="2500" data-categoria="Bebidas">
+                <div class="articulo" data-id="12" data-nombre="Uva 250 ml" data-precio="2500" data-categoria="Bebidas">
                     <img id="comida_logo_size" src="img/Uva_250_ml_Foto.png" alt="">
                     <div class="articulo_info">
                         <h4 class="menu_articulo_textos">Uva</h4>
@@ -167,19 +171,19 @@
                 </div> 
             </section>
         </div>
-        <footer>
-            <div class="redes_sociales">
-                <a class="redes_sociales_logo_link" href="#" target="_blank" rel="noopener noreferrer">
-                    <img class="redes_sociales_logo" src="img/whatsapp.png" alt="Logo Whatsapp">
-                </a>
-                <a class="redes_sociales_logo_link_" href="https://www.instagram.com/mr_ge0rge?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
-                    <img class="redes_sociales_logo" src="img/instagram.png" alt="Logo Instagram">
-                </a>
-            </div>
-            Since 2022<br>
-            Henry Desing Web
-        </footer>
-    </div>
+    </main>
+    <footer>
+        <div class="redes_sociales">
+            <a class="redes_sociales_logo_link" href="#" target="_blank" rel="noopener noreferrer">
+                <img class="redes_sociales_logo" src="img/whatsapp.png" alt="Logo Whatsapp">
+            </a>
+            <a class="redes_sociales_logo_link_" href="https://www.instagram.com/mr_ge0rge?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
+                <img class="redes_sociales_logo" src="img/instagram.png" alt="Logo Instagram">
+            </a>
+        </div>
+        Since 2022<br>
+        Henry Desing Web
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
