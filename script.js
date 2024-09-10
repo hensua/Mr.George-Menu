@@ -57,9 +57,17 @@ function agregarAlCarrito(event) {
     const id = articulo.getAttribute('data-id');
     const nombre = articulo.getAttribute('data-nombre');
     const precio = parseFloat(articulo.getAttribute('data-precio'));
+    const ingredientes = articulo.getAttribute('data-ingredientes');
 
     if (!id || !nombre || isNaN(precio)) {
         console.error('El artículo no tiene los atributos necesarios.');
+        return;
+    }
+
+    if (ingredientes) {
+        // Redirigir a la página de detalles si tiene ingredientes
+        localStorage.setItem('productoSeleccionado', JSON.stringify({ id, nombre, precio, ingredientes }));
+        window.location.href = 'producto.html';
         return;
     }
 
@@ -87,6 +95,7 @@ function agregarAlCarrito(event) {
         ocultarBotones(articulo);
     }, 2000);
 }
+
 
 // Función para obtener el contenido del carrito
 function obtenerCarrito() {
@@ -381,4 +390,29 @@ function filtrarArticulos(categoria) {
     mostrarFooter();
 }
 
+// Función para ver producto más detalle
+function verProducto(event, elemento) {
+    event.preventDefault();
 
+    const producto = {
+        id: elemento.dataset.id,
+        nombre: elemento.dataset.nombre,
+        descripcion: elemento.dataset.descripcion || 'Descripción no disponible',
+        precio: elemento.dataset.precio,
+        categoria: elemento.dataset.categoria,
+        categoriaAll: elemento.dataset.categoriaAll,
+        imagen: elemento.querySelector('img') ? elemento.querySelector('img').src : 'img/default.png',
+        ingredientes: elemento.dataset.ingredientes ? elemento.dataset.ingredientes.split(',') : [],
+        cantidad: 1 // Inicializar la cantidad en 1 por defecto
+    };
+
+    // Obtener el carrito y verificar si el producto ya está en él
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const productoEnCarrito = carrito.find(item => item.id === producto.id);
+    if (productoEnCarrito) {
+        producto.cantidad = productoEnCarrito.cantidad;
+    }
+
+    localStorage.setItem('productoSeleccionado', JSON.stringify(producto));
+    window.location.href = 'producto.html';
+}

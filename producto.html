@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mr George Menu - Producto</title>
+    <link rel="stylesheet" href="css/producto.css">
+    <link rel="icon" type="image/png" href="img/logo-sin fondo.png">
+</head>
+<body>
+    <header>
+        <button id="btn-atras">Atrás</button>
+    </header>
+    <main>
+        <img id="imagen-producto" src="" alt="Imagen del producto">
+        <h1 id="nombre-producto"></h1>
+        <p id="descripcion-producto"></p>
+        <p id="precio-producto"></p>
+
+        <h2>Ingredientes</h2>
+        <ul id="lista-ingredientes"></ul>
+
+        <div>
+            <button id="btn-restar">-</button>
+            <span id="cantidad">1</span>
+            <button id="btn-sumar">+</button>
+        </div>
+        
+        <button id="btn-agregar">Agregar al carrito</button>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const producto = JSON.parse(localStorage.getItem('productoSeleccionado'));
+            if (!producto) {
+                console.error('No se encontró el producto en localStorage.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('nombre-producto').textContent = producto.nombre || 'Nombre no disponible';
+            document.getElementById('descripcion-producto').textContent = producto.descripcion || 'Descripción no disponible';
+            document.getElementById('precio-producto').textContent = `$${producto.precio || '0.00'}`;
+            document.getElementById('imagen-producto').src = producto.imagen || 'img/default.png';
+
+            const listaIngredientes = document.getElementById('lista-ingredientes');
+            if (producto.ingredientes && producto.ingredientes.length > 0) {
+                producto.ingredientes.forEach((ingrediente, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = ingrediente;
+
+                    const btnRestar = document.createElement('button');
+                    btnRestar.textContent = '-';
+                    btnRestar.onclick = function() {
+                        restarIngrediente(index);
+                    };
+
+                    const btnAgregar = document.createElement('button');
+                    btnAgregar.textContent = '+';
+                    btnAgregar.style.display = 'none';
+                    btnAgregar.onclick = function() {
+                        agregarIngrediente(index);
+                    };
+
+                    li.appendChild(btnRestar);
+                    li.appendChild(btnAgregar);
+                    listaIngredientes.appendChild(li);
+                });
+            } else {
+                listaIngredientes.innerHTML = '<li>No hay opciones de ingredientes para este producto.</li>';
+            }
+
+            // Establecer la cantidad inicial desde localStorage
+            document.getElementById('cantidad').textContent = producto.cantidad || 1;
+
+            let ingredientesRestados = [];
+
+            function restarIngrediente(index) {
+                const li = listaIngredientes.children[index];
+                li.querySelector('button').style.display = 'none';
+                li.querySelectorAll('button')[1].style.display = '';
+                ingredientesRestados.push(producto.ingredientes[index]);
+            }
+
+            function agregarIngrediente(index) {
+                const li = listaIngredientes.children[index];
+                li.querySelector('button').style.display = '';
+                li.querySelectorAll('button')[1].style.display = 'none';
+                const ingrediente = producto.ingredientes[index];
+                ingredientesRestados = ingredientesRestados.filter(i => i !== ingrediente);
+            }
+
+            function modificarCantidad(cambio) {
+                const cantidadElemento = document.getElementById('cantidad');
+                let cantidad = parseInt(cantidadElemento.textContent);
+                cantidad += cambio;
+                if (cantidad < 1) cantidad = 0;
+                cantidadElemento.textContent = cantidad;
+
+                // Si la cantidad llega a 0, eliminar el producto del carrito y redirigir
+                if (cantidad === 0) {
+                    eliminarDelCarrito();
+                    window.location.href = 'index.html';
+                }
+            }
+
+            function agregarAlCarrito() {
+                const cantidad = parseInt(document.getElementById('cantidad').textContent);
+
+                if (cantidad <= 0) {
+                    eliminarDelCarrito();
+                    return;
+                }
+
+                const productoFinal = {
+                    ...producto,
+                    cantidad: cantidad,
+                    ingredientes: producto.ingredientes ? producto.ingredientes.filter(ingrediente => !ingredientesRestados.includes(ingrediente)) : []
+                };
+
+                let carrito = obtenerCarrito();
+                let productoExistente = carrito.find(item => item.id === productoFinal.id);
+
+                if (productoExistente) {
+                    productoExistente.cantidad = cantidad;
+                    if (productoFinal.ingredientes.length > 0) {
+                        productoExistente.ingredientes = productoFinal.ingredientes;
+                    }
+                } else {
+                    carrito.push(productoFinal);
+                }
+
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                window.location.href = 'index.html';
+            }
+
+            function eliminarDelCarrito() {
+                let carrito = obtenerCarrito();
+                carrito = carrito.filter(item => item.id !== producto.id);
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+            }
+
+            function volverAlMenu() {
+                window.location.href = 'index.html';
+            }
+
+            function obtenerCarrito() {
+                const carrito = localStorage.getItem('carrito');
+                return carrito ? JSON.parse(carrito) : [];
+            }
+
+            document.getElementById('btn-atras').addEventListener('click', volverAlMenu);
+            document.getElementById('btn-restar').addEventListener('click', () => modificarCantidad(-1));
+            document.getElementById('btn-sumar').addEventListener('click', () => modificarCantidad(1));
+            document.getElementById('btn-agregar').addEventListener('click', agregarAlCarrito);
+        });
+    </script>
+</body>
+</html>
+
+

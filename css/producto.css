@@ -1,0 +1,40 @@
+*{
+    /*color: rgb(255, 255, 255);*/
+    text-align: center;
+    margin: 0;
+    /*padding: 0;*/
+
+    /*QUITA LA OPCION DE PODER COPIAR EL TEXTO DE LA PAGINA*/
+    user-select: none;  /* Deshabilita la selección de texto */
+    -webkit-user-select: none;  /* Chrome, Safari, Opera */
+    -moz-user-select: none;  /* Firefox */
+    -ms-user-select: none;  /* Internet Explorer/Edge */
+}
+input, textarea, select, button {
+    touch-action: manipulation;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+body, html{
+    width: 100%;
+    overflow-x: hidden;  /* Evita desbordamiento horizontal */
+    /*background-color: rgb(17, 17, 17);*/
+}
+button{
+    cursor: pointer;
+    padding: 4px 4px;
+    color: black;
+}
+ul{
+    list-style-type: none;
+}
+
+
+#imagen-producto{
+    width: 7.5rem;
+    margin-top: 0.9rem;
+    margin-bottom: 0.8rem;
+    /*background-color: rgb(255, 123, 0);*/
+}
