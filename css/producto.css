@@ -1,8 +1,6 @@
 *{
-    /*color: rgb(255, 255, 255);*/
-    text-align: center;
     margin: 0;
-    /*padding: 0;*/
+    padding: 0;
 
     /*QUITA LA OPCION DE PODER COPIAR EL TEXTO DE LA PAGINA*/
     user-select: none;  /* Deshabilita la selección de texto */
@@ -20,7 +18,7 @@ a{
 body, html{
     width: 100%;
     overflow-x: hidden;  /* Evita desbordamiento horizontal */
-    /*background-color: rgb(17, 17, 17);*/
+    background-color: rgb(17, 17, 17);
 }
 button{
     cursor: pointer;
@@ -30,11 +28,127 @@ button{
 ul{
     list-style-type: none;
 }
-
-
-#imagen-producto{
-    width: 7.5rem;
-    margin-top: 0.9rem;
+#contenedor_header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(255, 255, 0);
+    margin: 0;
+}
+#btn-atras{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.8rem;
+    border: 0;
+    background: none;
+}
+#btn-atras_logo{
+    width: 2rem; 
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+}
+#contenedor_img_producto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    background-color: rgb(255, 255, 0);
+    border-radius: 0 0 180px 180px;
+    margin-top: 0;
     margin-bottom: 0.8rem;
+}
+#imagen-producto{
+    width: 20rem;
+    height: auto;
+    margin-top: 10.3rem;
     /*background-color: rgb(255, 123, 0);*/
+}
+#nombre-producto{
+    color: white;
+    text-align: initial;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+#descripcion-producto{
+    width: 90%;
+    color: rgb(160, 160, 160);
+    text-align: initial;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    /*background-color: rgb(255, 0, 0);*/
+}
+#precio-producto{
+    font-size: 1rem;
+    color: white;
+    text-align: initial;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+#text_instrucciones{
+    font-size: 1.2rem;
+    color: white;
+    text-align: initial;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+#instrucciones{
+    width: 90%;
+    height: 100px;
+    margin-left: 15px;
+    resize: none;
+    border: none;
+    border-radius: 0.2rem;;
+    background-color: rgba(61, 61, 61, 0.233);
+}
+#instrucciones::placeholder {
+    padding-left: 2px; 
+}
+#contenedor_cantidad_btn-agregar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    /*background-color: rgb(208, 158, 255);*/
+    margin-top: 20px; /*USADO DE FORMA TEMPORAL*/
+    margin-bottom: 20px; /*USADO DE FORMA TEMPORAL*/
+}
+#contenedor_cantidad{
+    /*background-color: aqua;*/
+    margin-left: 15px;
+}
+#contenedor_btn-agregar{
+    /*background-color: bisque;*/
+    margin-right: 15px;
+}
+#btn-restar{
+    font-size: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 255, 0);
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+#cantidad{
+    color: white;
+}
+#btn-sumar{
+    font-size: 1.2rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 255, 0);
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+#btn-agregar{
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: rgb(255, 251, 0);
 }
