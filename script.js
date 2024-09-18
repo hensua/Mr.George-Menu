@@ -57,7 +57,7 @@ function agregarAlCarrito(event) {
     const id = articulo.getAttribute('data-id');
     const nombre = articulo.getAttribute('data-nombre');
     const precio = parseFloat(articulo.getAttribute('data-precio'));
-    const ingredientes = articulo.getAttribute('data-ingredientes');
+    /*const ingredientes = articulo.getAttribute('');*/
 
     if (!id || !nombre || isNaN(precio)) {
         console.error('El artículo no tiene los atributos necesarios.');
@@ -402,7 +402,7 @@ function verProducto(event, elemento) {
         categoria: elemento.dataset.categoria,
         categoriaAll: elemento.dataset.categoriaAll,
         imagen: elemento.querySelector('img') ? elemento.querySelector('img').src : 'img/default.png',
-        ingredientes: elemento.dataset.ingredientes ? elemento.dataset.ingredientes.split(',') : [],
+        info: elemento.dataset.info || '',  // Manejo de data-info, aunque esté vacío
         cantidad: 1 // Inicializar la cantidad en 1 por defecto
     };
 
@@ -416,3 +416,6 @@ function verProducto(event, elemento) {
     localStorage.setItem('productoSeleccionado', JSON.stringify(producto));
     window.location.href = 'producto.html';
 }
+
+
+/*localStorage.clear();*/ //Limpiar cache

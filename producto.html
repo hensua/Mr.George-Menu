@@ -8,25 +8,33 @@
     <link rel="icon" type="image/png" href="img/logo-sin fondo.png">
 </head>
 <body>
-    <header>
-        <button id="btn-atras">Atrás</button>
+    <header id="contenedor_header">
+        <button id="btn-atras"><img id="btn-atras_logo" src="img/AtrasLogo.png" alt=""></button>
     </header>
     <main>
-        <img id="imagen-producto" src="" alt="Imagen del producto">
+        <div id="contenedor_img_producto">
+            <img id="imagen-producto" src="" alt="Imagen del producto">
+        </div>
         <h1 id="nombre-producto"></h1>
         <p id="descripcion-producto"></p>
         <p id="precio-producto"></p>
 
-        <h2>Ingredientes</h2>
-        <ul id="lista-ingredientes"></ul>
-
+        <!-- Nuevo textarea para sugerencias -->
         <div>
-            <button id="btn-restar">-</button>
-            <span id="cantidad">1</span>
-            <button id="btn-sumar">+</button>
+            <h3 id="text_instrucciones">Instrucciones adicionales</h3>
+            <textarea id="instrucciones" placeholder="Ingresa sugerencias sobre la preparación"></textarea>
         </div>
-        
-        <button id="btn-agregar">Agregar al carrito</button>
+
+        <div id="contenedor_cantidad_btn-agregar">
+            <div id="contenedor_cantidad">
+                <button id="btn-restar">-</button>
+                <span id="cantidad">1</span>
+                <button id="btn-sumar">+</button>
+            </div>
+            <div id="contenedor_btn-agregar">
+                <button id="btn-agregar">AGREGAR $VALOR</button>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -43,52 +51,8 @@
             document.getElementById('precio-producto').textContent = `$${producto.precio || '0.00'}`;
             document.getElementById('imagen-producto').src = producto.imagen || 'img/default.png';
 
-            const listaIngredientes = document.getElementById('lista-ingredientes');
-            if (producto.ingredientes && producto.ingredientes.length > 0) {
-                producto.ingredientes.forEach((ingrediente, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = ingrediente;
-
-                    const btnRestar = document.createElement('button');
-                    btnRestar.textContent = '-';
-                    btnRestar.onclick = function() {
-                        restarIngrediente(index);
-                    };
-
-                    const btnAgregar = document.createElement('button');
-                    btnAgregar.textContent = '+';
-                    btnAgregar.style.display = 'none';
-                    btnAgregar.onclick = function() {
-                        agregarIngrediente(index);
-                    };
-
-                    li.appendChild(btnRestar);
-                    li.appendChild(btnAgregar);
-                    listaIngredientes.appendChild(li);
-                });
-            } else {
-                listaIngredientes.innerHTML = '<li>No hay opciones de ingredientes para este producto.</li>';
-            }
-
             // Establecer la cantidad inicial desde localStorage
             document.getElementById('cantidad').textContent = producto.cantidad || 1;
-
-            let ingredientesRestados = [];
-
-            function restarIngrediente(index) {
-                const li = listaIngredientes.children[index];
-                li.querySelector('button').style.display = 'none';
-                li.querySelectorAll('button')[1].style.display = '';
-                ingredientesRestados.push(producto.ingredientes[index]);
-            }
-
-            function agregarIngrediente(index) {
-                const li = listaIngredientes.children[index];
-                li.querySelector('button').style.display = '';
-                li.querySelectorAll('button')[1].style.display = 'none';
-                const ingrediente = producto.ingredientes[index];
-                ingredientesRestados = ingredientesRestados.filter(i => i !== ingrediente);
-            }
 
             function modificarCantidad(cambio) {
                 const cantidadElemento = document.getElementById('cantidad');
@@ -106,6 +70,7 @@
 
             function agregarAlCarrito() {
                 const cantidad = parseInt(document.getElementById('cantidad').textContent);
+                const instrucciones = document.getElementById('instrucciones').value;  // Capturar las instrucciones adicionales
 
                 if (cantidad <= 0) {
                     eliminarDelCarrito();
@@ -115,7 +80,7 @@
                 const productoFinal = {
                     ...producto,
                     cantidad: cantidad,
-                    ingredientes: producto.ingredientes ? producto.ingredientes.filter(ingrediente => !ingredientesRestados.includes(ingrediente)) : []
+                    instrucciones: instrucciones // Agregar las instrucciones al objeto producto
                 };
 
                 let carrito = obtenerCarrito();
@@ -123,9 +88,7 @@
 
                 if (productoExistente) {
                     productoExistente.cantidad = cantidad;
-                    if (productoFinal.ingredientes.length > 0) {
-                        productoExistente.ingredientes = productoFinal.ingredientes;
-                    }
+                    productoExistente.instrucciones = instrucciones; // Actualizar instrucciones si ya existe en el carrito
                 } else {
                     carrito.push(productoFinal);
                 }
@@ -157,5 +120,3 @@
     </script>
 </body>
 </html>
-
-
