@@ -54,7 +54,7 @@ ul{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 400px;
+    height: 350px;
     background-color: rgb(255, 255, 0);
     border-radius: 0 0 180px 180px;
     margin-top: 0;
@@ -63,7 +63,7 @@ ul{
 #imagen-producto{
     width: 20rem;
     height: auto;
-    margin-top: 10.3rem;
+    margin-top: 7.3rem;
     /*background-color: rgb(255, 123, 0);*/
 }
 #nombre-producto{
@@ -95,16 +95,32 @@ ul{
     margin-bottom: 5px;
 }
 #instrucciones{
+    color: white;
+    padding-left: 3px;
+    padding-top: 3px;
     width: 90%;
     height: 100px;
     margin-left: 15px;
+    margin-bottom: 10px;
     resize: none;
     border: none;
     border-radius: 0.2rem;;
     background-color: rgba(61, 61, 61, 0.233);
 }
 #instrucciones::placeholder {
-    padding-left: 2px; 
+    padding-left: 3px;
+    padding-top: 3;
+}
+#contenedor_acompañamiento{
+    background-color: rgb(255, 0, 0);
+    height: 300px;
+}
+#text_acompañamiento{
+    font-size: 1.2rem;
+    color: white;
+    text-align: initial;
+    margin-left: 15px;
+    margin-bottom: 5px;
 }
 #contenedor_cantidad_btn-agregar{
     display: flex;
