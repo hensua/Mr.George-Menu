@@ -47,7 +47,9 @@ function actualizarContadorCarrito() {
 // Función para agregar un producto al carrito
 function agregarAlCarrito(event) {
     event.preventDefault();
-    const articulo = event.target.closest('.articulo');
+    const articulo = event.target.closest('.articulo') || event.target.closest('.acompanamiento-item');
+
+    console.log('Elemento seleccionado:', articulo); // Agrega esta línea para depuración
 
     if (!articulo) {
         console.error('El artículo no se encuentra en el DOM.');
@@ -57,20 +59,14 @@ function agregarAlCarrito(event) {
     const id = articulo.getAttribute('data-id');
     const nombre = articulo.getAttribute('data-nombre');
     const precio = parseFloat(articulo.getAttribute('data-precio'));
-    /*const ingredientes = articulo.getAttribute('');*/
 
-    if (!id || !nombre || isNaN(precio)) {
-        console.error('El artículo no tiene los atributos necesarios.');
+    // Validar solo que el ID exista
+    if (!id) {
+        console.error('El artículo no tiene un ID válido.');
         return;
     }
 
-    if (ingredientes) {
-        // Redirigir a la página de detalles si tiene ingredientes
-        localStorage.setItem('productoSeleccionado', JSON.stringify({ id, nombre, precio, ingredientes }));
-        window.location.href = 'producto.html';
-        return;
-    }
-
+    // Obtener el carrito existente
     let carrito = obtenerCarrito();
     let productoExistente = carrito.find(item => item.id === id);
 
@@ -78,14 +74,17 @@ function agregarAlCarrito(event) {
         // Solo incrementa la cantidad si el producto ya existe
         productoExistente.cantidad += 1;
     } else {
+        // Agregar un nuevo producto al carrito
         productoExistente = { id, nombre, precio, cantidad: 1 };
         carrito.push(productoExistente);
     }
 
+    // Guardar el carrito en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
     actualizarBotonCantidad(articulo, productoExistente.cantidad);  // Actualiza el botón del artículo
     actualizarContadorCarrito();  // Actualiza el contador del carrito
     interactuando = true;  // Marca que se está interactuando
+
     // Reinicia el temporizador de ocultación
     if (ocultarTimeout) {
         clearTimeout(ocultarTimeout);
@@ -95,7 +94,6 @@ function agregarAlCarrito(event) {
         ocultarBotones(articulo);
     }, 2000);
 }
-
 
 // Función para obtener el contenido del carrito
 function obtenerCarrito() {
@@ -152,7 +150,6 @@ function actualizarCantidad(id, cambio) {
     }
 }
 
-// CAMBIADO
 // Función para actualizar el botón de agregar al carrito con la cantidad y los botones +/-
 function actualizarBotonCantidad(articulo, cantidad) {
     const botonAdd = articulo.querySelector('.boton_add');
@@ -165,24 +162,22 @@ function actualizarBotonCantidad(articulo, cantidad) {
                     <button class="boton_mas" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', 1)">+</button>
                 </div>
             `;
-            botonAdd.style.backgroundColor = 'transparent';  // Quita el fondo del botón
-            botonAdd.style.border = 'none';  // Elimina el borde externo del botón
-            botonAdd.style.boxShadow = 'inset 0 0 0 1px rgb(255, 174, 0)';  // Establece un borde interno
+            botonAdd.style.backgroundColor = 'transparent';
+            botonAdd.style.border = 'none';
+            botonAdd.style.boxShadow = 'inset 0 0 0 1px rgb(255, 174, 0)';
 
-            botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos desde el botón inicial
-            mostrarBotones(articulo.getAttribute('data-id'));  // Muestra los botones si hay cantidad
+            botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos
+            mostrarBotones(articulo.getAttribute('data-id'));
         } else {
-            //botonAdd.innerHTML = '+';
-            botonAdd.textContent = '+'; 
-            botonAdd.style.backgroundColor = 'rgb(255, 255, 0)';  // Restaura el color original
-            botonAdd.style.boxShadow = 'none'; //Elimina el borde interno
-            botonAdd.onclick = (event) => agregarAlCarrito(event);  // Restaura la funcionalidad inicial del botón
-            ocultarBotones(articulo);  // Asegura que los botones estén ocultos si la cantidad es 0
+            botonAdd.textContent = '+';
+            botonAdd.style.backgroundColor = 'rgb(255, 255, 0)';
+            botonAdd.style.boxShadow = 'none';
+            botonAdd.onclick = (event) => agregarAlCarrito(event);
+            ocultarBotones(articulo);
         }
     }
 }
 
-// CAMBIADO
 // Función para cambiar la cantidad del artículo directamente desde el botón
 function cambiarCantidadArticulo(id, cambio) {
     let carrito = obtenerCarrito();
@@ -192,29 +187,31 @@ function cambiarCantidadArticulo(id, cambio) {
         producto.cantidad += cambio;
 
         if (producto.cantidad < 1) {
-            carrito = carrito.filter(item => item.id !== id);  // Elimina el producto si la cantidad es inferior a 1
+            carrito = carrito.filter(item => item.id !== id);
         } else if (producto.cantidad > 99) {
-            producto.cantidad = 99;  // Limita la cantidad máxima a 99
+            producto.cantidad = 99;
         }
+
         localStorage.setItem('carrito', JSON.stringify(carrito));
-        const articulo = document.querySelector(`.articulo[data-id="${id}"]`);
+        const articulo = document.querySelector(`.articulo[data-id="${id}"], .acompanamiento-item[data-id="${id}"]`);
+        
         if (articulo) {
-            actualizarBotonCantidad(articulo, producto.cantidad);  // Actualiza el botón
+            actualizarBotonCantidad(articulo, producto.cantidad);
+            ocultarBotones(articulo); // Asegúrate de que se oculten los botones si la cantidad es 0
         }
-        actualizarContadorCarrito();  // Actualiza el contador del carrito
 
-        interactuando = true;  // Marca que se está interactuando
+        actualizarContadorCarrito();
 
-        // Si la cantidad llega a 0, reinicia el botón a su estado inicial
+        interactuando = true;
+
         if (producto.cantidad < 1) {
             actualizarBotonCantidad(articulo, 0);
         } else {
-            // Reinicia el temporizador de ocultación solo para el artículo actual
             if (ocultarTimeout) {
                 clearTimeout(ocultarTimeout);
             }
             ocultarTimeout = setTimeout(() => {
-                interactuando = false;  // Marca que se ha dejado de interactuar
+                interactuando = false;
                 ocultarBotones(articulo);
             }, 2000);
         }
@@ -223,18 +220,49 @@ function cambiarCantidadArticulo(id, cambio) {
 
 // Función para mostrar los botones + y - cuando se hace clic en la cantidad
 function mostrarBotones(id) {
-    // Ocultar todos los botones antes de mostrar los del artículo actual
-    document.querySelectorAll('.articulo').forEach(otroArticulo => {
-        ocultarBotones(otroArticulo, true);  // Oculta de forma inmediata
-    });
+    console.log(`Buscando artículo con ID: ${id}`);
 
-    const articulo = document.querySelector(`.articulo[data-id="${id}"]`);
+    // Buscar el artículo en el DOM
+    const articulo = document.querySelector(`.articulo[data-id="${id}"], .acompanamiento-item[data-id="${id}"]`);
+
+    // Verificar si se encontró el artículo
+    if (!articulo) {
+        console.error('Artículo no encontrado');
+        return; // Salir si no se encontró el artículo
+    }
+
     const botonAdd = articulo.querySelector('.boton_add');
-    const botonMenos = botonAdd.querySelector('.boton_menos');
-    const botonMas = botonAdd.querySelector('.boton_mas');
 
+    // Crear los botones menos y más si no existen
+    let botonMenos = articulo.querySelector('.boton_menos');
+    let botonMas = articulo.querySelector('.boton_mas');
+
+    if (!botonMenos) {
+        botonMenos = document.createElement('button');
+        botonMenos.classList.add('boton_menos');
+        botonMenos.textContent = '-';
+        botonMenos.onclick = (event) => cambiarCantidadArticulo(id, -1);
+        articulo.appendChild(botonMenos);
+    }
+
+    if (!botonMas) {
+        botonMas = document.createElement('button');
+        botonMas.classList.add('boton_mas');
+        botonMas.textContent = '+';
+        botonMas.onclick = (event) => cambiarCantidadArticulo(id, 1);
+        articulo.appendChild(botonMas);
+    }
+
+    // Mostrar los botones
     botonMenos.style.display = 'inline';
     botonMas.style.display = 'inline';
+
+    // Ocultar los botones de otros artículos inmediatamente, excepto el artículo actual
+    document.querySelectorAll('.articulo, .acompanamiento-item').forEach(otroArticulo => {
+        if (otroArticulo !== articulo) {  // Solo oculta los que no son el actual
+            ocultarBotones(otroArticulo, true);  // Oculta de forma inmediata
+        }
+    });
 
     // Solo reiniciar el temporizador de ocultación si no se está interactuando
     if (!interactuando) {
@@ -242,18 +270,18 @@ function mostrarBotones(id) {
             clearTimeout(ocultarTimeout);
         }
 
-        // Ocultar los botones nuevamente después de 2 segundos si no se está interactuando
         ocultarTimeout = setTimeout(() => {
             ocultarBotones(articulo);
         }, 2000);
     }
 }
 
+
 function ocultarBotones(articulo, inmediato = false) {
     const botonAdd = articulo.querySelector('.boton_add');
-    const botonMenos = botonAdd?.querySelector('.boton_menos');
-    const botonMas = botonAdd?.querySelector('.boton_mas');
-    const cantidad = parseInt(botonAdd?.querySelector('span')?.textContent);
+    const botonMenos = articulo.querySelector('.boton_menos');
+    const botonMas = articulo.querySelector('.boton_mas');
+    const cantidad = parseInt(botonAdd?.querySelector('.numero_cantidad')?.textContent || '0');
 
     if (botonMenos && botonMas) {
         if ((cantidad > 0 && !interactuando) || inmediato) {
@@ -283,33 +311,36 @@ function enviarPedido() {
     window.open(url, '_blank');
 }
 
+// Función para inicializar artículos y acompañamientos
 function inicializarArticulos() {
-    document.querySelectorAll('.articulo').forEach(articulo => {
-        const id = articulo.getAttribute('data-id');
+    // Inicializa artículos
+    document.querySelectorAll('.articulo, .acompanamiento-item').forEach(item => {
+        const id = item.getAttribute('data-id');
         const carrito = obtenerCarrito();
         const producto = carrito.find(item => item.id === id);
 
+        // Actualiza la vista del artículo o acompañamiento según su estado en el carrito
         if (producto) {
-            // Actualiza la vista del artículo si está en el carrito
-            actualizarBotonCantidad(articulo, producto.cantidad);
+            // Si el producto o acompañamiento está en el carrito
+            actualizarBotonCantidad(item, producto.cantidad);
         } else {
-            // Inicializa el estado del botón si el producto no está en el carrito
-            actualizarBotonCantidad(articulo, 0);
+            // Inicializa el estado del botón si no está en el carrito
+            actualizarBotonCantidad(item, 0);
         }
 
         // Agregar eventos de clic para manejar dinámicamente los botones
-        const botonAdd = articulo.querySelector('.boton_add');
+        const botonAdd = item.querySelector('.boton_add');
         if (botonAdd) {
             botonAdd.addEventListener('click', () => {
-                const cantidadElemento = articulo.querySelector('.boton_add span');
+                const cantidadElemento = item.querySelector('.numero_cantidad');
                 if (cantidadElemento) {
                     mostrarBotones(id);
                 }
             });
         }
 
-        // Ocultar los botones al cargar la página para cada artículo
-        ocultarBotones(articulo);
+        // Ocultar los botones al cargar la página para cada artículo o acompañamiento
+        ocultarBotones(item);
     });
 }
 
@@ -319,9 +350,10 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarCarrito();  // Muestra el contenido del carrito en la página de compras
     } else {
         actualizarContadorCarrito();  // Actualiza el contador del carrito en la página de productos
-        inicializarArticulos();  // Inicializa la vista de los artículos
+        inicializarArticulos();  // Inicializa la vista de los artículos y acompañamientos
     }
 });
+
 
 // Llama a filtrarArticulosAll al cargar la página
 window.onload = function() {
@@ -390,17 +422,6 @@ function filtrarArticulos(categoria) {
     mostrarFooter();
 }
 
-
-
-
-
-
-
-
-
-
-
-
 // Función para validar y obtener los acompañamientos
 function obtenerAcompanamientos(acompañamientos) {
     const contenedorAcompanamiento = document.getElementById('contenedor_acompañamiento');
@@ -416,10 +437,15 @@ function obtenerAcompanamientos(acompañamientos) {
 
         acompañamientos.forEach(acompañamiento => {
             console.log(`ID: ${acompañamiento.id}, Nombre: ${acompañamiento.nombre}, Precio: ${acompañamiento.precio}, Imagen: ${acompañamiento.imagen}`);
-            
+
             // Crear el elemento HTML para el acompañamiento
             const divAcompanamiento = document.createElement('div');
             divAcompanamiento.classList.add('acompanamiento-item');
+
+            // Configura los atributos
+            divAcompanamiento.setAttribute('data-id', acompañamiento.id);
+            divAcompanamiento.setAttribute('data-nombre', acompañamiento.nombre);
+            divAcompanamiento.setAttribute('data-precio', acompañamiento.precio);
 
             // Verifica si el nombre del acompañamiento contiene "250 ml"
             let nombreSinEtiqueta = acompañamiento.nombre.replace("250 ml", "").trim();
@@ -469,8 +495,9 @@ function obtenerAcompanamientos(acompañamientos) {
             const botonAdd = document.createElement('button');
             botonAdd.textContent = '+';
             botonAdd.classList.add('boton_add');
-            botonAdd.onclick = (event) => agregarAlCarrito(event, acompañamiento);
+            botonAdd.onclick = (event) => agregarAlCarrito(event, acompañamiento);  // Modificamos la función de agregar al carrito
             contenedorPrecioBoton.appendChild(botonAdd);
+
 
             // Añadir el contenedor con el precio y el botón al div principal
             divAcompanamiento.appendChild(contenedorPrecioBoton);
@@ -482,8 +509,6 @@ function obtenerAcompanamientos(acompañamientos) {
         contenedorAcompanamiento.style.display = 'none'; // Ocultar si no hay acompañamientos
     }
 }
-
-
 
 // Código para cargar acompañamientos en producto.html
 document.addEventListener('DOMContentLoaded', function() {
@@ -512,14 +537,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-
-
-
-
-
-
-
-
 
 // Función para ver producto más detalle
 function verProducto(event, elemento) {
@@ -565,3 +582,8 @@ function verProducto(event, elemento) {
 }
 
 /*localStorage.clear();*/ //Limpiar cache
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarArticulos();  // Llama a la función para inicializar los artículos en la página
+});
