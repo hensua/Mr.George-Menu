@@ -390,6 +390,137 @@ function filtrarArticulos(categoria) {
     mostrarFooter();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+// Función para validar y obtener los acompañamientos
+function obtenerAcompanamientos(acompañamientos) {
+    const contenedorAcompanamiento = document.getElementById('contenedor_acompañamiento');
+    const contenedorAcompanamientos = document.getElementById('acompañamientos');
+
+    // Limpiar el contenedor antes de agregar nuevos acompañamientos
+    contenedorAcompanamientos.innerHTML = '';
+
+    // Mostrar en consola los acompañamientos
+    console.log("Acompañamientos son:");
+    if (Array.isArray(acompañamientos) && acompañamientos.length > 0) {
+        contenedorAcompanamiento.style.display = 'block'; // Mostrar el contenedor
+
+        acompañamientos.forEach(acompañamiento => {
+            console.log(`ID: ${acompañamiento.id}, Nombre: ${acompañamiento.nombre}, Precio: ${acompañamiento.precio}, Imagen: ${acompañamiento.imagen}`);
+            
+            // Crear el elemento HTML para el acompañamiento
+            const divAcompanamiento = document.createElement('div');
+            divAcompanamiento.classList.add('acompanamiento-item');
+
+            // Verifica si el nombre del acompañamiento contiene "250 ml"
+            let nombreSinEtiqueta = acompañamiento.nombre.replace("250 ml", "").trim();
+            if (acompañamiento.nombre.includes("250 ml")) {
+                // Crear el div "etiqueta_info" con el texto "250 ml"
+                const etiquetaInfo = document.createElement('div');
+                etiquetaInfo.classList.add('etiqueta_info');
+                etiquetaInfo.textContent = "250 ml";
+
+                // Añadir "etiqueta_info" al divAcompanamiento, antes de la imagen
+                divAcompanamiento.appendChild(etiquetaInfo);
+            }
+
+            // Imagen del acompañamiento
+            const imgAcompanamiento = document.createElement('img');
+            imgAcompanamiento.src = acompañamiento.imagen;
+            imgAcompanamiento.alt = acompañamiento.nombre;
+            divAcompanamiento.appendChild(imgAcompanamiento);
+
+            // Crear el contenedor "articulo_info"
+            const articuloInfo = document.createElement('div');
+            articuloInfo.classList.add('articulo_info');
+
+            // Nombre del acompañamiento
+            const nombreAcompanamiento = document.createElement('h4');
+            nombreAcompanamiento.textContent = nombreSinEtiqueta;
+            articuloInfo.appendChild(nombreAcompanamiento);
+
+            // Crear el h6 con el texto predeterminado
+            const descripcionAcompanamiento = document.createElement('h6');
+            descripcionAcompanamiento.textContent = "El mejor y rico sabor";
+            articuloInfo.appendChild(descripcionAcompanamiento);
+
+            // Añadir el contenedor "articulo_info" al div principal
+            divAcompanamiento.appendChild(articuloInfo);
+
+            // Crear el contenedor para el precio y el botón
+            const contenedorPrecioBoton = document.createElement('div');
+            contenedorPrecioBoton.classList.add('contenedor_precio_boton_add');
+
+            // Precio del acompañamiento
+            const precioAcompanamiento = document.createElement('h5');
+            precioAcompanamiento.textContent = `$${acompañamiento.precio}`;
+            contenedorPrecioBoton.appendChild(precioAcompanamiento);
+
+            // Botón de agregar
+            const botonAdd = document.createElement('button');
+            botonAdd.textContent = '+';
+            botonAdd.classList.add('boton_add');
+            botonAdd.onclick = (event) => agregarAlCarrito(event, acompañamiento);
+            contenedorPrecioBoton.appendChild(botonAdd);
+
+            // Añadir el contenedor con el precio y el botón al div principal
+            divAcompanamiento.appendChild(contenedorPrecioBoton);
+
+            // Añadir el acompañamiento al contenedor
+            contenedorAcompanamientos.appendChild(divAcompanamiento);
+        });
+    } else {
+        contenedorAcompanamiento.style.display = 'none'; // Ocultar si no hay acompañamientos
+    }
+}
+
+
+
+// Código para cargar acompañamientos en producto.html
+document.addEventListener('DOMContentLoaded', function() {
+    const productoSeleccionado = JSON.parse(localStorage.getItem('productoSeleccionado'));
+    console.log("Producto seleccionado:", productoSeleccionado);
+
+    if (window.location.pathname.includes('producto.html')) {
+        console.log("Estamos en producto.html");
+
+        if (productoSeleccionado) {
+            console.log("ID del producto seleccionado:", productoSeleccionado.id);
+
+            // Obtener los acompañamientos desde localStorage
+            const acompañamientosData = JSON.parse(localStorage.getItem('acompanamientosSeleccionados')) || [];
+
+            // Mostrar en consola los acompañamientos cargados
+            console.log("Acompañamientos desde localStorage:", acompañamientosData);
+
+            if (acompañamientosData.length > 0) {
+                obtenerAcompanamientos(acompañamientosData); // Llama a la función con los datos de acompañamientos
+            } else {
+                console.error("No hay acompañamientos para el producto seleccionado.");
+            }
+        } else {
+            console.warn("No hay producto seleccionado en localStorage.");
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
 // Función para ver producto más detalle
 function verProducto(event, elemento) {
     event.preventDefault();
@@ -403,7 +534,8 @@ function verProducto(event, elemento) {
         categoriaAll: elemento.dataset.categoriaAll,
         imagen: elemento.querySelector('img') ? elemento.querySelector('img').src : 'img/default.png',
         info: elemento.dataset.info || '',  // Manejo de data-info, aunque esté vacío
-        cantidad: 1 // Inicializar la cantidad en 1 por defecto
+        cantidad: 1, // Inicializar la cantidad en 1 por defecto
+        dataAcompanamiento: elemento.dataset.acompañamiento // Agregar data-acompañamiento
     };
 
     // Obtener el carrito y verificar si el producto ya está en él
@@ -413,9 +545,23 @@ function verProducto(event, elemento) {
         producto.cantidad = productoEnCarrito.cantidad;
     }
 
+    // Guardar el producto seleccionado en el localStorage
     localStorage.setItem('productoSeleccionado', JSON.stringify(producto));
+    
+    // Almacenar los acompañamientos en un formato de objeto
+    const idsAcompanamientos = producto.dataAcompanamiento ? producto.dataAcompanamiento.split(',') : [];
+    const acompañamientosData = idsAcompanamientos.map(id => {
+        const acompañamientoElement = document.querySelector(`.articulo[data-id="${id.trim()}"]`);
+        return {
+            id: id.trim(),
+            nombre: acompañamientoElement.dataset.nombre,
+            precio: acompañamientoElement.dataset.precio,
+            imagen: acompañamientoElement.querySelector('img').src || 'img/default.png'
+        };
+    });
+    localStorage.setItem('acompanamientosSeleccionados', JSON.stringify(acompañamientosData)); // Guardar acompañamientos como objeto
+
     window.location.href = 'producto.html';
 }
-
 
 /*localStorage.clear();*/ //Limpiar cache

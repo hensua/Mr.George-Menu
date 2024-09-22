@@ -124,7 +124,7 @@ h1{
 .boton_seleccionado {
     background-color: rgb(255, 255, 0);  /* Color de fondo para el botón seleccionado */
 }
-#tutulo_principal{
+#titulo_principal{
     padding: 0.5rem;
 }
 .menu{

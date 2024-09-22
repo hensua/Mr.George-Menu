@@ -1,4 +1,5 @@
 *{
+    /*text-align: center;*/
     margin: 0;
     padding: 0;
 
@@ -90,38 +91,145 @@ ul{
 #text_instrucciones{
     font-size: 1.2rem;
     color: white;
-    text-align: initial;
     margin-left: 15px;
-    margin-bottom: 5px;
 }
 #instrucciones{
-    color: white;
+    color: rgb(211, 211, 211);
+    text-align: initial;
     padding-left: 3px;
     padding-top: 3px;
     width: 90%;
     height: 100px;
     margin-left: 15px;
+    margin-top: 5px;
     margin-bottom: 10px;
     resize: none;
     border: none;
     border-radius: 0.2rem;;
     background-color: rgba(61, 61, 61, 0.233);
 }
+#instrucciones:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 1px rgb(255, 255, 0); /* Un borde normal sin efectos de resaltado */
+}
 #instrucciones::placeholder {
     padding-left: 3px;
     padding-top: 3;
 }
 #contenedor_acompañamiento{
-    background-color: rgb(255, 0, 0);
-    height: 300px;
+    display: none;
+    /*background-color: rgba(255, 0, 0, 0.925);*/
+    height: auto;
 }
 #text_acompañamiento{
     font-size: 1.2rem;
-    color: white;
-    text-align: initial;
+    color: rgb(255, 255, 255);
     margin-left: 15px;
-    margin-bottom: 5px;
+    /*background-color: rgb(0, 17, 255);*/
 }
+#acompañamientos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin-top: 5px;
+    text-align: center;
+    /*background-color: #28a745;*/
+}
+
+.acompanamiento-item {
+    position: relative;
+    flex: 0 0 35%;
+    color: rgb(255, 255, 255);
+    width: 140px;
+    height: 200px;
+    gap: 1.1rem;
+    border-radius: 0.6rem;
+    background-color: rgba(61, 61, 61, 0.233);
+    /*background-color: rgba(18, 153, 0, 0.87);*/ /*SOLO PARA PRUEBA*/
+}
+
+.etiqueta_info {
+    position: absolute;
+    top: 0;  /* Ajusta esta posición según necesites */
+    right: 0;  /* Ajusta esta posición según necesites */
+    z-index: 1; /* Se asegura de que el contador esté por encima del logo */
+    background-color: rgb(255, 255, 0);
+    color: black;
+    border-radius: 0 0.6rem 0 0.6rem;
+    padding: 4px 4px;
+    font-size: 10px;
+}
+
+.acompanamiento-item img {
+    width: 95%;
+    width: 7.5rem;
+    margin-top: 0.9rem;
+    margin-bottom: 0.8rem;
+    /*background-color: rgb(255, 123, 0);*/
+}
+
+.articulo_info {
+    margin-bottom: 0.7rem;
+    /*background-color: rgb(225, 0, 255);*/
+}
+
+.acompanamiento-item h4 {
+    display: flex;
+    width: 95%;
+    margin-bottom: 0.2rem;
+    margin-left: 0.5rem;
+    /*background-color: rgb(255, 151, 24);*/
+}
+.acompanamiento-item h6 {
+    display: flex;
+    margin-left: 0.5rem;
+    margin-bottom: 0rem;
+    color: rgb(160, 160, 160);
+    /*background-color: rgb(0, 0, 0);*/
+}
+
+.contenedor_precio_boton_add{
+    display: flex;
+    align-items: center;
+    /*background-color: blue;*/
+}
+
+.acompanamiento-item h5 {
+    display: flex;
+    width: 95%;
+    margin-left: 0.5rem;
+    /*background-color: rgb(113, 113, 255);*/
+}
+
+.boton_add {
+    font-size: 0.9rem;
+    color: black;
+    border: none;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.3rem;
+    margin-left: 0.4rem;
+    margin-right: 0.5rem;
+    background-color: rgb(255, 255, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #contenedor_cantidad_btn-agregar{
     display: flex;
     justify-content: space-between;
