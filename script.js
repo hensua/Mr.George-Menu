@@ -486,9 +486,15 @@ function obtenerAcompanamientos(acompañamientos) {
             const contenedorPrecioBoton = document.createElement('div');
             contenedorPrecioBoton.classList.add('contenedor_precio_boton_add');
 
+            // Función para formatear el número con puntos en miles
+            function formatearPrecio(precio) {
+                return precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+
             // Precio del acompañamiento
+            const precioFormateado = formatearPrecio(acompañamiento.precio);
             const precioAcompanamiento = document.createElement('h5');
-            precioAcompanamiento.textContent = `$${acompañamiento.precio}`;
+            precioAcompanamiento.textContent = `$${precioFormateado}`;
             contenedorPrecioBoton.appendChild(precioAcompanamiento);
 
             // Botón de agregar
