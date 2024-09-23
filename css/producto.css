@@ -130,7 +130,8 @@ ul{
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.1rem;
-    margin-top: 5px;
+    margin-top: 8px;
+    margin-bottom: 72px;
     text-align: center;
     /*background-color: #28a745;*/
 }
@@ -256,15 +257,18 @@ ul{
 
 
 
-
 #contenedor_cantidad_btn-agregar{
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 40px;
     /*background-color: rgb(208, 158, 255);*/
-    margin-top: 20px; /*USADO DE FORMA TEMPORAL*/
-    margin-bottom: 20px; /*USADO DE FORMA TEMPORAL*/
+    position: fixed; /* Fija el contenedor */
+    bottom: 0; /* Ubica el contenedor en la parte inferior */
+    left: 0; /* Alinea el contenedor a la izquierda */
+    right: 0; /* Alinea el contenedor a la derecha */
+    margin-bottom: 15px; /* Elimina el margen inferior */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 #contenedor_cantidad{
     /*background-color: aqua;*/
