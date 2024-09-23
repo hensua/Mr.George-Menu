@@ -53,7 +53,7 @@
 
         document.getElementById('nombre-producto').textContent = producto.nombre || 'Nombre no disponible';
         document.getElementById('descripcion-producto').textContent = producto.descripcion || 'Descripción no disponible';
-        document.getElementById('precio-producto').textContent = `$${formatearPrecio(parseFloat(producto.precio) || 0)}`; // Asegúrate de convertir el precio a float
+        document.getElementById('precio-producto').textContent = `$${formatearPrecio(parseFloat(producto.precio) || 0)}`;
         document.getElementById('imagen-producto').src = producto.imagen || 'img/default.png';
 
         // Establecer la cantidad inicial desde localStorage o 1
@@ -77,7 +77,10 @@
 
         // Función para formatear el número con separadores de miles
         function formatearPrecio(valor) {
-            return valor.toLocaleString('es-ES', { minimumFractionDigits: 0 }); // Formato español que usa punto como separador de miles
+        // Asegurarnos de que el valor es un número
+        const numero = parseFloat(valor);
+        // Formatear el número con separadores de miles
+        return `${numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
         }
 
         // Función para actualizar el texto del botón "AGREGAR $VALOR"
