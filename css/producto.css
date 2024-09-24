@@ -131,7 +131,7 @@ ul{
     flex-wrap: wrap;
     gap: 1.1rem;
     margin-top: 8px;
-    margin-bottom: 72px;
+    margin-bottom: 80px;
     text-align: center;
     /*background-color: #28a745;*/
 }
@@ -256,21 +256,34 @@ ul{
 
 
 
-
-#contenedor_cantidad_btn-agregar{
+#contenedor_botones{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 40px;
-    /*background-color: rgb(208, 158, 255);*/
+    width: 100%;
+    height: 50px;
+    /*background-color: aqua;*/
     position: fixed; /* Fija el contenedor */
     bottom: 0; /* Ubica el contenedor en la parte inferior */
     left: 0; /* Alinea el contenedor a la izquierda */
     right: 0; /* Alinea el contenedor a la derecha */
-    margin-bottom: 15px; /* Elimina el margen inferior */
     z-index: 1000; /* Asegura que esté encima de otros elementos */
+    margin-bottom: 15px; /* Elimina el margen inferior */
+}
+#contenedor_cantidad_btn-agregar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 40px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: rgba(71, 71, 71, 0.801);
 }
 #contenedor_cantidad{
+    display: flex;
+    align-items: center;
+    width: auto;
     /*background-color: aqua;*/
     margin-left: 15px;
 }
@@ -288,7 +301,11 @@ ul{
     cursor: pointer;
 }
 #cantidad{
+    display: flex;
+    justify-content: center;
+    width: 28px;
     color: white;
+    /*background-color: blueviolet;*/
 }
 #btn-sumar{
     font-size: 1.2rem;
