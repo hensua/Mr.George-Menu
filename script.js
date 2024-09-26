@@ -48,43 +48,39 @@ function actualizarContadorCarrito() {
 function agregarAlCarrito(event) {
     event.preventDefault();
     const articulo = event.target.closest('.articulo') || event.target.closest('.acompanamiento-item');
-
     console.log('Elemento seleccionado:', articulo); // Agrega esta línea para depuración
-
     if (!articulo) {
         console.error('El artículo no se encuentra en el DOM.');
         return;
     }
-
     const id = articulo.getAttribute('data-id');
     const nombre = articulo.getAttribute('data-nombre');
     const precio = parseFloat(articulo.getAttribute('data-precio'));
-
+    
+    // Obtener las instrucciones desde el textarea en producto.html
+    const instrucciones = document.getElementById('instrucciones') ? document.getElementById('instrucciones').value : '';
     // Validar solo que el ID exista
     if (!id) {
         console.error('El artículo no tiene un ID válido.');
         return;
     }
-
     // Obtener el carrito existente
     let carrito = obtenerCarrito();
     let productoExistente = carrito.find(item => item.id === id);
-
     if (productoExistente) {
         // Solo incrementa la cantidad si el producto ya existe
         productoExistente.cantidad += 1;
+        productoExistente.instrucciones = instrucciones; // Actualiza las instrucciones si ya existe
     } else {
         // Agregar un nuevo producto al carrito
-        productoExistente = { id, nombre, precio, cantidad: 1 };
+        productoExistente = { id, nombre, precio, cantidad: 1, instrucciones };
         carrito.push(productoExistente);
     }
-
     // Guardar el carrito en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
     actualizarBotonCantidad(articulo, productoExistente.cantidad);  // Actualiza el botón del artículo
     actualizarContadorCarrito();  // Actualiza el contador del carrito
     interactuando = true;  // Marca que se está interactuando
-
     // Reinicia el temporizador de ocultación
     if (ocultarTimeout) {
         clearTimeout(ocultarTimeout);
@@ -94,6 +90,7 @@ function agregarAlCarrito(event) {
         ocultarBotones(articulo);
     }, 2000);
 }
+
 
 // Función para obtener el contenido del carrito
 function obtenerCarrito() {
@@ -116,6 +113,7 @@ function mostrarCarrito() {
                     ${item.cantidad} 
                     <button class="producto_carrito_boton_agregar" onclick="actualizarCantidad('${item.id}', 1)">+</button>
                 </p>
+                ${item.instrucciones ? `<p><strong>Instrucciones:</strong> ${item.instrucciones}</p>` : ''} <!-- Mostrar instrucciones si están presentes -->
             </div>
         `;
         contenedor.innerHTML += productoHTML;
@@ -125,6 +123,7 @@ function mostrarCarrito() {
         contenedor.innerHTML = '<p>Tu carrito está vacío</p>';
     }
 }
+
 
 // Función para actualizar la cantidad de un producto en el carrito
 function actualizarCantidad(id, cambio) {
