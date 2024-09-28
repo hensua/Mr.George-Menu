@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mr George Menu</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="Website Icon" type="png" href="img/logo-sin fondo.png"> <!--ICONO DE LA PAGINA-->
 </head>
 <body>
     <header>
         <div class="carrito">
-            <a id="carrito_compras" href="compras.html">
+            <button id="carrito_compras">
                 <img id="carrito_compras_logo" src="img/shopping.png" alt="Logo Carrito">
-            </a>
+            </button>
             <span id="contador_carrito">0</span>
         </div>
             <img id="logo_app" src="img/MrGeorge-Logo.png" alt="Logo Mr George">
@@ -190,6 +192,11 @@
         Since 2022<br>
         Henry Desing Web
     </footer>
+    <script>
+        document.getElementById('carrito_compras').addEventListener('click', () => {
+        window.location.href = 'compras.html';
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

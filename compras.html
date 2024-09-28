@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mr George Menu - Carrito</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/compras.css">
     <link rel="Website Icon" type="png" href="img/logo-sin fondo.png"> <!--ICONO DE LA PAGINA-->
 </head>
 <body>
-    <header class="contenedor_header_compras">
-        <a id="atras" href="index.html">
-            <img id="atras_logo" src="img/AtrasLogo.png" alt="">
-        </a>
+    <header id="contenedor_header_compras">
+        <button id="atras"><img id="atras_logo" src="img/AtrasLogo.png" alt=""></button>
     </header>
-    <main class="contenedor_main_compras">
+    <main id="contenedor_main_compras">
         <div id="carrito_contenido"></div>
-        <button id="boton_hacer_pedido" onclick="enviarPedido()">Enviar Pedido</button>
+
+
+        <div id="contenedor_botones">
+            <div id="contenedor_botones_pedido">
+                <div id="contenedor_valor">
+                    <span id="cantidad_producto">x producto</span>
+                    <span id="span_valor">$VALOR</span>
+                </div>
+                <button id="boton_hacer_pedido" onclick="enviarPedido()">Enviar Pedido</button>
+            </div>
+        </div>
     </main>
+    <script>
+        // Agregar eventos a los botones
+        document.getElementById('atras').addEventListener('click', () => window.history.back());
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

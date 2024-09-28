@@ -47,47 +47,75 @@ function actualizarContadorCarrito() {
 // Función para agregar un producto al carrito
 function agregarAlCarrito(event) {
     event.preventDefault();
-    const articulo = event.target.closest('.articulo') || event.target.closest('.acompanamiento-item');
-    console.log('Elemento seleccionado:', articulo); // Agrega esta línea para depuración
-    if (!articulo) {
-        console.error('El artículo no se encuentra en el DOM.');
+    
+    // Identificar si es un artículo principal o un acompañamiento
+    const articulo = event.target.closest('.articulo');
+    const acompanamiento = event.target.closest('.acompanamiento-item');
+    
+    console.log('Elemento seleccionado:', articulo || acompanamiento); // Para depuración
+    
+    if (!articulo && !acompanamiento) {
+        console.error('El artículo o acompañamiento no se encuentra en el DOM.');
         return;
     }
-    const id = articulo.getAttribute('data-id');
-    const nombre = articulo.getAttribute('data-nombre');
-    const precio = parseFloat(articulo.getAttribute('data-precio'));
+
+    // Obtener los atributos comunes (id, nombre, precio) del artículo o acompañamiento
+    const id = (articulo || acompanamiento).getAttribute('data-id');
+    const nombre = (articulo || acompanamiento).getAttribute('data-nombre');
+    const precio = parseFloat((articulo || acompanamiento).getAttribute('data-precio'));
+
+    // Verificar si el elemento es un artículo principal y obtener las instrucciones solo para el artículo principal
+    const instrucciones = articulo ? document.getElementById('instrucciones').value : '';
     
-    // Obtener las instrucciones desde el textarea en producto.html
-    const instrucciones = document.getElementById('instrucciones') ? document.getElementById('instrucciones').value : '';
     // Validar solo que el ID exista
     if (!id) {
         console.error('El artículo no tiene un ID válido.');
         return;
     }
+
     // Obtener el carrito existente
     let carrito = obtenerCarrito();
     let productoExistente = carrito.find(item => item.id === id);
+
     if (productoExistente) {
         // Solo incrementa la cantidad si el producto ya existe
         productoExistente.cantidad += 1;
-        productoExistente.instrucciones = instrucciones; // Actualiza las instrucciones si ya existe
+
+        // Actualiza las instrucciones si es un artículo principal
+        if (articulo) {
+            productoExistente.instrucciones = instrucciones;
+        }
     } else {
         // Agregar un nuevo producto al carrito
-        productoExistente = { id, nombre, precio, cantidad: 1, instrucciones };
+        productoExistente = {
+            id,
+            nombre,
+            precio,
+            cantidad: 1,
+            instrucciones: articulo ? instrucciones : ''  // Solo agregar instrucciones si es un artículo principal
+        };
         carrito.push(productoExistente);
     }
+
     // Guardar el carrito en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    actualizarBotonCantidad(articulo, productoExistente.cantidad);  // Actualiza el botón del artículo
-    actualizarContadorCarrito();  // Actualiza el contador del carrito
+
+    // Actualiza el botón del artículo o acompañamiento
+    actualizarBotonCantidad(articulo || acompanamiento, productoExistente.cantidad);
+
+    // Actualiza el contador del carrito
+    actualizarContadorCarrito();
+
     interactuando = true;  // Marca que se está interactuando
+
     // Reinicia el temporizador de ocultación
     if (ocultarTimeout) {
         clearTimeout(ocultarTimeout);
     }
+
     ocultarTimeout = setTimeout(() => {
         interactuando = false;  // Marca que se ha dejado de interactuar
-        ocultarBotones(articulo);
+        ocultarBotones(articulo || acompanamiento);
     }, 2000);
 }
 
@@ -105,13 +133,13 @@ function mostrarCarrito() {
 
     carrito.forEach(item => {
         const productoHTML = `
-            <div class="producto_carrito">
+            <div id="producto_carrito">
                 <h4>${item.nombre}</h4>
                 <p>Precio: $${item.precio}</p>
                 <p>Cantidad: 
-                    <button class="producto_carrito_boton_quitar" onclick="actualizarCantidad('${item.id}', -1)">-</button> 
+                    <button id="producto_carrito_boton_quitar" onclick="actualizarCantidad('${item.id}', -1)">-</button> 
                     ${item.cantidad} 
-                    <button class="producto_carrito_boton_agregar" onclick="actualizarCantidad('${item.id}', 1)">+</button>
+                    <button id="producto_carrito_boton_agregar" onclick="actualizarCantidad('${item.id}', 1)">+</button>
                 </p>
                 ${item.instrucciones ? `<p><strong>Instrucciones:</strong> ${item.instrucciones}</p>` : ''} <!-- Mostrar instrucciones si están presentes -->
             </div>

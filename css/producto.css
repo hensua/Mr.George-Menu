@@ -285,15 +285,12 @@ ul{
     align-items: center;
     width: auto;
     /*background-color: aqua;*/
-    margin-left: 15px;
-}
-#contenedor_btn-agregar{
-    /*background-color: bisque;*/
-    margin-right: 15px;
+    margin-left: 10px;
 }
 #btn-restar{
     font-size: 1.2rem;
-    padding: 0.2rem 0.5rem;
+    font-weight: bold;
+    padding: 0.2rem 0.4rem;
     border-radius: 0.3rem;
     background-color: rgb(255, 255, 0);
     border: none;
@@ -309,12 +306,16 @@ ul{
 }
 #btn-sumar{
     font-size: 1.2rem;
-    padding: 0.2rem 0.3rem;
+    padding: 0.2rem 0.35rem;
     border-radius: 0.3rem;
     background-color: rgb(255, 255, 0);
     border: none;
     color: black;
     cursor: pointer;
+}
+#contenedor_btn-agregar{
+    /*background-color: bisque;*/
+    margin-right: 10px;
 }
 #btn-agregar{
     color: black;

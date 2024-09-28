@@ -29,14 +29,14 @@ button{
 }
 
 /*CARRITO DE COMPRAS*/
-.contenedor_header_compras{
+#contenedor_header_compras{
     display: flex;
     align-items: center;
     width: 100%;
     height: 50px;
     /*background-color: aqua;*/
 }
-.carrito_compras_logo{
+#carrito_compras_logo{
     width: 1rem;
 }
 #atras{
@@ -44,52 +44,86 @@ button{
     justify-content: center;
     align-items: center;
     margin-left: 0.8rem;
+    border: 0;
+    background: none;
 }
 #atras_logo{
     width: 2rem; 
     border-radius: 15px;
     background-color: rgb(255, 255, 255);
 }
-.contenedor_main_compras{
+#contenedor_main_compras{
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 12px;
     /*background-color: bisque;*/
 }
-#boton_hacer_pedido{
-    margin-top: 10px;
-    color: black;
-    width: 110px;
-    height: 30px;
-    border: none;
+#contenedor_botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    /*background-color: aqua;*/
+    position: fixed; /* Fija el contenedor */
+    bottom: 0; /* Ubica el contenedor en la parte inferior */
+    left: 0; /* Alinea el contenedor a la izquierda */
+    right: 0; /* Alinea el contenedor a la derecha */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    margin-bottom: 15px; /* Elimina el margen inferior */
+}
+#contenedor_botones_pedido{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 40px;
+    padding: 5px;
     border-radius: 15px;
+    background-color: rgba(71, 71, 71, 0.801);
+}
+#contenedor_valor{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 10px;
+}
+#cantidad_producto{
+    font-size: 0.7rem;
+    color: white;
+}
+#span_valor{
+    color: rgb(255, 255, 255);
+}
+#boton_hacer_pedido{
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    margin-right: 10px;
     background-color: rgb(255, 251, 0);
 }
 
-.producto_carrito {
+#producto_carrito {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.producto_carrito_boton_quitar{
+#producto_carrito_boton_quitar{
     font-size: 1.2rem;
-    padding: 0.2rem 0.5rem;
+    font-weight: bold;
+    padding: 0.2rem 0.4rem;
     border-radius: 0.3rem;
     background-color: rgb(255, 255, 0);
     border: none;
     color: black;
     cursor: pointer;
 }
-
-.producto_carrito_boton_quitar:hover {
-    color: white;
-    background-color: rgb(255, 0, 0);
-}
-
-.producto_carrito_boton_agregar{
+#producto_carrito_boton_agregar{
     font-size: 1.2rem;
     padding: 0.2rem 0.3rem;
     border-radius: 0.3rem;
@@ -97,9 +131,4 @@ button{
     border: none;
     color: black;
     cursor: pointer;
-}
-
-.producto_carrito_boton_agregar:hover {
-    color: white;
-    background-color: rgb(55, 173, 0);
 }

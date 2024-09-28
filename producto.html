@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mr George Menu - Producto</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/producto.css">
     <link rel="icon" type="image/png" href="img/logo-sin fondo.png">
 </head>
@@ -160,7 +162,8 @@
             actualizarValorBoton(parseInt(cantidadElemento.textContent));
     
             // Agregar eventos a los botones
-            document.getElementById('btn-atras').addEventListener('click', () => window.location.href = 'index.html');
+            /*document.getElementById('btn-atras').addEventListener('click', () => window.location.href = 'index.html');*/
+            document.getElementById('btn-atras').addEventListener('click', () => window.history.back());
             document.getElementById('btn-restar').addEventListener('click', () => modificarCantidad(-1));
             document.getElementById('btn-sumar').addEventListener('click', () => modificarCantidad(1));
             document.getElementById('btn-agregar').addEventListener('click', agregarAlCarrito);

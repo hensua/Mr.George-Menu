@@ -54,6 +54,8 @@ header{
 }
 #carrito_compras{
     display: flex;
+    border: 0;
+    background: none;
     /*position: absolute;
     top: 30px;
     left: 40px;*/
