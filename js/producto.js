@@ -93,7 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem('carrito', JSON.stringify(carrito));
-        window.location.href = 'index.html';
+        
+        window.history.back();
+        //window.location.href = 'index.html';
+        //alert("Se agregó al carrito");
     }
 
     // Función para eliminar el producto del carrito
