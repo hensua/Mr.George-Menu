@@ -26,11 +26,6 @@ if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     }, false);
 }
 
-// Función para obtener el contenido del carrito
-function obtenerCarrito() {
-    return JSON.parse(localStorage.getItem('carrito')) || [];
-}
-
 // Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();
@@ -124,6 +119,12 @@ function agregarAlCarrito(event) {
     }, 2000);
 }
 
+
+// Función para obtener el contenido del carrito
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('carrito')) || [];
+}
+
 // Función para mostrar el contenido del carrito en compras.html
 function mostrarCarrito() {
     const carrito = obtenerCarrito();
@@ -149,10 +150,8 @@ function mostrarCarrito() {
     if (carrito.length === 0) {
         contenedor.innerHTML = '<p>Tu carrito está vacío</p>';
     }
-
-    // Actualiza el contador del carrito después de mostrarlo
-    actualizarContadorCarrito();
 }
+
 
 // Función para actualizar la cantidad de un producto en el carrito
 function actualizarCantidad(id, cambio) {
@@ -168,6 +167,7 @@ function actualizarCantidad(id, cambio) {
         }
         localStorage.setItem('carrito', JSON.stringify(carrito));
         mostrarCarrito();  // Actualiza la visualización del carrito
+        actualizarContadorCarrito();  // Actualiza el contador del carrito
 
         // Actualiza la visualización en el artículo si aún está en la página de productos
         const articulo = document.querySelector(`.articulo[data-id="${id}"]`);
@@ -184,9 +184,9 @@ function actualizarBotonCantidad(articulo, cantidad) {
         if (cantidad > 0) {
             botonAdd.innerHTML = `
                 <div class="contenedor_cantidad">
-                    <button class="boton_menos" onclick="actualizarCantidad('${articulo.getAttribute('data-id')}', -1)">-</button>
+                    <button class="boton_menos" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', -1)">-</button>
                     <span class="numero_cantidad" onclick="mostrarBotones('${articulo.getAttribute('data-id')}')" style="cursor: pointer;">${cantidad}</span>
-                    <button class="boton_mas" onclick="actualizarCantidad('${articulo.getAttribute('data-id')}', 1)">+</button>
+                    <button class="boton_mas" onclick="cambiarCantidadArticulo('${articulo.getAttribute('data-id')}', 1)">+</button>
                 </div>
             `;
             botonAdd.style.backgroundColor = 'transparent';
@@ -204,13 +204,6 @@ function actualizarBotonCantidad(articulo, cantidad) {
         }
     }
 }
-
-// Espera a que el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', function() {
-    mostrarCarrito();  // Muestra el carrito al cargar la página
-    actualizarContadorCarrito();  // Actualiza el contador al cargar la página
-});
-
 
 // Función para cambiar la cantidad del artículo directamente desde el botón
 function cambiarCantidadArticulo(id, cambio) {

@@ -27,7 +27,20 @@
             </div>
         </div>
     </main>
-    <script src="js/compras.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        // Agregar eventos a los botones
+        document.getElementById('atras').addEventListener('click', () => {
+    window.history.back();
+    setTimeout(() => {
+        location.reload();
+    }, 100); // Espera 100 ms para asegurarse de que se cargue la página anterior antes de recargar
+});
+
+/*
+        document.getElementById('carrito_compras').addEventListener('click', () => {
+        window.location.href = 'compras.html';
+        });*/
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
