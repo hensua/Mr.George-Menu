@@ -143,9 +143,9 @@
                 // Guardar el carrito actualizado en localStorage
                 localStorage.setItem('carrito', JSON.stringify(carrito));
                 
-                window.history.back();
-                //window.location.href = 'index.html';
-                //alert("Se agregó al carrito");
+                /*window.history.back();*/
+                alert("Se agregó al carrito");
+                window.location.href = 'index.html';
             }
 
             // Función para eliminar el producto del carrito
@@ -165,8 +165,8 @@
             actualizarValorBoton(parseInt(cantidadElemento.textContent));
 
             // Agregar eventos a los botones
-            /*document.getElementById('btn-atras').addEventListener('click', () => window.location.href = 'index.html');*/
-            document.getElementById('btn-atras').addEventListener('click', () => window.history.back());
+            document.getElementById('btn-atras').addEventListener('click', () => window.location.href = 'index.html');
+            /*document.getElementById('btn-atras').addEventListener('click', () => window.history.back());*/
             document.getElementById('btn-restar').addEventListener('click', () => modificarCantidad(-1));
             document.getElementById('btn-sumar').addEventListener('click', () => modificarCantidad(1));
             document.getElementById('btn-agregar').addEventListener('click', agregarAlCarrito);
