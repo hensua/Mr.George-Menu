@@ -319,7 +319,7 @@ function ocultarBotones(articulo, inmediato = false) {
 }
 
 // Función para enviar el pedido a WhatsApp
-function enviarPedido() {
+/*function enviarPedido() {
     const carrito = obtenerCarrito();
     if (carrito.length === 0) {
         alert('Tu carrito está vacío');
@@ -336,7 +336,90 @@ function enviarPedido() {
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
 
     window.open(url, '_blank');
+}*/
+
+// Función para verificar si está dentro del horario permitido
+function verificarHorario() {
+    const ahora = new Date();
+    const horas = ahora.getHours();
+
+    if (horas === 17) {
+        return 'reserva'; // Horario de reserva (5:00 PM)
+    } else if (horas >= 18 && horas <= 23) {
+        return 'abierto'; // Horario abierto (6:00 PM a 11:59 PM)
+    } else {
+        return 'cerrado'; // Fuera del horario permitido
+    }
 }
+
+// Función para actualizar el estado del horario en el DOM
+function actualizarHorario() {
+    const estadoHorario = verificarHorario();
+    const horarioDiv = document.getElementById('horario');
+
+    let mensaje = '';
+    let imagen = '';
+
+    if (estadoHorario === 'abierto') {
+        mensaje = 'Estamos abiertos, ¡puedes hacer pedidos!';
+        imagen = 'img/reloj.png'; // Ruta de la imagen del reloj abierto
+    } else if (estadoHorario === 'cerrado') {
+        mensaje = 'La tienda está cerrada';
+        imagen = 'img/reloj.png'; // Ruta de la imagen del reloj cerrado
+    } else if (estadoHorario === 'reserva') {
+        mensaje = 'Cerrado, pero puedes reservar tu pedido';
+        imagen = 'img/reloj.png'; // Ruta de la imagen del reloj para reserva
+    }
+
+    // Modificar el contenido del div con la imagen y el mensaje
+    horarioDiv.innerHTML = `
+        <img id="img-reloj" src="${imagen}" alt="Estado del reloj">
+        <p id="msg-reloj">${mensaje}</p>
+    `;
+}
+
+// Llamar a la función para actualizar el horario al cargar la página
+document.addEventListener('DOMContentLoaded', actualizarHorario);
+
+// Función para enviar el pedido a WhatsApp
+function enviarPedido() {
+    const carrito = obtenerCarrito(); // Debes tener esta función implementada para obtener el carrito
+
+    // Verificar si el carrito está vacío
+    if (carrito.length === 0) {
+        alert('Tu carrito está vacío');
+        return;
+    }
+
+    // Verificar el estado del horario
+    const estadoHorario = verificarHorario();
+    
+    if (estadoHorario === 'cerrado') {
+        alert('La tienda está cerrada. No puedes enviar pedidos en este momento.');
+        return;
+    } else if (estadoHorario === 'reserva') {
+        alert('Aún no estamos abiertos, pero puedes reservar tu pedido.');
+    }
+
+    // Generar el mensaje para WhatsApp
+    let mensaje = 'Hola, me gustaría pedir: \n';
+    carrito.forEach(item => {
+        mensaje += `- ${item.nombre}: $${item.precio} x ${item.cantidad}\n`;
+    });
+
+    // Agregar una nota si es una reserva
+    if (estadoHorario === 'reserva') {
+        mensaje += '\n(Este es un pedido anticipado como reserva)';
+    }
+
+    // URL de WhatsApp con mensaje prellenado
+    const telefono = '+573014762994';  // Número de teléfono de destino
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+
+    // Abrir WhatsApp en una nueva pestaña
+    window.open(url, '_blank');
+}
+
 
 // Función para inicializar artículos y acompañamientos
 function inicializarArticulos() {

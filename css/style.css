@@ -40,6 +40,20 @@ button{
    /* height: auto;       /* Mantiene proporción de altura */
    /* overflow: hidden;   /* Evita desbordamiento */
 /*}*/
+#horario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: rgb(255, 255, 0);
+}
+#img-reloj{
+    width: 22px;
+    margin: 4px 0px;
+}
+#msg-reloj{
+    color: black;
+}
 header{
     width: 100%;
     display: flex;
