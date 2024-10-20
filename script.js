@@ -134,6 +134,7 @@ function mostrarCarrito() {
     carrito.forEach(item => {
         const productoHTML = `
             <div id="producto_carrito">
+                <img id="comida_logo_size" src="${item.imagen}" alt="Imagen del producto"/>  
                 <h4>${item.nombre}</h4>
                 <p>Precio: $${item.precio}</p>
                 <p>Cantidad: 
@@ -318,26 +319,6 @@ function ocultarBotones(articulo, inmediato = false) {
     }
 }
 
-// Función para enviar el pedido a WhatsApp
-/*function enviarPedido() {
-    const carrito = obtenerCarrito();
-    if (carrito.length === 0) {
-        alert('Tu carrito está vacío');
-        return;
-    }
-
-    let mensaje = 'Hola, me gustaría pedir: \n';
-    carrito.forEach(item => {
-        mensaje += `- ${item.nombre}: $${item.precio} x ${item.cantidad}\n`;
-    });
-
-    // URL de WhatsApp con mensaje prellenado
-    const telefono = '+573014762994';  // Número de teléfono de destino
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-
-    window.open(url, '_blank');
-}*/
-
 // Función para verificar si está dentro del horario permitido
 function verificarHorario() {
     const ahora = new Date();
@@ -361,10 +342,10 @@ function actualizarHorario() {
     let imagen = '';
 
     if (estadoHorario === 'abierto') {
-        mensaje = 'Estamos abiertos, ¡puedes hacer pedidos!';
+        mensaje = 'Abierto';
         imagen = 'img/reloj.png'; // Ruta de la imagen del reloj abierto
     } else if (estadoHorario === 'cerrado') {
-        mensaje = 'La tienda está cerrada';
+        mensaje = 'Cerrado';
         imagen = 'img/reloj.png'; // Ruta de la imagen del reloj cerrado
     } else if (estadoHorario === 'reserva') {
         mensaje = 'Cerrado, pero puedes reservar tu pedido';
