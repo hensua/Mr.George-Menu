@@ -157,7 +157,8 @@ function mostrarCarrito() {
                         </p>
                     </div>
                     <div id="caja_precio_cantidad">
-                        <span id="precio">$${Number(item.precio).toLocaleString('es-ES')}</span> <!-- Formateo del precio -->
+                        <span id="precio">$${Number(item.precio).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span> <!-- Formateo del precio -->
+
                         <div id="cont_cantidad">
                             <button id="producto_carrito_boton_quitar" onclick="actualizarCantidad('${item.id}', -1)">-</button> 
                             <span id="cantidad">${item.cantidad}</span>

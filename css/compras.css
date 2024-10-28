@@ -59,6 +59,7 @@ button{
     display: flex;
     margin-right: 10%;
     justify-content: center;
+    font-weight: bold;
     /*background-color: rgb(255, 0, 0);*/
 }
 
