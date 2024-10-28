@@ -131,7 +131,11 @@ function mostrarCarrito() {
     const contenedor = document.getElementById('carrito_contenido');
     contenedor.innerHTML = '';
 
+    let totalCantidad = 0; // Inicializa el total de cantidades
+
     carrito.forEach(item => {
+        totalCantidad += item.cantidad; // Suma la cantidad de cada ítem al total
+
         const productoHTML = `
             <div id="producto_carrito">
                 <div id="caja_uno">
@@ -164,8 +168,18 @@ function mostrarCarrito() {
         contenedor.innerHTML += productoHTML;
     });
 
+    // Mostrar el total de cantidades
+    const totalSpan = document.getElementById('cantidad_producto');
+    if (totalSpan) {
+        totalSpan.textContent = `${totalCantidad} producto${totalCantidad !== 1 ? 's' : ''}`;
+    }
+
     if (carrito.length === 0) {
         contenedor.innerHTML = '<p>Tu carrito está vacío</p>';
+        // Reiniciar el total si el carrito está vacío
+        if (totalSpan) {
+            totalSpan.textContent = '0 productos';
+        }
     }
 }
 
