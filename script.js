@@ -150,17 +150,17 @@ function mostrarCarrito() {
                     </button>
                 </div>
                     <div id="caja_info">
-                        <span id="titulo_producto">${item.nombre}</span>
-                        <!--${item.instrucciones ? `<p id="caja_intrucciones"><strong>Instrucciones:</strong> ${item.instrucciones}</p>` : ''} -->
+                        <h4 id="titulo_producto">${item.nombre}</h4>
                         <p id="caja_intrucciones">
-                            <strong>Instrucciones:</strong> ${item.instrucciones ? item.instrucciones : "No has agregado instrucciones"}
+                            <strong>Instrucciones:</strong>
+                            <textarea id="instrucciones" readonly>${item.instrucciones ? item.instrucciones : "No has agregado instrucciones"}</textarea>
                         </p>
                     </div>
                     <div id="caja_precio_cantidad">
-                        <p>$${item.precio}</p>
+                        <span id="precio">$${Number(item.precio).toLocaleString('es-ES')}</span> <!-- Formateo del precio -->
                         <div id="cont_cantidad">
                             <button id="producto_carrito_boton_quitar" onclick="actualizarCantidad('${item.id}', -1)">-</button> 
-                            ${item.cantidad} 
+                            <span id="cantidad">${item.cantidad}</span>
                             <button id="producto_carrito_boton_agregar" onclick="actualizarCantidad('${item.id}', 1)">+</button>
                         </div>
                     </div>
