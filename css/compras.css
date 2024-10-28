@@ -41,9 +41,9 @@ button{
     width: 1rem;
 }
 #atras{
+    width: 10%;
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-left: 0.8rem;
     border: 0;
     background: none;
@@ -52,6 +52,14 @@ button{
     width: 2rem; 
     border-radius: 15px;
     background-color: rgb(255, 255, 255);
+}
+#titulo_header{
+    font-size: 1.3rem;
+    width: 90%;
+    display: flex;
+    margin-right: 10%;
+    justify-content: center;
+    /*background-color: rgb(255, 0, 0);*/
 }
 
 #contenedor_main_compras{
@@ -65,13 +73,6 @@ button{
     width: 90%;
     margin-bottom: 80px;
     /*background-color: blue;*/
-}
-
-#comida_logo_size{
-    width: 7.5rem;
-    margin-top: 0.9rem;
-    margin-bottom: 0.8rem;
-    /*background-color: rgb(255, 123, 0);*/
 }
 
 #contenedor_botones{
@@ -123,17 +124,99 @@ button{
 
 #producto_carrito {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    /*flex-direction: column;*/
+    /*justify-content: center;
+    align-items: center;*/
     margin-bottom: 1.1rem;
     
     width: auto;
     height: 200px;
     border-radius: 0.6rem;
     background-color: rgba(61, 61, 61, 0.233);
+    /*background-color: rgb(127, 161, 255);*/
 }
 #producto_carrito:last-child{
     margin-bottom: 0.2rem;
+}
+
+#caja_uno{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    /*background-color: blueviolet;*/
+}
+
+#comida_logo_size{
+    width: 9rem;
+    /*margin-top: 0.9rem;
+    margin-bottom: 0.8rem;*/
+    /*background-color: rgb(255, 255, 255);*/
+    padding: 10px;
+    border-radius: 12px;
+}
+
+#caja_dos{
+    width: 50%;
+    /*background-color: chocolate;*/
+}
+
+#caja_eliminar{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    /*color: rgb(255, 0, 0);*/
+    height: 15%;
+    /*margin-right: 12px;*/
+    /*background-color: rgb(0, 162, 255);*/
+}
+
+#btn_eliminar{
+    display: flex;
+    align-items: center;
+    /*font-size: 1.2rem;*/
+    /*padding: 0.2rem 0.3rem;*/
+    /*border-radius: 0.3rem;*/
+    background-color: transparent;
+    border: none;
+}
+
+#icon_eliminar{
+    width: 24px;
+    margin-top: 12px;
+    margin-right: 5px;
+}
+
+#caja_info{
+    height: 68.4%;
+}
+
+#titulo_producto{
+    font-size: 1.2rem;
+}
+
+#caja_intrucciones{
+    text-align: left;
+    font-size: 14px;
+    margin-top: 12px;
+    /*background-color: rgb(190, 17, 17);*/
+}
+
+#caja_intrucciones>strong{
+    font-size: 16px;
+    height: 15%;
+}
+
+#caja_precio_cantidad{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    /*background-color: darkgreen;*/
+}
+
+#cont_cantidad{
+    margin-right: 5px;
 }
 
 #producto_carrito_boton_quitar{

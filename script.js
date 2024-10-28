@@ -134,15 +134,28 @@ function mostrarCarrito() {
     carrito.forEach(item => {
         const productoHTML = `
             <div id="producto_carrito">
-                <img id="comida_logo_size" src="${item.imagen}" alt="Imagen del producto"/>  
-                <h4>${item.nombre}</h4>
-                <p>Precio: $${item.precio}</p>
-                <p>Cantidad: 
-                    <button id="producto_carrito_boton_quitar" onclick="actualizarCantidad('${item.id}', -1)">-</button> 
-                    ${item.cantidad} 
-                    <button id="producto_carrito_boton_agregar" onclick="actualizarCantidad('${item.id}', 1)">+</button>
-                </p>
-                ${item.instrucciones ? `<p><strong>Instrucciones:</strong> ${item.instrucciones}</p>` : ''} <!-- Mostrar instrucciones si están presentes -->
+                <div id="caja_uno">
+                    <img id="comida_logo_size" src="${item.imagen}" alt="Imagen del producto"/>  
+                </div>
+                <div id="caja_dos">
+                <div id="caja_eliminar">
+                    <button id="btn_eliminar" onclick="confirmarEliminacion('${item.id}')">
+                    <img id="icon_eliminar"  src="img/Icon_eliminar.png" alt="icono eliminar producto">
+                    </button> 
+                </div>
+                    <div id="caja_info">
+                        <span id="titulo_producto">${item.nombre}</span>
+                        ${item.instrucciones ? `<p id="caja_intrucciones"><strong>Instrucciones:</strong> ${item.instrucciones}</p>` : ''} <!-- Mostrar instrucciones si están presentes -->
+                    </div>
+                    <div id="caja_precio_cantidad">
+                        <p>$${item.precio}</p>
+                        <div id="cont_cantidad">
+                            <button id="producto_carrito_boton_quitar" onclick="actualizarCantidad('${item.id}', -1)">-</button> 
+                            ${item.cantidad} 
+                            <button id="producto_carrito_boton_agregar" onclick="actualizarCantidad('${item.id}', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
         contenedor.innerHTML += productoHTML;
@@ -153,6 +166,12 @@ function mostrarCarrito() {
     }
 }
 
+function confirmarEliminacion(id) {
+    const confirmacion = confirm("¿Estás seguro de que quieres eliminar este producto del carrito?");
+    if (confirmacion) {
+        actualizarCantidad(id, -999);  // Configura la cantidad a 0 o menor para eliminarlo
+    }
+}
 
 // Función para actualizar la cantidad de un producto en el carrito
 function actualizarCantidad(id, cambio) {
