@@ -141,11 +141,14 @@ function mostrarCarrito() {
                 <div id="caja_eliminar">
                     <button id="btn_eliminar" onclick="confirmarEliminacion('${item.id}')">
                     <img id="icon_eliminar"  src="img/Icon_eliminar.png" alt="icono eliminar producto">
-                    </button> 
+                    </button>
                 </div>
                     <div id="caja_info">
                         <span id="titulo_producto">${item.nombre}</span>
-                        ${item.instrucciones ? `<p id="caja_intrucciones"><strong>Instrucciones:</strong> ${item.instrucciones}</p>` : ''} <!-- Mostrar instrucciones si están presentes -->
+                        <!--${item.instrucciones ? `<p id="caja_intrucciones"><strong>Instrucciones:</strong> ${item.instrucciones}</p>` : ''} -->
+                        <p id="caja_intrucciones">
+                            <strong>Instrucciones:</strong> ${item.instrucciones ? item.instrucciones : "No has agregado instrucciones"}
+                        </p>
                     </div>
                     <div id="caja_precio_cantidad">
                         <p>$${item.precio}</p>
