@@ -17,14 +17,14 @@ button{
 }
 
 .modal {
-    /*display: none;*/ /* Visible al activarse */
+    display: none; /* Visible al activarse */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 320px;
     /*background-color: rgb(253, 77, 77);*/
-    background-color: rgba(255, 255, 255, 0.726); /* Color de fondo con algo de opacidad */
+    background-color: rgba(71, 71, 71, 0.801); /* Color de fondo con algo de opacidad */
     backdrop-filter: blur(2px); /* Efecto de desenfoque en el fondo */
     border-radius: 12px;
 
@@ -56,7 +56,7 @@ button{
 }
 
 #tittle_metodoEntrega{
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 #content_btn_metodoEntrega{
