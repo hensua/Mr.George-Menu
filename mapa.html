@@ -1,0 +1,23 @@
+<!-- mapa.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa</title>
+    <link rel="stylesheet" href="css/mapa.css">
+    <script src="js/mapa.js"></script>
+</head>
+<body id="color_body">
+    <h2>Selecciona tu ubicación de entrega</h2>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7wi3R_GrJQjIIkDAeT51Yd-gHxeKipKI&libraries=places&callback=initMap" async defer></script>
+
+    <input id="addressInput" type="text" placeholder="Ingresa tu dirección">
+    <button onclick="useCurrentLocation()">Usar mi ubicación actual</button>
+
+    <button id="boton_listo">Listo</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

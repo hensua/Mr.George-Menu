@@ -372,13 +372,13 @@ function verificarHorario() {
     const ahora = new Date();
     const horas = ahora.getHours();
 
-    if (horas === 17) {
+    /*if (horas === 17) {
         return 'reserva'; // Horario de reserva (5:00 PM)
     } else if (horas >= 18 && horas <= 23) {
         return 'abierto'; // Horario abierto (6:00 PM a 11:59 PM)
     } else {
         return 'cerrado'; // Fuera del horario permitido
-    }
+    }*/
 }
 
 // Función para actualizar el estado del horario en el DOM
@@ -410,44 +410,88 @@ function actualizarHorario() {
 // Llamar a la función para actualizar el horario al cargar la página
 document.addEventListener('DOMContentLoaded', actualizarHorario);
 
-// Función para enviar el pedido a WhatsApp
-function enviarPedido() {
-    const carrito = obtenerCarrito(); // Debes tener esta función implementada para obtener el carrito
+// Función para mostrar el modal
+function mostrarModal() {
+    document.getElementById("deliveryModal").style.display = "block";
+}
+
+// Función para cerrar el modal
+function cerrarModal() {
+    document.getElementById("deliveryModal").style.display = "none";
+}
+
+// Función para el botón de "Recoger en Tienda"
+function selectPickup() {
+    cerrarModal();
+    enviarPedidoFinal("*Recoger en tienda* \n" + "https://bit.ly/MrGeorgeDireccion");
+}
+
+function mostrarMapa() {
+    document.getElementById("contenedor_full_map").style.display = "block";
+}
+
+function cerrarMapa() {
+    document.getElementById("contenedor_full_map").style.display = "none";
+}
+
+function listoUbicacion() {
+    enviarPedidoFinal("Domicilio");
+    cerrarMapa();
+}
+
+// Función para el botón de "Domicilio"
+function selectDelivery() {
+    cerrarModal();
+    mostrarMapa();
+    /*enviarPedidoFinal("Domicilio");*/
+}
+
+// Función para enviar el pedido a WhatsApp después de seleccionar el método de entrega
+function enviarPedidoFinal(metodoEntrega) {
+    const carrito = obtenerCarrito(); // Asegúrate de tener esta función
 
     // Verificar si el carrito está vacío
     if (carrito.length === 0) {
-        alert('Tu carrito está vacío');
+        alert("Tu carrito está vacío");
         return;
     }
 
     // Verificar el estado del horario
-    const estadoHorario = verificarHorario();
-    
-    if (estadoHorario === 'cerrado') {
-        alert('La tienda está cerrada. No puedes enviar pedidos en este momento.');
+    const estadoHorario = verificarHorario(); // Asegúrate de tener esta función
+    if (estadoHorario === "cerrado") {
+        alert("La tienda está cerrada. No puedes enviar pedidos en este momento.");
         return;
-    } else if (estadoHorario === 'reserva') {
-        alert('Aún no estamos abiertos, pero puedes reservar tu pedido.');
+    } else if (estadoHorario === "reserva") {
+        alert("Aún no estamos abiertos, pero puedes reservar tu pedido.");
     }
 
     // Generar el mensaje para WhatsApp
-    let mensaje = 'Hola, me gustaría pedir: \n';
-    carrito.forEach(item => {
-        mensaje += `- ${item.nombre}: $${item.precio} x ${item.cantidad}\n`;
+    let mensaje = "Hola, me gustaría pedir: \n";
+    carrito.forEach((item) => {
+        mensaje += `- ${item.nombre}: $${item.precio} x ${item.cantidad}\n ${item.instrucciones ? item.instrucciones : "No se agregaron instrucciones."}\n`;
     });
 
     // Agregar una nota si es una reserva
-    if (estadoHorario === 'reserva') {
-        mensaje += '\n(Este es un pedido anticipado como reserva)';
+    if (estadoHorario === "reserva") {
+        mensaje += "\n(Este es un pedido anticipado como reserva)";
     }
 
+    // Añadir el método de entrega
+    mensaje += `\nMétodo de Entrega: ${metodoEntrega}`;
+
     // URL de WhatsApp con mensaje prellenado
-    const telefono = '+573014762994';  // Número de teléfono de destino
+    const telefono = "+573014762994";
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
 
     // Abrir WhatsApp en una nueva pestaña
-    window.open(url, '_blank');
+    window.open(url, "_blank");
 }
+
+// Función principal para enviar el pedido que primero muestra el modal de entrega
+function enviarPedido() {
+    mostrarModal();
+}
+
 
 
 // Función para inicializar artículos y acompañamientos

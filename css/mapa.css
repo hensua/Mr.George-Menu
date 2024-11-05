@@ -1,0 +1,73 @@
+#color_body{
+    background-color: rgb(85, 85, 85);
+}
+h2{
+    color: white;
+}
+.modal {
+    display: none; /* Visible al activarse */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: rgb(253, 77, 77);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+button{
+    color: black;
+}
+
+#contenedor_full_map{
+    position: fixed; /* Fijo para permanecer en la misma posición */
+    top: 50%; /* Coloca en el centro verticalmente */
+    left: 50%; /* Coloca en el centro horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para centrar */
+
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    max-width: 600px; /* Establece un ancho máximo si lo deseas (opcional) */
+    
+    height: 100%;
+    display: none;
+    /*display: flex;*/
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.726); /* Color de fondo con algo de opacidad */
+    padding: 20px; /* Espaciado interno para el contenido */
+
+    backdrop-filter: blur(2px); /* Efecto de desenfoque en el fondo */
+    border-radius: 10px; /* Bordes redondeados (opcional) */
+
+    /* Añade un z-index alto para asegurarte de que esté por encima */
+    z-index: 1000; /* Ajusta según sea necesario */
+}
+#full_map{
+    justify-items: center;
+    background-color: rgba(37, 37, 37, 0.63);
+}
+
+#addressInput{
+    width: 250px;
+    color: black;
+    padding: 8px;
+    margin: 12px;
+}
+
+#map {
+    border: 3px solid yellow;
+    border-radius: 10px;
+    height: 400px;
+    width: 95%;
+}
+
+#btn_ubi{
+    color: black;
+    padding: 10px;
+    background-color: yellow;
+    border-radius: 10px;
+    border: none;
+    margin: 12px;
+}

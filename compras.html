@@ -1,3 +1,4 @@
+<!--compras.html-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +8,8 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/compras.css">
+    <link rel="stylesheet" href="css/mapa.css">
+    <script src="js/mapa.js"></script>
     <link rel="Website Icon" type="png" href="img/logo-sin fondo.png"> <!--ICONO DE LA PAGINA-->
 </head>
 <body>
@@ -28,6 +31,35 @@
             </div>
         </div>
     </main>
+
+
+    <!-- Modal de selección de entrega -->
+    <div id="deliveryModal" class="modal">
+        <div class="modal-content">
+            <h2>Seleccione Método de Entrega</h2>
+            <button onclick="selectPickup()">Recoger en Tienda</button>
+            <button onclick="selectDelivery()">Domicilio</button>
+            <button onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="contenedor_full_map">
+        <div id="full_map">
+            <input id="addressInput" type="text" placeholder="Ingresa tu dirección">
+            <button onclick="cerrarMapa()">Cerrar</button>
+            <div id="map"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7wi3R_GrJQjIIkDAeT51Yd-gHxeKipKI&libraries=places&callback=initMap" async defer></script>
+
+            <button id="btn_ubi" onclick="useCurrentLocation()">Usar mi ubicación actual</button>
+
+            <button id="boton_listo" onclick="listoUbicacion()">Listo</button>
+        </div>
+    </div>
+
+
+
+
+
     <script>
         // Agregar eventos a los botones
         document.getElementById('atras').addEventListener('click', () => {
