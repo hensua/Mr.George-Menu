@@ -36,10 +36,14 @@
     <!-- Modal de selección de entrega -->
     <div id="deliveryModal" class="modal">
         <div class="modal-content">
-            <h2>Seleccione Método de Entrega</h2>
-            <button onclick="selectPickup()">Recoger en Tienda</button>
-            <button onclick="selectDelivery()">Domicilio</button>
-            <button onclick="cerrarModal()">Cerrar</button>
+            <div id="content_tittle_cerrar">
+                <h2 id="tittle_metodoEntrega">Método de Entrega</h2>
+                <button id="btn_cerrar" onclick="cerrarModal()">X</button>
+            </div>
+            <div id="content_btn_metodoEntrega">
+                <button id="btn_metodoEntrega" onclick="selectPickup()">Recoger en Tienda</button>
+                <button id="btn_metodoEntrega"onclick="selectDelivery()">Domicilio</button>
+            </div>
         </div>
     </div>
 
