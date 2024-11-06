@@ -2,6 +2,7 @@ let map;
 let marcadorSeleccionado; // Marcador para la ubicación seleccionada por el usuario
 let directionsService; // Servicio para calcular la ruta
 let directionsRenderer; // Renderizador de la ruta en el mapa
+let autocomplete;
 
 function initMap() {
     const tiendaLocation = { lat: 10.3737561, lng: -75.4736056 }; // Ubicación de la tienda
@@ -23,8 +24,8 @@ function initMap() {
         map,
         title: "Mr. George",
         icon: {
-        url: "img/iconTienda.png",
-        scaledSize: new google.maps.Size(40, 40) // Tamaño del ícono de la tienda
+            url: "img/iconTienda.png",
+            scaledSize: new google.maps.Size(40, 40) // Tamaño del ícono de la tienda
         }
     });
 
@@ -50,6 +51,41 @@ function initMap() {
         // Trazar la ruta desde la tienda hasta la ubicación seleccionada
         calcularYMostrarRuta(tiendaLocation, selectedLocation);
     });
+
+    // Inicializa el autocompletado en el campo de dirección
+    initAutocomplete();
+}
+
+// Función para inicializar el autocompletado en el input de dirección
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById("addressInput"));
+    autocomplete.setFields(["address_components", "geometry"]);
+
+    autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (!place.geometry) {
+            alert("No se encontró una ubicación para la dirección ingresada.");
+            return;
+        }
+
+        const selectedLocation = place.geometry.location;
+        map.setCenter(selectedLocation);
+
+        // Mover o crear el marcador en la ubicación seleccionada
+        if (marcadorSeleccionado) {
+            marcadorSeleccionado.setPosition(selectedLocation);
+        } else {
+            marcadorSeleccionado = new google.maps.Marker({
+                position: selectedLocation,
+                map,
+                icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                title: "Ubicación seleccionada"
+            });
+        }
+
+        // Trazar la ruta desde la tienda hasta la ubicación seleccionada
+        calcularYMostrarRuta({ lat: 10.3738801, lng: -75.47366 }, selectedLocation);
+    });
 }
 
 // Función para calcular y mostrar la ruta
@@ -69,13 +105,7 @@ function calcularYMostrarRuta(origen, destino) {
     });
 }
 
-let autocomplete;
-
-function initAutocomplete() {
-    autocomplete = new google.maps.places.Autocomplete(document.getElementById("addressInput"));
-    autocomplete.setFields(["address_components", "geometry"]);
-}
-
+// Función para usar la ubicación actual del usuario
 function useCurrentLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -108,5 +138,3 @@ function useCurrentLocation() {
         alert("Geolocalización no soportada en este navegador.");
     }
 }
-
-

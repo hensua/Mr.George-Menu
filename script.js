@@ -433,10 +433,28 @@ function mostrarMapa() {
 function cerrarMapa() {
     document.getElementById("contenedor_full_map").style.display = "none";
 }
-
+/*
 function listoUbicacion() {
     enviarPedidoFinal("Domicilio");
     cerrarMapa();
+}*/
+
+function listoUbicacion() {
+    if (marcadorSeleccionado) {
+        const ubicacion = marcadorSeleccionado.getPosition();
+        
+        // Crear el enlace de Google Maps con las coordenadas seleccionadas
+        const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
+        
+        // Llamar a la función enviarPedidoFinal con el enlace de Google Maps como "Domicilio"
+        enviarPedidoFinal("*Domicilio* \n" + enlaceGoogleMaps);
+        
+        /*alert(`Ubicación seleccionada: Latitud ${ubicacion.lat()}, Longitud ${ubicacion.lng()}\nVer en Google Maps: ${enlaceGoogleMaps}`);*/
+        
+        cerrarMapa(); // Cierra el mapa después de confirmar
+    } else {
+        alert("Por favor, selecciona una ubicación.");
+    }
 }
 
 // Función para el botón de "Domicilio"
