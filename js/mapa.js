@@ -58,8 +58,18 @@ function initMap() {
 
 // Función para inicializar el autocompletado en el input de dirección
 function initAutocomplete() {
-    autocomplete = new google.maps.places.Autocomplete(document.getElementById("addressInput"));
-    autocomplete.setFields(["address_components", "geometry"]);
+    const cartagenaBounds = {
+        north: 10.5330, // Latitud norte de Cartagena
+        south: 10.2430, // Latitud sur de Cartagena
+        east: -75.1800,  // Longitud este de Cartagena
+        west: -75.5500   // Longitud oeste de Cartagena
+    };
+
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById("addressInput"), {
+        bounds: cartagenaBounds, // Limita las sugerencias a Cartagena
+        componentRestrictions: { country: 'CO' }, // Restringe a Colombia
+        fields: ["address_components", "geometry"]
+    });
 
     autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
@@ -87,6 +97,7 @@ function initAutocomplete() {
         calcularYMostrarRuta({ lat: 10.3738801, lng: -75.47366 }, selectedLocation);
     });
 }
+
 
 // Función para calcular y mostrar la ruta
 function calcularYMostrarRuta(origen, destino) {
@@ -136,5 +147,27 @@ function useCurrentLocation() {
         );
     } else {
         alert("Geolocalización no soportada en este navegador.");
+    }
+}
+
+function cerrarMapa() {
+    document.getElementById("contenedor_full_map").style.display = "none";
+}
+
+function listoUbicacion() {
+    if (marcadorSeleccionado) {
+        const ubicacion = marcadorSeleccionado.getPosition();
+        
+        // Crear el enlace de Google Maps con las coordenadas seleccionadas
+        const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
+        
+        // Llamar a la función enviarPedidoFinal con el enlace de Google Maps como "Domicilio"
+        enviarPedidoFinal("*Domicilio* \n" + enlaceGoogleMaps);
+        
+        /*alert(`Ubicación seleccionada: Latitud ${ubicacion.lat()}, Longitud ${ubicacion.lng()}\nVer en Google Maps: ${enlaceGoogleMaps}`);*/
+        
+        cerrarMapa(); // Cierra el mapa después de confirmar
+    } else {
+        alert("Por favor, selecciona una ubicación.");
     }
 }

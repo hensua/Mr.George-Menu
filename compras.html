@@ -49,12 +49,20 @@
 
     <div id="contenedor_full_map">
         <div id="full_map">
-            <input id="addressInput" type="text" placeholder="Ingresa tu dirección">
             <button onclick="cerrarMapa()">Cerrar</button>
+            <h2>Selecciona tu ubicación</h2>
+            <input id="addressInput" type="text" placeholder="Ingresa tu dirección">
+            <input id="referenciaInput" type="text" placeholder="Punto de referencia (Opcional). Ej: Casa roja">
             <div id="map"></div>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7wi3R_GrJQjIIkDAeT51Yd-gHxeKipKI&libraries=places&callback=initMap" async defer></script>
 
             <button id="btn_ubi" onclick="useCurrentLocation()">Usar mi ubicación actual</button>
+
+            <div id="contentTotal">
+                <p id="costo-envio">Domicilio: $0</p>
+                <p >Compra: $0</p>
+                <p id="total">Total: $0</p>
+            </div>
 
             <button id="boton_listo" onclick="listoUbicacion()">Listo</button>
         </div>

@@ -429,7 +429,7 @@ function selectPickup() {
 function mostrarMapa() {
     document.getElementById("contenedor_full_map").style.display = "block";
 }
-
+/*
 function cerrarMapa() {
     document.getElementById("contenedor_full_map").style.display = "none";
 }
@@ -438,7 +438,7 @@ function listoUbicacion() {
     enviarPedidoFinal("Domicilio");
     cerrarMapa();
 }*/
-
+/*
 function listoUbicacion() {
     if (marcadorSeleccionado) {
         const ubicacion = marcadorSeleccionado.getPosition();
@@ -451,11 +451,11 @@ function listoUbicacion() {
         
         /*alert(`Ubicación seleccionada: Latitud ${ubicacion.lat()}, Longitud ${ubicacion.lng()}\nVer en Google Maps: ${enlaceGoogleMaps}`);*/
         
-        cerrarMapa(); // Cierra el mapa después de confirmar
+       /* cerrarMapa(); // Cierra el mapa después de confirmar
     } else {
         alert("Por favor, selecciona una ubicación.");
     }
-}
+}*/
 
 // Función para el botón de "Domicilio"
 function selectDelivery() {
