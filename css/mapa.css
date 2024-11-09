@@ -112,10 +112,15 @@ button{
     color: black;
     padding: 8px;
     margin: 12px;
+    text-align: left;
 }
 
 #referenciaInput{
     margin-top: 0;
+}
+
+#addressInput::placeholder{
+    text-align: left;
 }
 
 #map {

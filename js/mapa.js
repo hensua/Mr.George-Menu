@@ -3,10 +3,11 @@ let marcadorSeleccionado; // Marcador para la ubicación seleccionada por el usu
 let directionsService; // Servicio para calcular la ruta
 let directionsRenderer; // Renderizador de la ruta en el mapa
 let autocomplete;
+let geocoder; // Geocodificador para obtener la dirección
 
 function initMap() {
     const tiendaLocation = { lat: 10.3737561, lng: -75.4736056 }; // Ubicación de la tienda
-    
+
     // Inicializa el mapa
     map = new google.maps.Map(document.getElementById("map"), {
         center: tiendaLocation,
@@ -17,6 +18,9 @@ function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map); // Vincula el renderizador al mapa
+
+    // Inicializa el geocodificador
+    geocoder = new google.maps.Geocoder();
 
     // Marcador de la tienda
     new google.maps.Marker({
@@ -48,12 +52,31 @@ function initMap() {
             });
         }
 
+        // Obtener la dirección de la ubicación seleccionada y llenarla en el campo de texto
+        obtenerDireccion(selectedLocation);
+
         // Trazar la ruta desde la tienda hasta la ubicación seleccionada
         calcularYMostrarRuta(tiendaLocation, selectedLocation);
     });
 
-    // Inicializa el autocompletado en el campo de dirección
+    // Inicializa el autocompletado
     initAutocomplete();
+}
+
+// Función para obtener la dirección y rellenar el campo addressInput
+function obtenerDireccion(location) {
+    geocoder.geocode({ location: location }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+                const address = results[0].formatted_address;
+                document.getElementById("addressInput").value = address; // Rellena el campo de dirección
+            } else {
+                alert("No se pudo encontrar la dirección para esta ubicación.");
+            }
+        } else {
+            alert("Error en la geolocalización: " + status);
+        }
+    });
 }
 
 // Función para inicializar el autocompletado en el input de dirección
@@ -93,11 +116,13 @@ function initAutocomplete() {
             });
         }
 
+        // Obtener la dirección de la ubicación seleccionada y llenarla en el campo de texto
+        obtenerDireccion(selectedLocation);
+
         // Trazar la ruta desde la tienda hasta la ubicación seleccionada
         calcularYMostrarRuta({ lat: 10.3738801, lng: -75.47366 }, selectedLocation);
     });
 }
-
 
 // Función para calcular y mostrar la ruta
 function calcularYMostrarRuta(origen, destino) {
@@ -140,6 +165,9 @@ function useCurrentLocation() {
                     });
                 }
 
+                // Obtener la dirección de la ubicación actual y rellenar el campo de texto
+                obtenerDireccion(currentLocation);
+
                 // Trazar la ruta desde la tienda hasta la ubicación actual
                 calcularYMostrarRuta({ lat: 10.3738801, lng: -75.47366 }, currentLocation);
             },
@@ -157,15 +185,13 @@ function cerrarMapa() {
 function listoUbicacion() {
     if (marcadorSeleccionado) {
         const ubicacion = marcadorSeleccionado.getPosition();
-        
+
         // Crear el enlace de Google Maps con las coordenadas seleccionadas
         const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
-        
+
         // Llamar a la función enviarPedidoFinal con el enlace de Google Maps como "Domicilio"
         enviarPedidoFinal("*Domicilio* \n" + enlaceGoogleMaps);
-        
-        /*alert(`Ubicación seleccionada: Latitud ${ubicacion.lat()}, Longitud ${ubicacion.lng()}\nVer en Google Maps: ${enlaceGoogleMaps}`);*/
-        
+
         cerrarMapa(); // Cierra el mapa después de confirmar
     } else {
         alert("Por favor, selecciona una ubicación.");
