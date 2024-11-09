@@ -189,11 +189,18 @@ function listoUbicacion() {
         // Crear el enlace de Google Maps con las coordenadas seleccionadas
         const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
 
-        // Llamar a la función enviarPedidoFinal con el enlace de Google Maps como "Domicilio"
-        enviarPedidoFinal("*Domicilio* \n" + enlaceGoogleMaps);
+        // Obtener la dirección desde el campo addressInput
+        const direccion = document.getElementById("addressInput").value;
+
+        // Obtener la dirección desde el campo addressInput
+        const referencia = document.getElementById("referenciaInput").value;
+
+        // Llamar a la función enviarPedidoFinal con el enlace de Google Maps y la dirección
+        enviarPedidoFinal(`*DOMICILIO*\n\n *Ubicación:*\n ${direccion}\n\n *Punto de referencia:*\n ${referencia}\n\n *Ubicación en Google Maps:*\n ${enlaceGoogleMaps}`);
 
         cerrarMapa(); // Cierra el mapa después de confirmar
     } else {
         alert("Por favor, selecciona una ubicación.");
     }
 }
+
