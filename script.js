@@ -138,10 +138,27 @@ function mostrarCarrito() {
         totalCantidad += item.cantidad; // Suma la cantidad de cada ítem al total
         valorTotal += item.cantidad * item.precio; // Calcula el valor total
 
+        //PARTE EXCLUSIVA, SOLO ACOMPAÑANTES
+        // Función para obtener la ruta de la imagen asociada al ID 
+        function obtenerRutaPorId(id) {
+            const rutas = {
+                '7': 'img/CocaCola_250_ml_Foto.png', 
+                '8': 'img/Manzana_250_ml_Foto.png',
+                '9': 'img/Colombiana_250_ml_Foto.png',
+                '10': 'img/Pepsi_250_ml_Foto.png',
+                '11': 'img/Naranja_250_ml_Foto.png',
+                '12': 'img/Uva_250_ml_Foto.png',
+                // Agrega más ID y rutas según sea necesario
+            };
+
+            // Devuelve la ruta por ID o una imagen predeterminada
+            return rutas[id] || 'ruta/imagen_predeterminada.jpg';  // Si no encuentra el ID, devuelve una imagen predeterminada
+        }
+
         const productoHTML = `
             <div id="producto_carrito">
                 <div id="caja_uno">
-                    <img id="comida_logo_size" src="${item.imagen}" alt="Imagen del producto"/>  
+                    <img id="comida_logo_size" src="${item.imagen ? item.imagen : obtenerRutaPorId(item.id)}" alt="Imagen del producto"/>
                 </div>
                 <div id="caja_dos">
                 <div id="caja_eliminar">
@@ -372,13 +389,13 @@ function verificarHorario() {
     const ahora = new Date();
     const horas = ahora.getHours();
 
-    /*if (horas === 17) {
+    if (horas === 17) {
         return 'reserva'; // Horario de reserva (5:00 PM)
     } else if (horas >= 18 && horas <= 23) {
         return 'abierto'; // Horario abierto (6:00 PM a 11:59 PM)
     } else {
         return 'cerrado'; // Fuera del horario permitido
-    }*/
+    }
 }
 
 // Función para actualizar el estado del horario en el DOM
