@@ -429,12 +429,12 @@ document.addEventListener('DOMContentLoaded', actualizarHorario);
 
 // Función para mostrar el modal
 function mostrarModal() {
-    document.getElementById("deliveryModal").style.display = "block";
+    document.querySelector('.modal').classList.add('active');
 }
 
 // Función para cerrar el modal
 function cerrarModal() {
-    document.getElementById("deliveryModal").style.display = "none";
+    document.querySelector('.modal').classList.remove('active');
 }
 
 // Función para el botón de "Recoger en Tienda"
@@ -444,7 +444,8 @@ function selectPickup() {
 }
 
 function mostrarMapa() {
-    document.getElementById("contenedor_full_map").style.display = "block";
+    /*document.getElementById("contenedor_full_map").style.display = "block";*/
+    document.querySelector('#contenedor_full_map').classList.add('active');
 }
 /*
 function cerrarMapa() {

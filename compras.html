@@ -19,6 +19,14 @@
     </header>
     <main id="contenedor_main_compras">
         <div id="carrito_contenido"></div>
+        <div id="contentPagos">
+            <span id="titlePagos">Metodo de pago</span>
+            <select id="opcionesPago" required>
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+            </select>
+        </div>
 
         <div id="contenedor_botones">
             <div id="contenedor_botones_pedido">
@@ -49,7 +57,7 @@
 
     <div id="contenedor_full_map">
         <div id="full_map">
-            <button onclick="cerrarMapa()">Cerrar</button>
+            <button onclick="cerrarMapa()">X</button>
             <h2>Selecciona tu ubicación</h2>
             <input id="addressInput" type="text" placeholder="Ingresa tu dirección">
             <input id="referenciaInput" type="text" placeholder="Punto de referencia (Opcional). Ej: Casa roja">

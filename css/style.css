@@ -22,7 +22,7 @@ body, html{
     padding: 0;
     width: 100%;
     overflow-x: hidden;  /* Evita desbordamiento horizontal */
-    background-color: rgb(17, 17, 17);
+    background-color: chocolate;
 }
 button{
     cursor: pointer;
@@ -40,31 +40,58 @@ button{
    /* height: auto;       /* Mantiene proporción de altura */
    /* overflow: hidden;   /* Evita desbordamiento */
 /*}*/
-#horario{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    background-color: rgb(255, 255, 0);
-}
-#img-reloj{
-    width: 22px;
-    margin: 4px 0px;
-}
-#msg-reloj{
-    color: black;
-}
 header{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /*background-color: rgb(9, 137, 250);*/
+    flex-direction: column;
+}
+#contentSuperior{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*background-color: blue;*/
+}
+#contentMarca{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    /*background-color: rgb(210, 30, 201);*/
+}
+#nameMarca{
+    color: black;
+    font-weight: bold;
+    height: 50%;
+}
+#horario{
+    width: 85px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: chartreuse;
+    border-radius: 12px;
+}
+#img-reloj{
+    width: 16px;
+    margin: 4px 0px;
+}
+#msg-reloj{
+    font-size: 15px;
+    color: rgb(56, 56, 56);
+}
+#logo_app{
+    width: 60px;
+    padding: 12px;
+    margin-top: 0;
 }
 .carrito{
     position: relative;
-    /*background-color: rgb(255, 153, 0);*/
-    margin-right: 7px;
+    margin-right: 20px;
 }
 #carrito_compras{
     display: flex;
@@ -92,19 +119,45 @@ header{
     padding: 5px 9px;
     font-size: 0.8rem;
 }
-#logo_app{
-    width: 180px;
-    padding: 12px;
-    margin-top: 0;
+#contentInferior{
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: blueviolet;*/
+}
+#nameProductoRecomendado{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    /*background-color: cornflowerblue;*/
+}
+#textRecomendadoI{
+    font-size: 14px;
+    text-align: left;
+}
+#textRecomendadoII{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: left;
+}
+#logoProductoRecomendado{
+    width: 150px;
+    margin-left: 40px;
 }
 h1{
     font-size: 20px;
 }
+.container{
+    border-radius: 20px 20px 0px 0px;
+    background-color: rgb(17, 17, 17);
+}
 .seccion{
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    /*background-color: aqua;*/
 }
 .escoger_seccion_contenedor {
     width: 100%;
@@ -113,8 +166,7 @@ h1{
 }
 .escoger_seccion {
     gap: 0.3rem; /* Espacio entre los botones */
-    padding: 5px 0; /* Añade un poco de padding arriba y abajo */
-    /*background-color: rgb(255, 153, 19);*/
+    padding: 10px 0;
 }
 .escoger_seccion_a {
     flex-shrink: 0; /* Evita que los botones se reduzcan */
@@ -125,10 +177,10 @@ h1{
     background-color: #f0f0f0;
 }
 .escoger_seccion_a:first-child {
-    margin-left: 0.3rem;
+    margin-left: 0.5rem;
 }
 .escoger_seccion_a:last-child {
-    margin-right: 0.3rem;
+    margin-right: 0.5rem;
 }
 .escoger_seccion_contenedor::-webkit-scrollbar {
     display: none; /* Oculta la barra de desplazamiento en navegadores webkit */
@@ -222,6 +274,7 @@ h1{
 footer{
     display: none;
     padding: 20px;
+    background-color: rgb(17, 17, 17);
 }
 .redes_sociales{
     display: flex;

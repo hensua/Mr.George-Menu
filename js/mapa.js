@@ -171,7 +171,8 @@ function useCurrentLocation() {
 }
 
 function cerrarMapa() {
-    document.getElementById("contenedor_full_map").style.display = "none";
+    /*document.getElementById("contenedor_full_map").style.display = "none";*/
+    document.querySelector('#contenedor_full_map').classList.remove('active');
 }
 
 function listoUbicacion() {
