@@ -252,6 +252,7 @@ button{
 #producto_carrito_boton_quitar{
     font-size: 1.2rem;
     font-weight: bold;
+    margin: 0px;
     padding: 0.2rem 0.4rem;
     border-radius: 0.3rem;
     background-color: rgb(255, 255, 0);

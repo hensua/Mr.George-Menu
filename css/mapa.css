@@ -146,10 +146,6 @@ button{
     background-color: rgb(63, 63, 63);
 }
 
-/* Cambia el color del texto en las sugerencias del autocompletado */
-.pac-item {
-    /*font-size: 16px; /* Ajusta el tamaño de la fuente según prefieras */
-}
 /* Cambiar el color del texto dentro de las sugerencias */
 .pac-item span {
     color: black !important;  /* Cambiar el color del texto */
