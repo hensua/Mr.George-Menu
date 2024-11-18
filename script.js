@@ -512,6 +512,8 @@ function enviarPedidoFinal(metodoEntrega) {
         mensaje += "\n(Este es un pedido anticipado como reserva)";
     }
 
+    mensaje += `\nMétodo de Pago: *${metodoPagoGlobal}* \n`;
+
     // Añadir el método de entrega
     mensaje += `\nMétodo de Entrega: ${metodoEntrega}`;
 
@@ -523,12 +525,19 @@ function enviarPedidoFinal(metodoEntrega) {
     window.open(url, "_blank");
 }
 
+let metodoPagoGlobal = ""; // Variable global para almacenar el método de pago
+
 // Función principal para enviar el pedido que primero muestra el modal de entrega
 function enviarPedido() {
-    mostrarModal();
+    const metodoPago = document.getElementById("opcionesPago").value;
+
+    if (metodoPago === "" || metodoPago === null) {
+        alert("Por favor, selecciona un método de pago.");
+    } else {
+        metodoPagoGlobal = metodoPago; // Almacena el valor globalmente
+        mostrarModal();
+    }
 }
-
-
 
 // Función para inicializar artículos y acompañamientos
 function inicializarArticulos() {
