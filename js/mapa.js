@@ -141,7 +141,15 @@ function calcularCostoDomicilio(distanciaKm) {
 
     // Muestra el costo de envío en el HTML con paréntesis alrededor del valor
     document.getElementById("costoEnvio").textContent = `Domicilio: ${costoFormateado}`;
+
+    document.getElementById("total").textContent = `Total: ${costoDomicilio}`;
 }
+
+function calcularTotal(){
+    //aqui se sumara costoEnvio + totalCompra y se mostrara en <p id="total">Total: $0</p>
+}
+
+
 
 function useCurrentLocation() {
     if (navigator.geolocation) {

@@ -194,10 +194,18 @@ function mostrarCarrito() {
         totalSpan.textContent = `${totalCantidad} producto${totalCantidad !== 1 ? 's' : ''}`;
     }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // Mostrar el valor total formateado
     const valorTotalSpan = document.getElementById('span_valor');
+    const totalCompraP = document.getElementById('totalCompra'); // Selecciona el nuevo elemento donde se mostrará el total de la compra
+
     if (valorTotalSpan) {
         valorTotalSpan.textContent = `$${valorTotal.toLocaleString()}`; // Formatea el valor total con separador de miles
+    }
+
+    if (totalCompraP) {
+        totalCompraP.textContent = `Compra: $${valorTotal.toLocaleString()}`; // También actualiza el texto en el nuevo elemento
     }
 
     if (carrito.length === 0) {
@@ -209,8 +217,13 @@ function mostrarCarrito() {
         if (valorTotalSpan) {
             valorTotalSpan.textContent = '$0'; // Reinicia el valor total
         }
+        if (totalCompraP) {
+            totalCompraP.textContent = 'Compra: $0'; // Reinicia el valor en el nuevo elemento
+        }
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function confirmarEliminacion(id) {
     const confirmacion = confirm("¿Estás seguro de que quieres eliminar este producto del carrito?");
@@ -447,33 +460,14 @@ function mostrarMapa() {
     /*document.getElementById("contenedor_full_map").style.display = "block";*/
     document.querySelector('#contenedor_full_map').classList.add('active');
 }
-/*
-function cerrarMapa() {
-    document.getElementById("contenedor_full_map").style.display = "none";
-}
-/*
-function listoUbicacion() {
-    enviarPedidoFinal("Domicilio");
-    cerrarMapa();
-}*/
-/*
-function listoUbicacion() {
-    if (marcadorSeleccionado) {
-        const ubicacion = marcadorSeleccionado.getPosition();
-        
-        // Crear el enlace de Google Maps con las coordenadas seleccionadas
-        const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
-        
-        // Llamar a la función enviarPedidoFinal con el enlace de Google Maps como "Domicilio"
-        enviarPedidoFinal("*Domicilio* \n" + enlaceGoogleMaps);
-        
-        /*alert(`Ubicación seleccionada: Latitud ${ubicacion.lat()}, Longitud ${ubicacion.lng()}\nVer en Google Maps: ${enlaceGoogleMaps}`);*/
-        
-       /* cerrarMapa(); // Cierra el mapa después de confirmar
-    } else {
-        alert("Por favor, selecciona una ubicación.");
-    }
-}*/
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
 
 // Función para el botón de "Domicilio"
 function selectDelivery() {
