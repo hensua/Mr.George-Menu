@@ -126,30 +126,37 @@ function calcularYMostrarRuta(origen, destino) {
     });
 }
 
+let costoDomicilio = 0;
+
 function calcularCostoDomicilio(distanciaKm) {
-    let costoDomicilio = distanciaKm * tarifaPorKilometro;
+    let costoCalculado = distanciaKm * tarifaPorKilometro;
 
     // Aplicar los límites de costo mínimo y máximo
-    if (costoDomicilio < costoMinimo) {
+    if (costoCalculado < costoMinimo) {
         costoDomicilio = costoMinimo;
-    } else if (costoDomicilio > costoMaximo) {
+    } else if (costoCalculado > costoMaximo) {
         costoDomicilio = costoMaximo;
+    } else {
+        costoDomicilio = costoCalculado;
     }
 
-    // Redondea hacia abajo el valor de costoDomicilio para evitar decimales
+    // Formatear el valor final
     const costoFormateado = `$${Math.floor(costoDomicilio).toLocaleString('es-CO')}`;
 
-    // Muestra el costo de envío en el HTML con paréntesis alrededor del valor
-    document.getElementById("costoEnvio").textContent = `Domicilio: ${costoFormateado}`;
-
-    document.getElementById("total").textContent = `Total: ${costoDomicilio}`;
+    // Actualizar el valor en el HTML
+    const costoEnvioElemento = document.getElementById("costoEnvio");
+    if (costoEnvioElemento) {
+        costoEnvioElemento.textContent = `Domicilio: ${costoFormateado}`;
+    }
+    // Llamar a calcularTotal para actualizar el total en tiempo real
+    calcularTotal();
 }
 
 function calcularTotal(){
     //aqui se sumara costoEnvio + totalCompra y se mostrara en <p id="total">Total: $0</p>
+    const totalFinal = valorTotal + costoDomicilio;
+    document.getElementById("total").textContent = `Total: $${Math.floor(totalFinal).toLocaleString('es-CO')}`;
 }
-
-
 
 function useCurrentLocation() {
     if (navigator.geolocation) {

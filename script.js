@@ -125,6 +125,9 @@ function obtenerCarrito() {
     return JSON.parse(localStorage.getItem('carrito')) || [];
 }
 
+// Declarar valorTotal como variable global
+let valorTotal = 0; // Inicialízalo con un valor por defecto, como 0
+
 // Función para mostrar el contenido del carrito en compras.html
 function mostrarCarrito() {
     const carrito = obtenerCarrito();
@@ -132,7 +135,7 @@ function mostrarCarrito() {
     contenedor.innerHTML = '';
 
     let totalCantidad = 0; // Inicializa el total de cantidades
-    let valorTotal = 0; // Inicializa el valor total
+    valorTotal = 0; // Reinicia la variable global antes de recalcular
 
     carrito.forEach(item => {
         totalCantidad += item.cantidad; // Suma la cantidad de cada ítem al total
@@ -220,8 +223,12 @@ function mostrarCarrito() {
         if (totalCompraP) {
             totalCompraP.textContent = 'Compra: $0'; // Reinicia el valor en el nuevo elemento
         }
+        // También reiniciar la variable global
+        valorTotal = 0;
     }
 }
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -472,6 +479,7 @@ function mostrarMapa() {
 // Función para el botón de "Domicilio"
 function selectDelivery() {
     cerrarModal();
+    calcularTotal();
     mostrarMapa();
     /*enviarPedidoFinal("Domicilio");*/
 }
