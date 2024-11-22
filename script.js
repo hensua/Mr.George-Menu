@@ -145,12 +145,12 @@ function mostrarCarrito() {
         // Función para obtener la ruta de la imagen asociada al ID 
         function obtenerRutaPorId(id) {
             const rutas = {
-                '7': 'img/CocaCola_250_ml_Foto.png', 
-                '8': 'img/Manzana_250_ml_Foto.png',
-                '9': 'img/Colombiana_250_ml_Foto.png',
-                '10': 'img/Pepsi_250_ml_Foto.png',
-                '11': 'img/Naranja_250_ml_Foto.png',
-                '12': 'img/Uva_250_ml_Foto.png',
+                '10': 'img/CocaCola_250_ml_Foto.png', 
+                '11': 'img/Manzana_250_ml_Foto.png',
+                '12': 'img/Colombiana_250_ml_Foto.png',
+                '13': 'img/Pepsi_250_ml_Foto.png',
+                '14': 'img/Naranja_250_ml_Foto.png',
+                '15': 'img/Uva_250_ml_Foto.png',
                 // Agrega más ID y rutas según sea necesario
             };
 
