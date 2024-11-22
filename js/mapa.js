@@ -152,9 +152,10 @@ function calcularCostoDomicilio(distanciaKm) {
     calcularTotal();
 }
 
+let totalFinal = 0;
 function calcularTotal(){
     //aqui se sumara costoEnvio + totalCompra y se mostrara en <p id="total">Total: $0</p>
-    const totalFinal = valorTotal + costoDomicilio;
+    totalFinal = valorTotal + costoDomicilio;
     document.getElementById("total").textContent = `Total: $${Math.floor(totalFinal).toLocaleString('es-CO')}`;
 }
 
@@ -184,24 +185,3 @@ function useCurrentLocation() {
         alert("Geolocalización no soportada en este navegador.");
     }
 }
-
-function cerrarMapa() {
-    /*document.getElementById("contenedor_full_map").style.display = "none";*/
-    document.querySelector('#contenedor_full_map').classList.remove('active');
-}
-
-function listoUbicacion() {
-    if (marcadorSeleccionado) {
-        const ubicacion = marcadorSeleccionado.getPosition();
-        const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
-        const direccion = document.getElementById("addressInput").value;
-        const referencia = document.getElementById("referenciaInput").value;
-
-        enviarPedidoFinal(`*DOMICILIO*\n\n *Ubicación:*\n ${direccion}\n\n *Punto de referencia:*\n ${referencia}\n\n *Ubicación en Google Maps:*\n ${enlaceGoogleMaps}`);
-        cerrarMapa();
-    } else {
-        alert("Por favor, selecciona una ubicación.");
-    }
-}
-
-

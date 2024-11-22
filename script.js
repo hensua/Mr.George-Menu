@@ -197,8 +197,6 @@ function mostrarCarrito() {
         totalSpan.textContent = `${totalCantidad} producto${totalCantidad !== 1 ? 's' : ''}`;
     }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     // Mostrar el valor total formateado
     const valorTotalSpan = document.getElementById('span_valor');
     const totalCompraP = document.getElementById('totalCompra'); // Selecciona el nuevo elemento donde se mostrará el total de la compra
@@ -227,10 +225,6 @@ function mostrarCarrito() {
         valorTotal = 0;
     }
 }
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function confirmarEliminacion(id) {
     const confirmacion = confirm("¿Estás seguro de que quieres eliminar este producto del carrito?");
@@ -456,10 +450,12 @@ function mostrarModal() {
 function cerrarModal() {
     document.querySelector('.modal').classList.remove('active');
 }
-
+//let mensajeTotal = "";
+let recogerEnTienda = false;
 // Función para el botón de "Recoger en Tienda"
 function selectPickup() {
     cerrarModal();
+    recogerEnTienda = true;
     enviarPedidoFinal("*Recoger en tienda* \n" + "https://bit.ly/MrGeorgeDireccion");
 }
 
@@ -469,19 +465,31 @@ function mostrarMapa() {
 }
 
 //////////////////////////////////////////////////////////////////////////////
+function cerrarMapa() {
+    /*document.getElementById("contenedor_full_map").style.display = "none";*/
+    document.querySelector('#contenedor_full_map').classList.remove('active');
+}
 
+function listoUbicacion() {
+    if (marcadorSeleccionado) {
+        const ubicacion = marcadorSeleccionado.getPosition();
+        const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
+        const direccion = document.getElementById("addressInput").value;
+        const referencia = document.getElementById("referenciaInput").value;
 
-
-
-
+        enviarPedidoFinal(`*DOMICILIO*\n\n *Ubicación:*\n ${direccion}\n\n *Punto de referencia:*\n ${referencia}\n\n *Ubicación en Google Maps:*\n ${enlaceGoogleMaps}`);
+        cerrarMapa();
+    } else {
+        alert("Por favor, selecciona una ubicación.");
+    }
+}
 /////////////////////////////////////////////////////////////////////////////
 
 // Función para el botón de "Domicilio"
 function selectDelivery() {
     cerrarModal();
-    calcularTotal();
+    recogerEnTienda = false;
     mostrarMapa();
-    /*enviarPedidoFinal("Domicilio");*/
 }
 
 // Función para enviar el pedido a WhatsApp después de seleccionar el método de entrega
@@ -513,6 +521,18 @@ function enviarPedidoFinal(metodoEntrega) {
     if (estadoHorario === "reserva") {
         mensaje += "\n(Este es un pedido anticipado como reserva)";
     }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+    if (recogerEnTienda === true) {
+        //mensaje += (mensajeTotal);
+        mensaje += `\nValor de tu compra: *$${Math.floor(valorTotal).toLocaleString('es-CO')}* \n`;
+    } else{
+        mensaje += `\nValor de tu compra: *$${Math.floor(valorTotal).toLocaleString('es-CO')}*`; 
+        mensaje += `\nValor de domicilo: *$${Math.floor(totalFinal - valorTotal).toLocaleString('es-CO')}*`; 
+        mensaje += `\nValor Total: *$${Math.floor(totalFinal).toLocaleString('es-CO')}* \n`; 
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
 
     mensaje += `\nMétodo de Pago: *${metodoPagoGlobal}* \n`;
 
