@@ -604,8 +604,12 @@ function detectarCambios() {
 }
 
 // Restringir caracteres en el campo de teléfono
-document.getElementById("telefono").addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
+document.addEventListener("DOMContentLoaded", () => {
+    const telefono = document.getElementById("telefono");
+    if (telefono) {
+        telefono.oninput = e => 
+            e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+    }
 });
 //////////////////////////////////////////////////////////////////////////////
 
