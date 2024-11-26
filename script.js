@@ -402,14 +402,14 @@ function ocultarBotones(articulo, inmediato = false) {
 function verificarHorario() {
     const ahora = new Date();
     const horas = ahora.getHours();
-
+/*
     if (horas === 17) {
         return 'reserva'; // Horario de reserva (5:00 PM)
     } else if (horas >= 18 && horas <= 23) {
         return 'abierto'; // Horario abierto (6:00 PM a 11:59 PM)
     } else {
         return 'cerrado'; // Fuera del horario permitido
-    }
+    }*/
 }
 
 // Función para actualizar el estado del horario en el DOM
@@ -450,13 +450,14 @@ function mostrarModal() {
 function cerrarModal() {
     document.querySelector('.modal').classList.remove('active');
 }
-//let mensajeTotal = "";
+
 let recogerEnTienda = false;
 // Función para el botón de "Recoger en Tienda"
 function selectPickup() {
     cerrarModal();
     recogerEnTienda = true;
-    enviarPedidoFinal("*Recoger en tienda* \n" + "https://bit.ly/MrGeorgeDireccion");
+    mostrarModalDatos();
+    //enviarPedidoFinal("*Recoger en tienda* \n" + "https://bit.ly/MrGeorgeDireccion");
 }
 
 function mostrarMapa() {
@@ -470,14 +471,18 @@ function cerrarMapa() {
     document.querySelector('#contenedor_full_map').classList.remove('active');
 }
 
+let enlaceGoogleMaps = "";
+let direccion = "";
+let referencia = "";
 function listoUbicacion() {
     if (marcadorSeleccionado) {
         const ubicacion = marcadorSeleccionado.getPosition();
-        const enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
-        const direccion = document.getElementById("addressInput").value;
-        const referencia = document.getElementById("referenciaInput").value;
+        enlaceGoogleMaps = `https://www.google.com/maps?q=${ubicacion.lat()},${ubicacion.lng()}`;
+        direccion = document.getElementById("addressInput").value;
+        referencia = document.getElementById("referenciaInput").value;
 
-        enviarPedidoFinal(`*DOMICILIO*\n\n *Ubicación:*\n ${direccion}\n\n *Punto de referencia:*\n ${referencia}\n\n *Ubicación en Google Maps:*\n ${enlaceGoogleMaps}`);
+        //enviarPedidoFinal(`*DOMICILIO*\n\n *Ubicación:*\n ${direccion}\n\n *Punto de referencia:*\n ${referencia}\n\n *Ubicación en Google Maps:*\n ${enlaceGoogleMaps}`);
+        mostrarModalDatos();
         cerrarMapa();
     } else {
         alert("Por favor, selecciona una ubicación.");
@@ -491,6 +496,118 @@ function selectDelivery() {
     recogerEnTienda = false;
     mostrarMapa();
 }
+
+///////////////////////////////////////////////////////////////////////////////
+//MODAL DATOS DE CLIENTE (FUNCIONES DE FUNCIONAMIENTO)
+document.addEventListener("DOMContentLoaded", () => {
+    const nombre = localStorage.getItem("nombre");
+    const telefono = localStorage.getItem("telefono");
+
+    if (nombre && telefono) {
+        // Mostrar datos y botones de edición
+        document.getElementById("nombre").value = nombre;
+        document.getElementById("telefono").value = telefono;
+
+        document.getElementById("btnEditarNombre").style.display = "inline-block";
+        document.getElementById("btnEditarTelefono").style.display = "inline-block";
+        document.getElementById("btnEnviar").style.display = "inline-block";
+
+        deshabilitarInputs();
+    } else {
+        // Habilitar inputs si no hay datos en localStorage
+        document.getElementById("nombre").disabled = false;
+        document.getElementById("telefono").disabled = false;
+    }
+
+    detectarCambios();
+});
+
+function mostrarModalDatos() {
+    document.querySelector("#contentModalDatos").classList.add("active");
+}
+
+function cerrarModalDatos() {
+    document.querySelector("#contentModalDatos").classList.remove("active");
+}
+
+function aceptarModalDatos() {
+    const nombre = document.getElementById("nombre").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+
+    if (nombre && validarTelefono(telefono)) {
+        // Guardar en localStorage siempre
+        localStorage.setItem("nombre", nombre);
+        localStorage.setItem("telefono", telefono);
+
+        alert("Datos guardados correctamente.");
+
+        // Actualizar la UI
+        document.getElementById("btnEditarNombre").style.display = "inline-block";
+        document.getElementById("btnEditarTelefono").style.display = "inline-block";
+        document.getElementById("btnEnviar").style.display = "inline-block";
+        document.getElementById("aceptarmodal").style.display = "none";
+
+        deshabilitarInputs();
+    } else {
+        alert("Por favor, completa todos los campos correctamente.");
+    }
+}
+
+function habilitarEdicion(campo) {
+    const input = document.getElementById(campo);
+    input.disabled = false;
+    input.focus();
+
+    // Mostrar botón aceptar
+    document.getElementById("aceptarmodal").style.display = "inline-block";
+}
+
+function deshabilitarInputs() {
+    document.getElementById("nombre").disabled = true;
+    document.getElementById("telefono").disabled = true;
+    document.getElementById("aceptarmodal").style.display = "none";
+}
+
+function enviarDatos() {
+    if (recogerEnTienda === true) {
+        cerrarModalDatos();
+        enviarPedidoFinal("*Recoger en tienda* \n" + "https://bit.ly/MrGeorgeDireccion");
+    } else{
+        cerrarModalDatos();
+        enviarPedidoFinal(`*DOMICILIO*\n\n *Ubicación:*\n ${direccion}\n\n *Punto de referencia:*\n ${referencia}\n\n *Ubicación en Google Maps:*\n ${enlaceGoogleMaps}`);
+    }
+}
+
+function validarTelefono(telefono) {
+    const regex = /^\d{10}$/;
+    if (!regex.test(telefono)) {
+        alert("El número telefónico debe contener exactamente 10 dígitos.");
+        return false;
+    }
+    return true;
+}
+
+// Detectar cambios en los inputs
+function detectarCambios() {
+    const inputs = document.querySelectorAll("#nombre, #telefono");
+
+    inputs.forEach(input => {
+        input.addEventListener("input", () => {
+            document.getElementById("aceptarmodal").style.display = "inline-block";
+        });
+
+        input.addEventListener("blur", () => {
+            // Siempre guardar en localStorage al dar aceptar, por lo tanto:
+            document.getElementById("aceptarmodal").style.display = "inline-block";
+        });
+    });
+}
+
+// Restringir caracteres en el campo de teléfono
+document.getElementById("telefono").addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
+});
+//////////////////////////////////////////////////////////////////////////////
 
 // Función para enviar el pedido a WhatsApp después de seleccionar el método de entrega
 function enviarPedidoFinal(metodoEntrega) {
@@ -516,6 +633,13 @@ function enviarPedidoFinal(metodoEntrega) {
     carrito.forEach((item) => {
         mensaje += `- ${item.nombre}: $${item.precio} x ${item.cantidad}\n ${item.instrucciones ? item.instrucciones : "No se agregaron instrucciones."}\n`;
     });
+/////////////////////////////////////////////////////////////////////////////////////////////
+    //Datos del cliente
+    const nombre = localStorage.getItem("nombre");
+    const telefononumber = localStorage.getItem("telefono");
+
+    mensaje += `\n*Datos cliente:*\n*Nombre:* ${nombre}\n*Teléfono:* ${telefononumber}\n`;
+/////////////////////////////////////////////////////////////////////////////////////////////
 
     // Agregar una nota si es una reserva
     if (estadoHorario === "reserva") {

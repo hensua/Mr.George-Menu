@@ -335,3 +335,106 @@ button{
     background-color: rgb(255, 255, 0);
     color: black; 
 }
+
+/*DISEÑO MODAL DATOS CLIENTE*/
+#contentModalDatos {
+    display: none; /* Oculto inicialmente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 15, 15, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#contentModalDatos.active {
+    display: flex; /* Mostrar cuando tiene la clase active */
+}
+
+#modalDatos {
+    width: 320px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(71, 71, 71, 0.425); /* Fondo con opacidad */
+    backdrop-filter: blur(20px); /* Desenfoque */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón cerrar */
+.btn-close {
+    align-self: flex-end;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.btn-close:hover {
+    color: red;
+}
+
+/* Estilos de los inputs */
+#nombre, #telefono {
+    width: calc(100% - 80px);
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
+}
+
+input[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Contenedor para inputs y botones de edición */
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Botones editar */
+.btn-edit {
+    padding: 8px 10px;
+    margin-left: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+/* Botones de acción */
+.btn-action {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgb(255, 251, 0);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-action:hover {
+    background-color: rgb(224, 221, 0);
+}

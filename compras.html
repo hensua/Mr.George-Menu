@@ -76,10 +76,25 @@
         </div>
     </div>
 
-
-
-
-
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<div id="contentModalDatos">
+    <div id="modalDatos">
+        <button onclick="cerrarModalDatos()" class="btn-close">X</button>
+        <h2>¡Estás a un paso de completar tu pedido!</h2>
+        <h3>Regálanos estos datos para entregar exitosamente tu pedido.</h3>
+        <div class="input-group">
+            <input type="text" id="nombre" placeholder="Ingresa tu nombre y apellido" disabled>
+            <button id="btnEditarNombre" class="btn-edit" onclick="habilitarEdicion('nombre')">Editar</button>
+        </div>
+        <div class="input-group">
+            <input type="number" id="telefono" placeholder="Ingresa tu número telefónico" disabled>
+            <button id="btnEditarTelefono" class="btn-edit" onclick="habilitarEdicion('telefono')">Editar</button>
+        </div>
+        <button id="aceptarmodal" class="btn-action" onclick="aceptarModalDatos()">Aceptar</button>
+        <button id="btnEnviar" class="btn-action" onclick="enviarDatos()" style="display: none;">Enviar</button>
+    </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <script>
         // Agregar eventos a los botones
         document.getElementById('atras').addEventListener('click', () => {
