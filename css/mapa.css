@@ -1,3 +1,6 @@
+:root {
+    --mi-color-principal: rgba(255, 207, 0);
+}
 #color_body{
     background-color: rgb(85, 85, 85);
 }
@@ -13,7 +16,7 @@ button{
     border: none;
     border-radius: 0.3rem;
     margin-right: 10px;
-    background-color: rgb(255, 251, 0);
+    background-color: var(--mi-color-principal);
 }
 
 .modal {
@@ -76,7 +79,7 @@ button{
     border: none;
     border-radius: 0.3rem;
     margin-right: 10px;
-    background-color: rgb(255, 251, 0);
+    background-color: var(--mi-color-principal);
 }
 #btn_metodoEntrega:last-child{
     margin-right: 0;
@@ -144,7 +147,7 @@ button{
     border: none;
     border-radius: 0.3rem;
     margin-right: 10px;
-    background-color: rgb(255, 251, 0);
+    background-color: var(--mi-color-principal);
 }
 
 #contentTotal{

@@ -1,3 +1,6 @@
+:root {
+    --mi-color-principal: rgba(255, 207, 0);
+}
 *{
     color: rgb(255, 255, 255);
     text-align: center;
@@ -67,17 +70,39 @@ header{
     color: black;
     font-weight: bold;
     height: 50%;
+    text-align: left;
 }
-#horario{
-    width: 85px;
-    height: 25px;
+.horario {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 5px;
-    background-color: chartreuse;
+    justify-content: center;
+    padding: 1px 6px;
     border-radius: 12px;
+    gap: 5px;
+    margin-top: 2px;
+    /*width: 150px;
+    height: 25px;*/
 }
+
+/* Estado abierto */
+.horario.abierto,#abierto {
+    background-color: rgb(0, 255, 34);
+    color: rgb(16, 87, 2);
+}
+
+/* Estado cerrado */
+.horario.cerrado,#cerrado{
+    background-color: rgba(255, 94, 94);
+    color: rgb(87, 2, 2);
+}
+
+/* Estado reserva */
+.horario.reserva,#reserva{
+    background-color: rgba(255, 207, 0);
+    color: rgb(87, 53, 2);
+}
+
+
 #img-reloj{
     width: 16px;
     margin: 4px 0px;
@@ -115,7 +140,7 @@ header{
     top: -8px;
     right: -10px;
     z-index: 1; /* Se asegura de que el contador esté por encima del logo */
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     color: black;
     border-radius: 50%;
     padding: 5px 9px;
@@ -192,7 +217,7 @@ h1{
     scrollbar-width: none;  /* Oculta la barra de desplazamiento en Firefox */
 }
 .boton_seleccionado {
-    background-color: rgb(255, 255, 0);  /* Color de fondo para el botón seleccionado */
+    background-color: var(--mi-color-principal);  /* Color de fondo para el botón seleccionado */
 }
 #titulo_principal{
     padding: 0.5rem;
@@ -236,7 +261,7 @@ h1{
     top: 0;  /* Ajusta esta posición según necesites */
     right: 0;  /* Ajusta esta posición según necesites */
     z-index: 1; /* Se asegura de que el contador esté por encima del logo */
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     color: black;
     border-radius: 0 0.6rem 0 0.6rem;
     padding: 4px 4px;
@@ -270,13 +295,13 @@ h1{
     border-radius: 0.3rem;
     margin-left: 0.4rem;
     margin-right: 0.5rem;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
 }
 
 footer{
     display: none;
     padding: 20px;
-}
+}/*
 #tittleFooter{
     font-size: 40px;
 }
@@ -305,7 +330,7 @@ footer{
     background-color: rgb(44, 44, 44);
     border-radius: 50%;
     margin-right: 0rem;
-}
+}*/
 .redes_sociales_logo{
     width: 1.2rem;
 }

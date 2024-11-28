@@ -271,13 +271,13 @@ function actualizarBotonCantidad(articulo, cantidad) {
             `;
             botonAdd.style.backgroundColor = 'transparent';
             botonAdd.style.border = 'none';
-            botonAdd.style.boxShadow = 'inset 0 0 0 1px rgb(255, 174, 0)';
+            botonAdd.style.boxShadow = 'inset 0 0 0 1px var(--mi-color-principal)';
 
             botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos
             mostrarBotones(articulo.getAttribute('data-id'));
         } else {
             botonAdd.textContent = '+';
-            botonAdd.style.backgroundColor = 'rgb(255, 255, 0)';
+            botonAdd.style.backgroundColor = '';
             botonAdd.style.boxShadow = 'none';
             botonAdd.onclick = (event) => agregarAlCarrito(event);
             ocultarBotones(articulo);
@@ -402,14 +402,14 @@ function ocultarBotones(articulo, inmediato = false) {
 function verificarHorario() {
     const ahora = new Date();
     const horas = ahora.getHours();
-/*
+//*
     if (horas === 17) {
         return 'reserva'; // Horario de reserva (5:00 PM)
     } else if (horas >= 18 && horas <= 23) {
         return 'abierto'; // Horario abierto (6:00 PM a 11:59 PM)
     } else {
         return 'cerrado'; // Fuera del horario permitido
-    }*/
+    }//*/
 }
 
 // Función para actualizar el estado del horario en el DOM
@@ -420,15 +420,20 @@ function actualizarHorario() {
     let mensaje = '';
     let imagen = '';
 
+    // Limpia las clases existentes y añade la correspondiente
+    horarioDiv.className = 'horario'; // Clase base
     if (estadoHorario === 'abierto') {
-        mensaje = 'Abierto';
-        imagen = 'img/reloj.png'; // Ruta de la imagen del reloj abierto
+        mensaje = `<span id="abierto">Abierto</span>`;
+        imagen = 'img/reloj.png';
+        horarioDiv.classList.add('abierto');
     } else if (estadoHorario === 'cerrado') {
-        mensaje = 'Cerrado';
-        imagen = 'img/reloj.png'; // Ruta de la imagen del reloj cerrado
+        mensaje = `<span id="cerrado">Cerrado</span>`;
+        imagen = 'img/reloj.png';
+        horarioDiv.classList.add('cerrado');
     } else if (estadoHorario === 'reserva') {
-        mensaje = 'Cerrado, pero puedes reservar tu pedido';
-        imagen = 'img/reloj.png'; // Ruta de la imagen del reloj para reserva
+        mensaje = `<span id="reserva">Reserva tu pedido</span>`;
+        imagen = 'img/reloj.png';
+        horarioDiv.classList.add('reserva');
     }
 
     // Modificar el contenido del div con la imagen y el mensaje

@@ -1,3 +1,6 @@
+:root {
+    --mi-color-principal: rgba(255, 207, 0);
+}
 *{
     color: rgb(255, 255, 255);
     text-align: center;
@@ -126,7 +129,7 @@ button{
     border: none;
     border-radius: 0.3rem;
     margin-right: 10px;
-    background-color: rgb(255, 251, 0);
+    background-color: var(--mi-color-principal);
 }
 
 #producto_carrito {
@@ -261,7 +264,7 @@ button{
     margin: 0px;
     padding: 0.2rem 0.4rem;
     border-radius: 0.3rem;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     border: none;
     color: black;
     cursor: pointer;
@@ -276,7 +279,7 @@ button{
     font-size: 1.2rem;
     padding: 0.2rem 0.3rem;
     border-radius: 0.3rem;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     border: none;
     color: black;
     cursor: pointer;

@@ -1,3 +1,6 @@
+:root {
+    --mi-color-principal: rgba(255, 207, 0);
+}
 *{
     /*text-align: center;*/
     margin: 0;
@@ -32,7 +35,7 @@ ul{
     align-items: center;
     width: 100%;
     height: 50px;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     margin: 0;
 }
 #btn-atras{
@@ -54,7 +57,7 @@ ul{
     align-items: center;
     width: 100%;
     height: 350px;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     border-radius: 0 0 180px 180px;
     margin-top: 0;
     margin-bottom: 0.8rem;
@@ -108,7 +111,7 @@ ul{
 }
 #instrucciones:focus {
     outline: none;
-    box-shadow: inset 0 0 0 1px rgb(255, 255, 0); /* Un borde normal sin efectos de resaltado */
+    box-shadow: inset 0 0 0 1px var(--mi-color-principal); /* Un borde normal sin efectos de resaltado */
 }
 #instrucciones::placeholder {
     padding-left: 3px;
@@ -153,7 +156,7 @@ ul{
     top: 0;  /* Ajusta esta posición según necesites */
     right: 0;  /* Ajusta esta posición según necesites */
     z-index: 1; /* Se asegura de que el contador esté por encima del logo */
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     color: black;
     border-radius: 0 0.6rem 0 0.6rem;
     padding: 4px 4px;
@@ -209,7 +212,7 @@ ul{
     border-radius: 0.3rem;
     margin-left: 0.4rem;
     margin-right: 0.5rem;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
 }
 
 
@@ -243,17 +246,6 @@ ul{
 .numero_cantidad {
     color: white; /* Color del texto */
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 #contenedor_botones{
@@ -292,7 +284,7 @@ ul{
     font-weight: bold;
     padding: 0.2rem 0.4rem;
     border-radius: 0.3rem;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     border: none;
     color: black;
     cursor: pointer;
@@ -308,7 +300,7 @@ ul{
     font-size: 1.2rem;
     padding: 0.2rem 0.35rem;
     border-radius: 0.3rem;
-    background-color: rgb(255, 255, 0);
+    background-color: var(--mi-color-principal);
     border: none;
     color: black;
     cursor: pointer;
@@ -323,7 +315,7 @@ ul{
     padding: 0.5rem 0.5rem;
     border: none;
     border-radius: 0.3rem;
-    background-color: rgb(255, 251, 0);
+    background-color: var(--mi-color-principal);
 } 
 
 
