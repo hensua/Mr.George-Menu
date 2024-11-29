@@ -275,7 +275,6 @@ function actualizarBotonCantidad(articulo, cantidad) {
 
             botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos
             mostrarBotones(articulo.getAttribute('data-id'));
-            actualizarContadorCarrito();
         } else {
             botonAdd.textContent = '+';
             botonAdd.style.backgroundColor = '';
@@ -284,6 +283,7 @@ function actualizarBotonCantidad(articulo, cantidad) {
             ocultarBotones(articulo);
         }
     }
+    actualizarContadorCarrito();
 }
 
 // Función para cambiar la cantidad del artículo directamente desde el botón
