@@ -30,6 +30,11 @@ function pruebacontador() {
     actualizarContadorCarrito();
 }
 
+function PruebaContadorCarrito(){
+    actualizarContadorCarrito();
+    console.log(`actualizarfunciona`);
+}
+
 // Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();

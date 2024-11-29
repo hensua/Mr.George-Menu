@@ -14,7 +14,7 @@
 </head>
 <body>
     <header id="contenedor_header_compras">
-        <button id="atras"><img id="atras_logo" src="img/AtrasLogo.png" alt=""></button>
+        <button id="atras" onclick="PruebaContadorCarrito()"><img id="atras_logo" src="img/AtrasLogo.png" alt=""></button>
         <div id="titulo_header">Mi carrito</div>
     </header>
     <main id="contenedor_main_compras">
@@ -27,8 +27,6 @@
                 <option value="Transferencia">Transferencia</option>
             </select>
         </div>
-
-        <button onclick="pruebacontador()" style="color: black;">Prueba</button>
 
         <div id="contenedor_botones">
             <div id="contenedor_botones_pedido">
@@ -103,7 +101,6 @@
         window.location.href = 'index.html';
         });*/
         document.getElementById('atras').addEventListener('click', () => {
-            actualizarContadorCarrito();
             window.history.back(); 
         });
     </script>
