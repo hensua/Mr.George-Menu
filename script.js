@@ -26,11 +26,11 @@ if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     }, false);
 }
 
-let contadorElemento = document.getElementById('contador_carrito');
-let carrito = obtenerCarrito();
-//Función para actualizar el contador del carrito en el icono
+// Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
-    
+    const carrito = obtenerCarrito();
+    const contadorElemento = document.getElementById('contador_carrito');
+
     // Verificar si el elemento existe antes de intentar actualizarlo
     if (contadorElemento) {
         const totalCantidad = carrito.reduce((total, item) => total + item.cantidad, 0);  // Suma la cantidad de todos los productos
@@ -275,6 +275,7 @@ function actualizarBotonCantidad(articulo, cantidad) {
 
             botonAdd.onclick = null;  // Desactiva la funcionalidad de agregar más productos
             mostrarBotones(articulo.getAttribute('data-id'));
+            actualizarContadorCarrito();
         } else {
             botonAdd.textContent = '+';
             botonAdd.style.backgroundColor = '';
