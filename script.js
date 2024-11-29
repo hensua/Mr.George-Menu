@@ -27,9 +27,9 @@ if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 }
 
 let contadorElemento = document.getElementById('contador_carrito');
+let carrito = obtenerCarrito();
 //Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
-    const carrito = obtenerCarrito();
     
     // Verificar si el elemento existe antes de intentar actualizarlo
     if (contadorElemento) {
