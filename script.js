@@ -166,7 +166,7 @@ function mostrarCarrito() {
                 <div id="caja_dos">
                 <div id="caja_eliminar">
                     <button id="btn_eliminar" onclick="confirmarEliminacion('${item.id}')">
-                    <img id="icon_eliminar"  src="img/Icon_eliminar.png" alt="icono eliminar producto">
+                    <img id="icon_eliminar"  src="img/iconBasuraBlanco.png" alt="icono eliminar producto">
                     </button>
                 </div>
                     <div id="caja_info">
