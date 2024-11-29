@@ -26,11 +26,11 @@ if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     }, false);
 }
 
-// Función para actualizar el contador del carrito en el icono
+let contadorElemento = document.getElementById('contador_carrito');
+//Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();
-    const contadorElemento = document.getElementById('contador_carrito');
-
+    
     // Verificar si el elemento existe antes de intentar actualizarlo
     if (contadorElemento) {
         const totalCantidad = carrito.reduce((total, item) => total + item.cantidad, 0);  // Suma la cantidad de todos los productos
