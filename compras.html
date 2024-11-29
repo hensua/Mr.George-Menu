@@ -97,8 +97,12 @@
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <script>
         // Agregar eventos a los botones
-        document.getElementById('atras').addEventListener('click', () => {
+        /*document.getElementById('atras').addEventListener('click', () => {
         window.location.href = 'index.html';
+        });*/
+        document.getElementById('atras').addEventListener('click', () => {
+            //actualizarContadorCarrito();
+            window.history.back(); 
         });
     </script>
     <script src="script.js"></script>
