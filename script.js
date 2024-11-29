@@ -26,6 +26,10 @@ if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     }, false);
 }
 
+function pruebacontador() {
+    actualizarContadorCarrito();
+}
+
 // Función para actualizar el contador del carrito en el icono
 function actualizarContadorCarrito() {
     const carrito = obtenerCarrito();
@@ -283,7 +287,6 @@ function actualizarBotonCantidad(articulo, cantidad) {
             ocultarBotones(articulo);
         }
     }
-    actualizarContadorCarrito();
 }
 
 // Función para cambiar la cantidad del artículo directamente desde el botón
