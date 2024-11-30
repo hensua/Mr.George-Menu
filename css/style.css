@@ -46,7 +46,9 @@ button{
    /* overflow: hidden;   /* Evita desbordamiento */
 /*}*/
 header{
+    max-width: 430px;
     width: 100%;
+    margin: 0 auto;  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -368,10 +370,16 @@ footer{
 }
 
 
-
+/* Teléfonos móviles (menos de 768px de ancho) */
+@media screen and (max-width: 767px) {
+    /* Estilos para teléfonos móviles */
+    body {
+        font-size: 14px; /* Ajusta el tamaño de la fuente */
+    }
+}
 
 /* Asegurarse en pantallas grandes como tabletas y PCs */
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
     .container {
         max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
         width: 414px;      /* Asegura que no se expanda más allá de 414px */
@@ -387,7 +395,7 @@ footer{
     }
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
     .container {
         max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
         width: 414px;      /* Asegura que no se expanda más allá de 414px */
@@ -400,6 +408,7 @@ footer{
     .escoger_seccion {
         display: flex;
         justify-content: center; /* Alinea los botones al centro */
+        scale: 200px;
     }
 }
 

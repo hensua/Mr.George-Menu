@@ -230,8 +230,33 @@ function mostrarCarrito() {
         if (totalCompraP) {
             totalCompraP.textContent = 'Compra: $0'; // Reinicia el valor en el nuevo elemento
         }
+
+        const contentPagos = document.querySelector("#contentPagos");
+        if (contentPagos) {
+            contentPagos.style.display = "none"; // Cambia el estilo a visible
+        }
+
+        const boton = document.querySelector("#boton_hacer_pedido");
+        if (boton) {
+            boton.disabled = true; // Deshabilita el botón
+            boton.style.backgroundColor = "#ccc"; // Cambia el color de fondo
+            boton.style.cursor = "not-allowed"; // Cambia el cursor a "no permitido"
+            boton.style.opacity = "0.5"; // Reduce la opacidad para indicar que está deshabilitado
+        }
+
         // También reiniciar la variable global
         valorTotal = 0;
+    }
+    else {
+        const contentPagos = document.querySelector("#contentPagos");
+        if (contentPagos) {
+            contentPagos.style.display = "block"; // Cambia el estilo a visible
+        }
+
+        const boton = document.querySelector("#boton_hacer_pedido");
+        if (boton) {
+            boton.disabled = false; // Habilita el botón
+        }
     }
 }
 
