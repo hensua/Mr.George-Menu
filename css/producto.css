@@ -23,6 +23,7 @@ body, html{
     width: 100%;
     overflow-x: hidden;  /* Evita desbordamiento horizontal */
     background-color: rgb(17, 17, 17);
+    /*background-color: brown;*/
 }
 button{
     cursor: pointer;
@@ -30,44 +31,55 @@ button{
 ul{
     list-style-type: none;
 }
-#contenedor_header{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    background-color: var(--mi-color-principal);
-    margin: 0;
+
+.container{
+    max-width: 430px;   /* Ancho máximo de 414px */
+    width: 100%;        /* Ocupa el 100% del ancho hasta el límite de 414px */
+    margin: 0 auto;     /* Centrado en la pantalla */
+    box-sizing: border-box;
 }
-#btn-atras{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.8rem;
-    border: 0;
+
+/* Estilo general para el contenedor */
+#contenedor_img_producto {
+    position: relative; /* Para que los elementos hijos puedan posicionarse relativos a este contenedor */
+    max-width: 430px;
+    margin: 0 auto; /* Centrar el contenedor horizontalmente si es necesario */
+    overflow: hidden; /* Asegura que el contenido no exceda el tamaño del contenedor */
+    padding: 10px;
+}
+
+/* Estilo para el botón y su contenedor */
+#contenedorbtnAtras {
+    position: absolute; /* Permite posicionar el botón dentro del contenedor */
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+    left: 20px; /* Ajusta la distancia desde la izquierda */
+    z-index: 10; /* Asegura que esté por encima de la imagen */
+}
+
+#btn-atras {
     background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    
 }
-#btn-atras_logo{
+
+#btn-atras_logo {
+    /*width: 30px; /* Ajusta el tamaño del logo del botón */
+    /*height: auto;*/
     width: 2rem; 
     border-radius: 15px;
     background-color: rgb(255, 255, 255);
 }
-#contenedor_img_producto{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 350px;
-    background-color: var(--mi-color-principal);
-    border-radius: 0 0 180px 180px;
-    margin-top: 0;
-    margin-bottom: 0.8rem;
-}
-#imagen-producto{
-    width: 20rem;
+
+/* Estilo para la imagen del producto */
+#imagen-producto {
+    display: block;
+    width: 100%; /* Asegura que la imagen se ajuste al ancho del contenedor */
     height: auto;
-    margin-top: 7.3rem;
-    /*background-color: rgb(255, 123, 0);*/
+    border-radius: 25px;
 }
+
 #nombre-producto{
     color: white;
     text-align: initial;
@@ -136,15 +148,15 @@ ul{
     margin-top: 8px;
     margin-bottom: 80px;
     text-align: center;
-    /*background-color: #28a745;*/
+    /*background-color: #2a28a7;*/
 }
 
 .acompanamiento-item {
     position: relative;
-    flex: 0 0 35%;
+    /*flex: 0 0 35%;*/
     color: rgb(255, 255, 255);
     width: 140px;
-    height: 200px;
+    height: 205px;
     gap: 1.1rem;
     border-radius: 0.6rem;
     background-color: rgba(61, 61, 61, 0.233);
@@ -164,11 +176,11 @@ ul{
 }
 
 .acompanamiento-item img {
-    width: 95%;
-    width: 7.5rem;
-    margin-top: 0.9rem;
-    margin-bottom: 0.8rem;
-    /*background-color: rgb(255, 123, 0);*/
+    width: 7.7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    /*background-color: rgb(255, 255, 255);*/
+    border-radius: 10px;
 }
 
 .articulo_info {
@@ -249,6 +261,8 @@ ul{
 
 
 #contenedor_botones{
+    max-width: 414px;   /* Ancho máximo de 414px */
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;

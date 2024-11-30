@@ -33,7 +33,7 @@ button{
     cursor: pointer;
 }
 .container{
-    max-width: 414px;   /* Ancho máximo de 414px */
+    max-width: 430px;   /* Ancho máximo de 414px */
     width: 100%;        /* Ocupa el 100% del ancho hasta el límite de 414px */
     margin: 0 auto;     /* Centrado en la pantalla */
     box-sizing: border-box;
@@ -238,8 +238,8 @@ h1{
     height: 205px;
     gap: 1.1rem;
     border-radius: 0.6rem;
-    /*background-color: rgba(61, 61, 61, 0.233);*/
-    background-color: rgba(18, 153, 0, 0.87); /*SOLO PARA PRUEBA*/
+    background-color: rgba(61, 61, 61, 0.233);
+    /*background-color: rgba(18, 153, 0, 0.87);*/ /*SOLO PARA PRUEBA*/
 }
 .menu_articulo_textos{
     display: flex;

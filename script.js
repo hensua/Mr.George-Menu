@@ -32,7 +32,7 @@ function pruebacontador() {
 
 function PruebaContadorCarrito(){
     actualizarContadorCarrito();
-    console.log(`actualizarfunciona`);
+    alert("ejecuta prueba");
 }
 
 // Función para actualizar el contador del carrito en el icono
@@ -154,12 +154,12 @@ function mostrarCarrito() {
         // Función para obtener la ruta de la imagen asociada al ID 
         function obtenerRutaPorId(id) {
             const rutas = {
-                '10': 'img/CocaCola_250_ml_Foto.png', 
-                '11': 'img/Manzana_250_ml_Foto.png',
-                '12': 'img/Colombiana_250_ml_Foto.png',
-                '13': 'img/Pepsi_250_ml_Foto.png',
-                '14': 'img/Naranja_250_ml_Foto.png',
-                '15': 'img/Uva_250_ml_Foto.png',
+                '10': 'img/CocaCola250ml.jpg', 
+                '11': 'img/Manzana250ml.jpg',
+                '12': 'img/Colombiana250ml.jpg',
+                '13': 'img/Pepsi250ml.jpg',
+                '14': 'img/Naranja250ml.jpg',
+                '15': 'img/Uva250ml.jpg',
                 // Agrega más ID y rutas según sea necesario
             };
 
