@@ -25,19 +25,14 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100vh; /* Asegura que el gradiente cubra toda la pantalla */
-    overflow-x: hidden; /* Evita desbordamiento horizontal */
+    /*overflow-x: hidden; /* Evita desbordamiento horizontal */
     background: linear-gradient(180deg, chocolate 50%, rgb(17, 17, 17) 50%);
 }
 
 button{
     cursor: pointer;
 }
-.container{
-    max-width: 430px;   /* Ancho máximo de 414px */
-    width: 100%;        /* Ocupa el 100% del ancho hasta el límite de 414px */
-    margin: 0 auto;     /* Centrado en la pantalla */
-    box-sizing: border-box;
-}
+
 /* Asegurarse de que ningún elemento se salga del contenedor */ 
 /*img, video, iframe, .articulo, .escoger_seccion, main {
     max-width: 100%;    /* Asegura que los elementos no se salgan del contenedor */
@@ -46,7 +41,7 @@ button{
    /* overflow: hidden;   /* Evita desbordamiento */
 /*}*/
 header{
-    max-width: 430px;
+    /*max-width: 430px;*/
     width: 100%;
     margin: 0 auto;  
     display: flex;
@@ -145,14 +140,19 @@ header{
     background-color: var(--mi-color-principal);
     color: black;
     border-radius: 50%;
-    padding: 5px 9px;
+    padding: 1px;
+    width: 22px;
+    height: 22px;
     font-size: 0.8rem;
+    text-align: center; 
+    line-height: 22px; 
 }
 #contentInferior{
-    width: 100%;
-    padding: 15px;
+    width: 95%;
+    padding: 15px 0px;
     display: flex;
     justify-content: center;
+    gap: 30px;
     align-items: center;
     /*background-color: blueviolet;*/
 }
@@ -160,6 +160,7 @@ header{
     height: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     /*background-color: cornflowerblue;*/
 }
 #textRecomendadoI{
@@ -173,7 +174,8 @@ header{
 }
 #logoProductoRecomendado{
     width: 150px;
-    margin-left: 40px;
+    /*margin-left: 40px;*/
+    /*background-color: blue;*/
 }
 h1{
     font-size: 20px;
@@ -181,6 +183,8 @@ h1{
 .container{
     border-radius: 20px 20px 0px 0px;
     background-color: rgb(17, 17, 17);
+    /*background-color: rgb(255, 8, 243);*/
+
 }
 .seccion{
     width: 100%;
@@ -304,6 +308,7 @@ h1{
 footer{
     display: none;
     padding: 20px;
+    background-color: black;
 }/*
 #tittleFooter{
     font-size: 40px;
@@ -372,43 +377,216 @@ footer{
 
 /* Teléfonos móviles (menos de 768px de ancho) */
 @media screen and (max-width: 767px) {
-    /* Estilos para teléfonos móviles */
-    body {
-        font-size: 14px; /* Ajusta el tamaño de la fuente */
+    body::-webkit-scrollbar {
+        display: none; /* Esto oculta el scrollbar */
     }
 }
 
 /* Asegurarse en pantallas grandes como tabletas y PCs */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .container {
-        max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
-        width: 414px;      /* Asegura que no se expanda más allá de 414px */
+    body::-webkit-scrollbar {
+        display: none; /* Esto oculta el scrollbar */
+    }
+    #contentSuperior{
+        /*background-color: blue;*/
+    }
+    #contentMarca{
+        /*background-color: rgb(0, 153, 255);*/
+        width: 400px;
+    }
+    #nameMarca{
+        /*background-color: brown;*/
+    }
+    #nameMarca>span{
+        font-size: 25px;
+    }
+    .horario {
+        border-radius: 15px;
+        margin-top: 5px;
+    }
+    /* Estado abierto */
+    .horario.abierto,#abierto {
+        width: 74%;
+    }
+    /* Estado cerrado */
+    .horario.cerrado,#cerrado{
+        width: 76%;
+    }
+    #img-reloj{
+        width: 22px;
+    }
+    #msg-reloj{
+        font-size: 18px;
+    }
+    #logo_app{
+        width: 100px;
+    }
+    #carrito_compras_logo{
+        width: 2.8rem;
+    }
+    #contador_carrito {
+        top: -13px;
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+        line-height: 28px; /* Centra verticalmente el texto */
+    }
+    #contentInferior{
+        /*background-color: blueviolet;*/
+    }
+    #nameProductoRecomendado{
+        /*background-color: cornflowerblue;*/
+    }
+    #textRecomendadoI{
+        font-size: 28px;
+    }
+    #textRecomendadoII{
+        font-size: 44px;
+    }
+    #logoProductoRecomendado{
+        width: 300px;
+    }
+    .container{
+        /*background-color: rgb(146, 189, 226);*/
     }
     .escoger_seccion_contenedor {
-        overflow-x: visible; /* Desactiva el desplazamiento horizontal en pantallas grandes */
-        white-space: normal; /* Permite que los botones se envuelvan a múltiples líneas si es necesario */
+        overflow-x:hidden; /* Permite el desplazamiento horizontal */
+        overflow-y: hidden;
     }
-    
     .escoger_seccion {
-        display: flex;
-        justify-content: center; /* Alinea los botones al centro */
+        margin-right: 5px;
+        padding: 10px 0;
+        transform: scale(1.3);
+        margin-top: 10px;
+    }
+    #titulo_principal{
+        font-size: 28px;
+        /*margin-bottom: 8px;*/
+    }
+    .menu {
+        gap: 5rem; /* Define espacio entre columnas y filas */
+        row-gap: 6.5rem; /* Ajusta específicamente el espacio vertical */
+        padding: 2.6rem; /* Asegura espacio interno en el contenedor */
+        overflow: visible; /* Permite que los elementos escalados sean visibles */
+        /*background-color: antiquewhite;*/
+    }
+    .articulo {
+        transform: scale(1.4); /* Escala los artículos individualmente */
+        transition: transform 0.3s ease-in-out; /* Suaviza el escalado */
     }
 }
 
 @media screen and (min-width: 1024px) {
-    .container {
-        max-width: 414px;  /* Mantiene el tamaño máximo de 414px */
-        width: 414px;      /* Asegura que no se expanda más allá de 414px */
+/*body {
+        width: 100%;
+        max-width: 1600px; /* Límite de ancho máximo */
+        /*margin: 0 auto; /* Centrado en la pantalla */
+        /*padding: 20px; /* Espaciado alrededor del contenido */
+    /*}*/
+    
+    #contentSuperior{
+        /*background-color: blue;*/
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+    #contentMarca{
+        /*background-color: rgb(0, 153, 255);*/
+        width: 400px;
+    }
+    #nameMarca{
+        /*background-color: brown;*/
+    }
+    #nameMarca>span{
+        font-size: 25px;
+    }
+    .horario {
+        border-radius: 15px;
+        margin-top: 5px;
+    }
+    /* Estado abierto */
+    .horario.abierto,#abierto {
+        width: 74%;
+    }
+    /* Estado cerrado */
+    .horario.cerrado,#cerrado{
+        width: 76%;
+    }
+    #img-reloj{
+        width: 22px;
+    }
+    #msg-reloj{
+        font-size: 18px;
+    }
+    #logo_app{
+        width: 100px;
+    }
+    #carrito_compras_logo{
+        width: 2.8rem;
+    }
+    #contador_carrito {
+        top: -13px;
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+        line-height: 28px; /* Centra verticalmente el texto */
+    }
+    #contentInferior{
+        /*background-color: blueviolet;*/
+    }
+    #nameProductoRecomendado{
+        /*background-color: cornflowerblue;*/
+    }
+    #textRecomendadoI{
+        font-size: 28px;
+    }
+    #textRecomendadoII{
+        font-size: 44px;
+    }
+    #logoProductoRecomendado{
+        width: 300px;
+    }
+    .container{
+        /*background-color: rgb(146, 189, 226);*/
     }
     .escoger_seccion_contenedor {
-        overflow-x: visible; /* Desactiva el desplazamiento horizontal en pantallas grandes */
-        white-space: normal; /* Permite que los botones se envuelvan a múltiples líneas si es necesario */
+        overflow-x:hidden; /* Permite el desplazamiento horizontal */
+        overflow-y: hidden;
     }
-    
-    .escoger_seccion {
-        display: flex;
-        justify-content: center; /* Alinea los botones al centro */
-        scale: 200px;
+    .escoger_seccion{
+        margin-right: 5px;
+        padding: 10px 0;
+        transform: scale(1.3);
+        margin-top: 10px;
+    }
+    .escoger_seccion_a:hover{
+        text-decoration: underline;
+        /*color: var(--mi-color-principal);*/
+    }
+    #titulo_principal{
+        font-size: 28px;
+        /*margin-bottom: 8px;*/
+    }
+    .menu {
+        margin: 0 auto;
+        max-width: 1200px;
+        gap: 5rem; /* Define espacio entre columnas y filas */
+        row-gap: 6.5rem; /* Ajusta específicamente el espacio vertical */
+        padding: 3.5rem; /* Asegura espacio interno en el contenedor */
+        overflow: visible; /* Permite que los elementos escalados sean visibles */
+        /*background-color: antiquewhite;*/
+    }
+    .articulo {
+        transform: scale(1.4); /* Escala los artículos individualmente */
+        transition: transform 0.3s ease-in-out; /* Suaviza el escalado */
+        cursor: pointer;
+        
+    }
+    .articulo:hover {
+        transform: scale(1.5); /* Escala los artículos individualmente */
+        transition: transform 0.3s ease-in-out; 
+    }
+    .boton_add:hover{
+        background-color: rgb(223, 182, 0);
     }
 }
 
